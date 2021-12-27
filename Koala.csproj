@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>406c926b-160c-437c-93df-dfb4d2e7bffb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Pages\Areas\**" />
+    <Compile Remove="Pages\Documents\**" />
+    <Compile Remove="Pages\Profiles\**" />
+    <Compile Remove="wwwroot\lib\bootstrap-5.0.0-beta3\**" />
+    <Compile Remove="wwwroot\lib\bootstrap-5.0.2-dist\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\**" />
+    <Content Remove="Areas\**" />
+    <Content Remove="Pages\Areas\**" />
+    <Content Remove="Pages\Documents\**" />
+    <Content Remove="Pages\Profiles\**" />
+    <Content Remove="wwwroot\lib\bootstrap-5.0.0-beta3\**" />
+    <Content Remove="wwwroot\lib\bootstrap-5.0.2-dist\**" />
+    <Content Remove="wwwroot\lib\bootstrap\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Pages\Areas\**" />
+    <EmbeddedResource Remove="Pages\Documents\**" />
+    <EmbeddedResource Remove="Pages\Profiles\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap-5.0.0-beta3\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap-5.0.2-dist\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Pages\Areas\**" />
+    <None Remove="Pages\Documents\**" />
+    <None Remove="Pages\Profiles\**" />
+    <None Remove="wwwroot\lib\bootstrap-5.0.0-beta3\**" />
+    <None Remove="wwwroot\lib\bootstrap-5.0.2-dist\**" />
+    <None Remove="wwwroot\lib\bootstrap\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

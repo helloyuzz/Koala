@@ -1,0 +1,119 @@
+﻿@page
+@model Koala.Pages.Dictionarys.NewModel
+@{
+}
+<div class="m-0">
+    <div class="p-4 pb-0 shadow">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#" class="text-decoration-none"><i class="fas fa-align-justify"></i>&nbsp;主页</a></li>
+                <li class="breadcrumb-item ">
+                    <div class="btn-group pb-2">
+                        <a href="#" class="text-decoration-none" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-caret-right"></i>&nbsp;基础资料</a>
+                        <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">院单位管理</a></li>
+                            <li><a class="dropdown-item" href="#">科室管理</a></li>
+                            <li><a class="dropdown-item" href="#">用户管理</a></li>
+                            <li><a class="dropdown-item" href="#">角色权限</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="breadcrumb-item"><a asp-page="/Dictionarys/Index" class="text-decoration-none">字典管理</a></li>
+                <li class="breadcrumb-item active" aria-current="page">新增字典项</li>
+            </ol>
+        </nav>
+    </div>
+    <div class=" mb-2 pb-3">
+        <div class=" ps-4">
+            <div class="row pt-3">
+                <div class="col-3">
+                    <div class="row m-3">
+                        <div class="col-4">字典名称：</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="dict_name"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4">业务板块：</div>
+                        <div class="col">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>-</option>
+                                <option value="1">回收</option>
+                                <option value="2">清洗</option>
+                                <option value="2">领取</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4">字典类型：</div>
+                        <div class="col">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>-</option>
+                                <option value="1">单选</option>
+                                <option value="2">多选</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4 text-primary">自定义属性</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="inputPassword"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4 text-primary">自定义属性</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="inputPassword"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4 text-primary">自定义属性</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="inputPassword"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4 text-primary">自定义属性</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="inputPassword"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-4 text-primary">自定义属性</div>
+                        <div class="col"><input type="password" class="form-control form-control-sm mr-2" id="inputPassword"></div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col">
+                            <a asp-page="/Dictionarys/Index" class="btn btn-primary shadow p-4 pt-1 pb-1 m-3 ms-0 mt-0 mb-0">保存</a>
+                            <a asp-page="/Dictionarys/Index" class="btn btn-warning shadow p-4 pt-1 pb-1">取消</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row m-3">
+                        <div class="col-3 text-center">字典内容：</div>
+                        <div id="div_content" class="col">
+                            <div id="div_normal" class="input-group flex-nowrap mb-2">
+                                <input type="text" class="form-control form-control-sm" placeholder="Input content..." aria-label="Username" aria-describedby="addon-wrapping">
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-trash"></i></span>
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-arrow-up"></i></span>
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-arrow-down"></i></span>
+                                <span name="add_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="input-group flex-nowrap mb-2">
+                                <input type="text" class="form-control form-control-sm" placeholder="Input content..." aria-label="Username" aria-describedby="addon-wrapping">
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-trash"></i></span>
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-arrow-up"></i></span>
+                                <span name="del_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-arrow-down"></i></span>
+                                <span name="add_button" class="input-group-text" id="addon-wrapping"><i class="fas fa-plus"></i></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#dict_name').focus();
+    $("[name='add_button']").click(function () {
+        var newItem = $('#div_normal').clone()
+        $('#div_content').append(newItem);
+        newItem.focus();
+    });
+    $("[name='del_button']").click(function () {
+    });
+</script>

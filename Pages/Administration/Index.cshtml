@@ -1,0 +1,769 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "欢迎";
+}
+
+<div class="row m-0 p-0">
+    <div class="text-center position-relative p-0">
+        <div class="w-100 shadow" style="height:236px;width:100%;background-image:url('/images/999.jpg');background-position: right center;" />
+        <div class="position-absolute text-white w-100 text-center" style="left:auto;right:auto;top:168px;margin-right:auto;">
+            <h1><span class="shadow text-dark">欢迎使用 蓝鹰追溯3.0后台管理系统!</span></h1>
+        </div>
+    </div>
+    <!-- RH: this is bootstrap 5 tabbed panel -->
+    <ul class="nav nav-tabs w-100 m-0" id="myTab" role="tablist">
+        <li class="nav-item rounded-0" role="presentation" style="width:33%;">
+            <a class="nav-link text-white rounded-0 m-0 border-0 pb-2 pt-2" style="background:#3894c3" id="indexpage-tab" data-bs-toggle="tab" href="#indexpage" role="tab" aria-controls="indexpage" aria-selected="true">监控主页</a>
+        </li>
+        <li class="nav-item rounded-0" role="presentation" style="width:33%;">
+            <a class="nav-link bg-warning rounded-0 m-0 border-0 pb-2 pt-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">运行数据</a>
+        </li>
+        <li class="nav-item rounded-0" role="presentation" style="width:34%;">
+            <a class="nav-link text-white rounded-0 m-0 border-0 pb-2 pt-2" style="background:#22353c" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">帮助手册</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="indexpage" role="tabpanel" aria-labelledby="indexpage-tab">
+            <div class="row m-0 p-0">
+                <div class="col-3 p-4 align-items-start">
+                    <h5 style="color:#3594c2;">服务器监控：</h5>
+                    <div class="list-group">
+                        <a id="index_api-tab" data-bs-toggle="tab" href="#index_api" role="tab" aria-controls="index_api" class="list-group-item list-group-item-action p-3">API连接&nbsp;<span class="badge rounded-pill bg-danger">4</span></a>
+                        <a id="index_db-tab" data-bs-toggle="tab" href="#index_db" role="tab" aria-controls="index_db" class="list-group-item list-group-item-action p-3">数据库连接</a>
+                        <a id="index_home-tab" data-bs-toggle="tab" href="#index_home" role="tab" aria-controls="index_home" class="list-group-item list-group-item-action p-3" aria-current="true">CPU利用率&nbsp;<span class="badge rounded-pill bg-info">45%</span></a>
+                        <a id="index_profile-tab" data-bs-toggle="tab" href="#index_profile" role="tab" aria-controls="index_profile" aria-selected="false" class="list-group-item list-group-item-action p-3">内存利用率</a>
+                        <a id="index_contact-tab" data-bs-toggle="tab" href="#index_contact" role="tab" aria-controls="index_contact" aria-selected="false" class="list-group-item list-group-item-action p-3">磁盘空间利用率&nbsp;<span class="badge rounded-pill bg-warning">80%</span></a>
+                        <a id="index_network-tab" data-bs-toggle="tab" href="#index_network" role="tab" aria-controls="index_network" class="list-group-item list-group-item-action p-3">网络利用率</a>
+                        <a id="index_warring-tab" data-bs-toggle="tab" href="#index_warring" role="tab" aria-controls="index_warring" class="list-group-item list-group-item-action p-3">错误&nbsp;<span class="badge rounded-pill bg-danger">123</span></a>
+                        <a id="index_warring-tab" data-bs-toggle="tab" href="#index_warring" role="tab" aria-controls="index_warring" class="list-group-item list-group-item-action p-3">告警&nbsp;<span class="badge rounded-pill bg-warning">66</span></a>
+                    </div>
+                </div>
+                <div class="col p-4"><br />
+                    @*<h5 style="color:#3594c2;">CPU利用率：</h5>*@
+                    <!-- RH: this is bootstrap 5 tabbed panel -->
+                    <ul class="nav nav-tabs" id="index_myTab" role="tablist" style="display:none;">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="index_home-tab" data-bs-toggle="tab" href="#index_home" role="tab" aria-controls="index_home" aria-selected="true">index_Home</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="index_profile-tab" data-bs-toggle="tab" href="#index_profile" role="tab" aria-controls="index_profile" aria-selected="false">index_Profile</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="index_contact-tab" data-bs-toggle="tab" href="#index_contact" role="tab" aria-controls="index_contact" aria-selected="false">index_Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="index_myTabContent">
+                        <div class="tab-pane fade" id="index_warring" role="tabpanel" aria-labelledby="index_warring-tab">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main_warring" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart_warring = echarts.init(document.getElementById('main_warring'));
+
+                                // 指定图表的配置项和数据
+                                var option_warring;
+
+                                var dateList = [
+                                    ['2017-3-1', '初四'],
+                                    ['2017-3-2', '初五'],
+                                    ['2017-3-3', '初六'],
+                                    ['2017-3-4', '初七'],
+                                    ['2017-3-5', '初八', '错误'],
+                                    ['2017-3-6', '初九'],
+                                    ['2017-3-7', '初十'],
+                                    ['2017-3-8', '十一'],
+                                    ['2017-3-9', '十二'],
+                                    ['2017-3-10', '十三'],
+                                    ['2017-3-11', '十四'],
+                                    ['2017-3-12', '十五'],
+                                    ['2017-3-13', '十六'],
+                                    ['2017-3-14', '十七'],
+                                    ['2017-3-15', '十八'],
+                                    ['2017-3-16', '十九'],
+                                    ['2017-3-17', '二十'],
+                                    ['2017-3-18', '廿一'],
+                                    ['2017-3-19', '廿二'],
+                                    ['2017-3-20', '廿三', '告警'],
+                                    ['2017-3-21', '廿四'],
+                                    ['2017-3-22', '廿五'],
+                                    ['2017-3-23', '廿六'],
+                                    ['2017-3-24', '廿七'],
+                                    ['2017-3-25', '廿八'],
+                                    ['2017-3-26', '廿九'],
+                                    ['2017-3-27', '三十'],
+                                    ['2017-3-28', '三月'],
+                                    ['2017-3-29', '初二'],
+                                    ['2017-3-30', '初三'],
+                                    ['2017-3-31', '初四']
+                                ];
+
+                                var heatmapData = [];
+                                var lunarData = [];
+                                for (var i = 0; i < dateList.length; i++) {
+                                    heatmapData.push([
+                                        dateList[i][0],
+                                        Math.random() * 300,
+                                        Math.random() * 300
+                                    ]);
+                                    lunarData.push([
+                                        dateList[i][0],
+                                        1,
+                                        dateList[i][1],
+                                        dateList[i][2]
+                                    ]);
+                                }
+
+
+                                option_warring = {
+                                    tooltip: {
+                                        formatter: function (params) {
+                                            return '错误: ' + params.value[1].toFixed(0) + '<br>告警：' + params.value[2].toFixed(0);
+                                        }
+                                    },
+
+                                    visualMap: {
+                                        show: false,
+                                        min: 0,
+                                        max: 300,
+                                        calculable: true,
+                                        seriesIndex: [2],
+                                        orient: 'horizontal',
+                                        left: 'center',
+                                        bottom: 20,
+                                        inRange: {
+                                            color: ['#e0ffff', '#006edd'],
+                                            opacity: 0.3
+                                        },
+                                        controller: {
+                                            inRange: {
+                                                opacity: 0.5
+                                            }
+                                        }
+                                    },
+
+                                    calendar: [{
+                                        left: 'center',
+                                        top: 'middle',
+                                        cellSize: [98, 70],
+                                        yearLabel: { show: false },
+                                        orient: 'vertical',
+                                        dayLabel: {
+                                            firstDay: 7,
+                                            nameMap: 'cn'
+                                        },
+                                        monthLabel: {
+                                            show: false
+                                        },
+                                        range: '2017-03'
+                                    }],
+
+                                    series: [{
+                                        type: 'scatter',
+                                        coordinateSystem: 'calendar',
+                                        symbolSize: 1,
+                                        label: {
+                                            show: true,
+                                            formatter: function (params) {
+                                                var d = echarts.number.parseDate(params.value[0]);
+                                                return d.getDate() + '\n\n' + params.value[2] + '\n\n';
+                                            },
+                                            color: '#000'
+                                        },
+                                        data: lunarData
+                                    }, {
+                                        type: 'scatter',
+                                        coordinateSystem: 'calendar',
+                                        symbolSize: 1,
+                                        label: {
+                                            show: true,
+                                            formatter: function (params) {
+                                                return '\n\n\n' + (params.value[3] || '');
+                                            },
+                                            fontSize: 14,
+                                            fontWeight: 700,
+                                            color: '#a00'
+                                        },
+                                        data: lunarData
+                                    }, {
+                                        name: '降雨量',
+                                        type: 'heatmap',
+                                        coordinateSystem: 'calendar',
+                                        data: heatmapData
+                                    }]
+                                };
+
+
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart_warring.setOption(option_warring);
+                            </script>
+                            <span>2017年1月-错误告警量统计.</span>
+                            <p><span>错误累计：xx，告警累计：xx,已处理累计：xx.</span></p>
+                        </div>
+                        <div class="tab-pane fade show active" id="index_api" role="tabpanel" aria-labelledby="index_api-tab">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main_api" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart_api = echarts.init(document.getElementById('main_api'));
+
+                                // 指定图表的配置项和数据
+                                var option_api;
+
+                                var categoryData = [];
+                                var errorData = [];
+                                var barData = [];
+                                var dataCount = 100;
+                                for (var i = 0; i < dataCount; i++) {
+                                    var val = Math.random() * 1000;
+                                    categoryData.push('接口' + i);
+                                    errorData.push([
+                                        i,
+                                        echarts.number.round(Math.max(0, val - Math.random() * 100)),
+                                        echarts.number.round(val + Math.random() * 80)
+                                    ]);
+                                    barData.push(echarts.number.round(val, 0));
+                                }
+
+                                function renderItem(params, api) {
+                                    var xValue = api.value(0);
+                                    var highPoint = api.coord([xValue, api.value(1)]);
+                                    var lowPoint = api.coord([xValue, api.value(2)]);
+                                    var halfWidth = api.size([1, 0])[0] * 0.1;
+                                    var style = api.style({
+                                        stroke: api.visual('color'),
+                                        fill: null
+                                    });
+
+                                    return {
+                                        type: 'group',
+                                        children: [{
+                                            type: 'line',
+                                            transition: ['shape'],
+                                            shape: {
+                                                x1: highPoint[0] - halfWidth, y1: highPoint[1],
+                                                x2: highPoint[0] + halfWidth, y2: highPoint[1]
+                                            },
+                                            style: style
+                                        }, {
+                                            type: 'line',
+                                            transition: ['shape'],
+                                            shape: {
+                                                x1: highPoint[0], y1: highPoint[1],
+                                                x2: lowPoint[0], y2: lowPoint[1]
+                                            },
+                                            style: style
+                                        }, {
+                                            type: 'line',
+                                            transition: ['shape'],
+                                            shape: {
+                                                x1: lowPoint[0] - halfWidth, y1: lowPoint[1],
+                                                x2: lowPoint[0] + halfWidth, y2: lowPoint[1]
+                                            },
+                                            style: style
+                                        }]
+                                    };
+                                }
+
+                                option_api = {
+                                    tooltip: {
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                            type: 'shadow'
+                                        }
+                                    },
+                                    title: {
+                                        text: 'API接口性能监控'
+                                    },
+                                    legend: {
+                                        data: ['API接口', '查询时间']
+                                    },
+                                    dataZoom: [{
+                                        type: 'slider',
+                                        start: 50,
+                                        end: 70
+                                    }, {
+                                        type: 'inside',
+                                        start: 50,
+                                        end: 70
+                                    }],
+                                    xAxis: {
+                                        data: categoryData
+                                    },
+                                    yAxis: {},
+                                    series: [{
+                                        type: 'bar',
+                                        name: 'API接口',
+                                        data: barData,
+                                        itemStyle: {
+                                            color: '#3894c3'
+                                        }
+                                    }, {
+                                        type: 'custom',
+                                        name: '查询时间',
+                                        itemStyle: {
+                                            normal: {
+                                                borderWidth: 6
+                                            }
+                                        },
+                                        renderItem: renderItem,
+                                        encode: {
+                                            x: 0,
+                                            y: [1, 2]
+                                        },
+                                        data: errorData,
+                                        z: 100
+                                    }]
+                                };
+
+
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart_api.setOption(option_api);
+                            </script>
+                            <span>API接口性能监控（单位：ms）</span>
+                            <p><span>活动：xx，后台：xx，等待：xx，挂起：xx.</span></p>
+                        </div>
+                        <div class="tab-pane fade" id="index_db" role="tabpanel" aria-labelledby="index_db-tab">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main_db" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart_db = echarts.init(document.getElementById('main_db'));
+
+                                // 指定图表的配置项和数据
+                                var option_db;
+
+                                setTimeout(function () {
+                                    option_db = {
+                                        legend: {},
+                                        tooltip: {
+                                            trigger: 'axis',
+                                            showContent: false
+                                        },
+                                        dataset: {
+                                            source: [
+                                                ['product', '00:01', '00:03', '00:06', '00:09', '00:12', '00:16'],
+                                                ['活动连接(16)', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+                                                ['后台连接(13)', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+                                                ['等待连接(123)', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+                                                ['挂起连接(166)', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+                                            ]
+                                        },
+                                        xAxis: { type: 'category' },
+                                        yAxis: { gridIndex: 0 },
+                                        grid: { top: '15%' },
+                                        series: [
+                                            { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                            { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                            { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                            { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } }
+                                        ]
+                                    };
+
+                                    myChart_db.on('updateAxisPointer', function (event) {
+                                        var xAxisInfo = event.axesInfo[0];
+                                        if (xAxisInfo) {
+                                            var dimension = xAxisInfo.value + 1;
+                                            myChart_db.setOption({
+                                                series: {
+                                                    id: 'pie',
+                                                    label: {
+                                                        formatter: '{b}: {@@[' + dimension + ']} ({d}%)'
+                                                    },
+                                                    encode: {
+                                                        value: dimension,
+                                                        tooltip: dimension
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                    //myChart.setOption(option);
+
+                                    // 使用刚指定的配置项和数据显示图表。
+                                    myChart_db.setOption(option_db);
+                                });
+
+                            </script>
+                            <span>数据库：Ms SqlServer 2018，IP地址：192.168.0.1，端口：3389</span>
+                            <p><span>活动：xx，后台：xx，等待：xx，挂起：xx.</span></p>
+                        </div>
+                        <div class="tab-pane fade" id="index_network" role="tabpanel" aria-labelledby="index_network-tab">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main_network" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart_network = echarts.init(document.getElementById('main_network'));
+
+                                // 指定图表的配置项和数据
+                                var option_network = {
+                                    series: [{
+                                        type: 'gauge',
+                                        axisLine: {
+                                            lineStyle: {
+                                                width: 30,
+                                                color: [
+                                                    [0.3, '#67e0e3'],
+                                                    [0.7, '#37a2da'],
+                                                    [1, '#fd666d']
+                                                ]
+                                            }
+                                        },
+                                        pointer: {
+                                            itemStyle: {
+                                                color: 'auto'
+                                            }
+                                        },
+                                        axisTick: {
+                                            distance: -30,
+                                            length: 8,
+                                            lineStyle: {
+                                                color: '#fff',
+                                                width: 2
+                                            }
+                                        },
+                                        splitLine: {
+                                            distance: -30,
+                                            length: 30,
+                                            lineStyle: {
+                                                color: '#fff',
+                                                width: 4
+                                            }
+                                        },
+                                        axisLabel: {
+                                            color: 'auto',
+                                            distance: 40,
+                                            fontSize: 20
+                                        },
+                                        detail: {
+                                            valueAnimation: true,
+                                            formatter: '{value} Mbps',
+                                            color: 'auto'
+                                        },
+                                        data: [{
+                                            value: 70
+                                        }]
+                                    }]
+                                };
+                                setInterval(function () {
+                                    option_network.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+                                    //myChart_network.setOption(option, true);
+                                    myChart_network.setOption(option_network);
+                                }, 2000);
+
+
+                                // 使用刚指定的配置项和数据显示图表。
+                            </script>
+                            <span>适配器名称：WLAN，发送：xx Kbps，接收：xx Kbps.</span>
+                            <p><span>IP v4地址：192.168.0.1 IP v6地址：fe80::1145:a4f5:cc3a:cf72%17</span></p>
+                        </div>
+                        <div class="tab-pane fade" id="index_home" role="tabpanel" aria-labelledby="index_home-tab">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main'));
+
+                                // 指定图表的配置项和数据
+                                var option = {
+                                    title: {
+                                        text: 'CPU利用率',
+                                        subtext: '当前百分比'
+                                    },
+                                    tooltip: {},
+                                    legend: {
+                                        data: ['CPU使用百分比']
+                                    },
+                                    xAxis: {
+                                        data: ["00:01", "00:03", "00:06", "00:09", "00:12", "00:16"]
+                                    },
+                                    yAxis: {},
+                                    series: [{
+                                        name: 'CPU使用百分比',
+                                        type: 'bar',
+                                        data: [5, 20, 99, 10, 10, 20]
+                                    }]
+                                };
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                            </script>
+                            <span>CPU：Intel(R) Core(TM) i5-8250U CPU @@ 1.60GHz，利用率：15%.</span>
+                            <p><span>内核数量：4 ， 逻辑处理器数量：8 </span></p>
+                        </div>
+                        <div class="tab-pane fade" id="index_profile" role="tabpanel" aria-labelledby="index_profile-tab">
+                            <div id="main-memory" style="width:800px;height:460px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart_memory = echarts.init(document.getElementById('main-memory'));
+
+                                // 指定图表的配置项和数据
+                                option_memory = {
+                                    title: {
+                                        text: '内存利用率',
+                                        subtext: '当前内存利用率'
+                                    },
+                                    tooltip: {
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                            type: 'cross'
+                                        }
+                                    },
+                                    toolbox: {
+                                        show: true,
+                                        feature: {
+                                            saveAsImage: {}
+                                        }
+                                    },
+                                    xAxis: {
+                                        type: 'category',
+                                        boundaryGap: false,
+                                        data: ['00:00', '01:15', '02:30', '03:45', '05:00', '06:15', '07:30', '08:45', '10:00', '11:15', '12:30', '13:45', '15:00', '16:15', '17:30', '18:45', '20:00', '21:15', '22:30', '23:45']
+                                    },
+                                    yAxis: {
+                                        type: 'value',
+                                        axisLabel: {
+                                            formatter: '{value} %'
+                                        },
+                                        axisPointer: {
+                                            snap: true
+                                        }
+                                    },
+                                    visualMap: {
+                                        show: false,
+                                        dimension: 0,
+                                        pieces: [{
+                                            lte: 6,
+                                            color: 'green'
+                                        }, {
+                                            gt: 6,
+                                            lte: 8,
+                                            color: 'red'
+                                        }, {
+                                            gt: 8,
+                                            lte: 14,
+                                            color: 'green'
+                                        }, {
+                                            gt: 14,
+                                            lte: 90,
+                                            color: 'red'
+                                        }, {
+                                            gt: 17,
+                                            color: 'green'
+                                        }]
+                                    },
+                                    series: [
+                                        {
+                                            name: '利用率',
+                                            type: 'line',
+                                            smooth: true,
+                                            data: [40, 40, 45, 60, 30, 40, 85, 90, 96, 80, 40, 40, 45, 45, 86, 99, 76, 86, 26, 45],
+                                            markArea: {
+                                                itemStyle: {
+                                                    color: 'rgba(255, 173, 177, 0.4)'
+                                                },
+                                                data: [[{
+                                                    name: '早高峰',
+                                                    xAxis: '07:30'
+                                                }, {
+                                                    xAxis: '10:00'
+                                                }], [{
+                                                    name: '晚高峰',
+                                                    xAxis: '17:30'
+                                                }, {
+                                                    xAxis: '21:15'
+                                                }]]
+                                            }
+                                        }
+                                    ]
+                                };
+
+                                //option_memory && myChart_memory.setOption(option_memory);
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart_memory.setOption(option_memory);
+                            </script>
+                            <span>内存总量：16G，速度：3666MHz，可用插槽：1/2.</span>
+                            <p><span>已使用：400MB ，可用：xxxMB.</span></p>
+                        </div>
+                        <div class="tab-pane fade" id="index_contact" role="tabpanel" aria-labelledby="index_contact-tab">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div id="main_disk_c" style="width:400px;height:460px;"></div>
+                                        <script type="text/javascript">
+                                            // 基于准备好的dom，初始化echarts实例
+                                            var myChart_disk_c = echarts.init(document.getElementById('main_disk_c'));
+
+                                            // 指定图表的配置项和数据
+                                            var option_disk_c = {
+                                                title: {
+                                                    text: 'C盘使用情况',
+                                                    subtext: '400M / 1G',
+                                                    left: 'center'
+                                                },
+                                                tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '磁盘使用率： <br/>{b} : {c} ({d}%)'
+                                                },
+                                                legend: {
+                                                    bottom: 10,
+                                                    left: 'center',
+                                                    data: ['已使用', '未使用']
+                                                },
+                                                series: [
+                                                    {
+                                                        type: 'pie',
+                                                        radius: '65%',
+                                                        center: ['50%', '50%'],
+                                                        selectedMode: 'single',
+                                                        data: [
+                                                            {
+                                                                value: 600,
+                                                                name: '已使用-60%'
+                                                                , itemStyle: { color: '#91cd76' }
+                                                            },
+                                                            {
+                                                                value: 400, name: '未使用-40%'
+                                                                , itemStyle: { color: '#ef6667' }
+                                                            }
+                                                        ],
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            };
+
+                                            // 使用刚指定的配置项和数据显示图表。
+                                            myChart_disk_c.setOption(option_disk_c);
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <div id="main_disk_d" style="width:400px;height:460px;"></div>
+                                        <script type="text/javascript">
+                                            // 基于准备好的dom，初始化echarts实例
+                                            var myChart_disk_d = echarts.init(document.getElementById('main_disk_d'));
+
+                                            // 指定图表的配置项和数据
+                                            var option_disk_d = {
+                                                title: {
+                                                    text: 'D盘使用情况',
+                                                    subtext: '268G / 300G',
+                                                    left: 'center'
+                                                },
+                                                tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '磁盘使用率： <br/>{b} : {c} ({d}%)'
+                                                },
+                                                legend: {
+                                                    bottom: 10,
+                                                    left: 'center',
+                                                    data: ['已使用', '未使用']
+                                                },
+                                                series: [
+                                                    {
+                                                        type: 'pie',
+                                                        radius: '65%',
+                                                        center: ['50%', '50%'],
+                                                        selectedMode: 'single',
+                                                        data: [
+                                                            {
+                                                                value: 126,
+                                                                name: '未使用-60%'
+                                                                , itemStyle: { color: '#546fc6' }
+                                                            },
+                                                            {
+                                                                value: 863, name: '已使用-40%'
+                                                                , itemStyle: { color: '#ef6667' }
+                                                            }
+                                                        ],
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            };
+
+                                            // 使用刚指定的配置项和数据显示图表。
+                                            myChart_disk_d.setOption(option_disk_d);
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">磁盘总空间：1T，当前使用情况统计 [<a href="#refresh">刷新</a>]</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card vh-100" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#3594c2;">系统总览：</h5>
+                        <p class="card-text" style="text-align:left">本系统已运行：<span class="text-black-50">xxx小时xxx分钟</span></p>
+                        <p class="card-text" style="text-align:left">上次启动时间：<span class="text-black-50">xxx分钟之前</span></p>
+                        <p class="card-text" style="text-align:left">正式版本号：<span class="text-black-50">rel 0.1</span></p>
+                        <p class="card-text" style="text-align:left">管理员：<span class="text-black-50">Admin</span></p>
+                        <p class="card-text" style="text-align:left">联系电话：<span class="text-black-50">001-12345678</span></p>
+                        <p class="card-text" style="text-align:left">产品授权：<span class="text-black-50">试用版</span></p>
+                        <p class="card-text" style="text-align:left">客服电话：<span class="text-black-50">400-123-4567</span></p>
+                        <p class="card-text" style="text-align:left">服务器时间：</p>
+                        <p class="card-text" style="text-align:left"><span class="text-black-50">yyyy-MM-dd HH:mm:ss</span></p>
+                        <p class="card-text" style="text-align:left">数据库时间：</p>
+                        <p class="card-text" style="text-align:left"><span class="text-black-50">yyyy-MM-dd HH:mm:ss</span></p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            profile
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            磁盘
+        </div>
+    </div>
+</div>
+
+<div id="showCpu" class="w-75 h-100"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('showCpu'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'CPU利用率'
+        },
+        tooltip: {},
+        legend: {
+            data: ['销量']
+        },
+        xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>

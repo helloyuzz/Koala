@@ -1,0 +1,125 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.bg-title {
+    background-color: #EAF2F5 !important;
+}
+
+th[htmlValue="issue"], td[htmlValue="issue"] {
+    border: solid 1px #d7d7d7;
+    padding: 5px !important;
+}
+
+/*Issue*/
+th[htmlValue="issue"] {
+    padding: 8px !important;
+}
+/*待实施反馈*/
+.issue_subject_3 {
+    color: blue !important;
+}
+/*功能已发布*/
+.issue_subject_9 {
+    color: #2a8a29 !important;
+}
+/*已澄清*/
+.issue_subject_15 {
+    color: #ccc !important;
+    text-decoration-line: line-through !important;
+}
+
+.issue_subject_14 {
+    color: #bb5656 !important;
+    text-decoration-line: line-through !important;
+}
+/*历史遗留*/
+.issue_subject_19 {
+    color: #ccc !important;
+}
+/*重复登记*/
+.issue_subject_21 {
+    color: #b46b6b !important;
+    text-decoration: line-through !important;
+}
+*,th,td,a {
+    font-size:10pt !important;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: red;
+    background: yellow;
+}
+
+::selection {
+    color: red !important;
+    background: yellow !important;
+}

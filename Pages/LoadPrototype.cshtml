@@ -1,0 +1,21 @@
+﻿@page
+@using System.IO;
+@model Koala.Pages.LoadPrototypeModel
+
+@{
+    string fileName = Request.Query["id"];
+    bool getPrototype = false;
+    string[] path = Directory.GetFiles(".", fileName + ".html", SearchOption.AllDirectories);
+    if (path.Length > 0) {
+        getPrototype = true;
+        fileName = path[0].Replace("\\", "/").Replace("./wwwroot", "").Replace(fileName+".html", "index.html#p="+fileName);
+    }
+    if (getPrototype == true) {
+        <iframe style="        width: 100%;
+        height: 100%;" class="border-1" src="@fileName">
+        </iframe>
+        <input value="@fileName" />
+    } else {
+        <label>@fileName</label>
+    }
+}

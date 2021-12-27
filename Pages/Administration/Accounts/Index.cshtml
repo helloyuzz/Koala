@@ -1,0 +1,107 @@
+﻿@page
+@model Koala.Pages.Administration.Accounts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+</style>
+
+<div class="container-fluid p-3">
+    @*<h1>Index</h1>
+        <p>
+            <a asp-page="Create">Create New</a>
+        </p>*@
+    <div class="bg-white p-3">
+        <table id="mainTable" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].Login)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].HashedPassword)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].IsAdmin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].LastLoginOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].CreateOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].UpdateOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].Salt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].MustChangePasswd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account[0].HospitalId)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Account) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HashedPassword)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsAdmin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastLoginOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdateOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MustChangePasswd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HospitalId)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

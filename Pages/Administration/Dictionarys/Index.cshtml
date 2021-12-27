@@ -1,0 +1,193 @@
+﻿@page
+@model Koala.Pages.Dictionarys.IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "字典管理";
+}
+<div class="m-0 mt-3">
+    <div class="mb-2 pb-3">
+        <div class="ps-4">
+            <table class="table-sm">
+                <tr>
+                    <td width="76px" class="text-right">字典名称：</td>
+                    <td width="126px"><input type="password" class="form-control form-control-sm m-1 mr-2 w-auto" id="inputPassword"></td>
+                    <td width="76px" style="text-align:right">字典类型：</td>
+                    <td width="126px">
+                        <select class="form-select form-select-sm w-100" aria-label=".form-select-sm example">
+                            <option selected>-</option>
+                            <option value="1">系统字典</option>
+                            <option value="2">多选</option>
+                        </select>
+                    </td>
+                    <td width="76px" style="text-align:right">所属模块：</td>
+                    <td width="126px">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>-</option>
+                            <option value="1">回收</option>
+                            <option value="2">清洗</option>
+                            <option value="2">领取</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+            <div class="collapse m-0 bg-transparent ps-4" id="collapseExample">
+                <table>
+                    <tr>
+                        <td width="76px" style="cursor:all-scroll" class="text-right text-black-50">更多属性：</td>
+                        <td width="126px"><input type="password" class="form-control form-control-sm m-1 mr-2 w-auto" id="inputPassword"></td>
+                        <td width="76px" style="cursor: all-scroll;text-align:right" class="text-black-50">更多属性：</td>
+                        <td width="126px"><input type="password" class="form-control form-control-sm m-1 mr-2 w-auto" id="inputPassword"></td>
+                        <td width="76px" style="cursor: all-scroll;text-align:right" class="text-black-50">更多属性：</td>
+                        <td width="126px"><input type="password" class="form-control form-control-sm m-1 mr-2 w-auto" id="inputPassword"></td>
+                        <td width="76px" style="cursor: all-scroll;text-align:right" class="text-black-50">更多属性：</td>
+                        <td width="126px"><input type="password" class="form-control form-control-sm m-1 mr-2 w-auto" id="inputPassword"></td>
+                        <td width="76px" style="cursor: all-scroll;text-align:right" class="text-black-50">更多属性：</td>
+                        <td width="126px">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>-</option>
+                                <option value="1">回收</option>
+                                <option value="2">清洗</option>
+                                <option value="2">领取</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="bg-light mt-2 p-1 ps-4">
+                <a class="btn btn-primary">
+                    <i class="bi bi-search"></i>&nbsp;查询
+                </a>
+                <a class="btn btn-secondary ms-1">
+                    <i class="fas fa-window-minimize"></i>&nbsp;清空
+                </a>
+                <a id="temp_button" class="btn btn-warning ms-1" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    更多条件&nbsp;&nbsp;<i id="temp_arrow" class="bi bi-chevron-double-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row m-3 mt-0 p-4 pt-3 border bg-white">
+            <table id="mainTable" class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width:9%;"><span id="th_id" style="cursor:pointer;">序号&nbsp;<i id="icon_id" class="fas fa-chevron-down"></i></span></th>
+                        <th scope="col" style="width:12%;"><span id="th_name" style="cursor:pointer;">字典名称&nbsp;&nbsp;<i id="icon_name" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:12%;"><span id="th_type" style="cursor:pointer;color:darkblue">字典类型&nbsp;<i id="icon_type" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:12%;"><span id="th_module" style="cursor:pointer;color:darkblue">所属模块&nbsp;<i id="icon_module" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:22%;"><span id="th_content" style="cursor:pointer;color:darkblue">字典内容&nbsp;<i id="icon_content" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:9%;"><span id="th_sort" style="cursor:pointer;color:darkblue">显示排序&nbsp;<i id="icon_sort" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:9%;"><span id="th_select" style="cursor:pointer;color: darkblue">是否多选&nbsp;<i id="icon_select" class="fas fa-sort" style="cursor:default"></i></span></th>
+                        <th scope="col" style="width:33px;text-align:right;padding-right:13px;">
+                            
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">1</td>
+                        <td><a href="#">灭菌方式</a></td>
+                        <td>系统字典</td>
+                        <td>回收</td>
+                        <td class="text-black-50">高温、低温</td>
+                        <td><i class="fas fa-arrows-alt-v ms-4" style="cursor:all-scroll"></i></td>
+                        <td>单选</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2</td>
+                        <td><a href="#">设备类型</a></td>
+                        <td>系统字典</td>
+                        <td>清洗</td>
+                        <td class="text-black-50">清洗设备、灭菌设备</td>
+                        <td><i class="fas fa-arrows-alt-v ms-4" style="cursor:all-scroll"></i></td>
+                        <td>多选</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">3</td>
+                        <td><a href="#">Larry the Bird</a></td>
+                        <td>系统字典</td>
+                        <td>领取</td>
+                        <td></td>
+                        <td><i class="fas fa-arrows-alt-v ms-4" style="cursor:all-scroll"></i></td>
+                        <td>多选</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">4</td>
+                        <td><a href="#">Larry the Bird</a></td>
+                        <td>系统字典</td>
+                        <td>领取</td>
+                        <td></td>
+                        <td><i class="fas fa-arrows-alt-v ms-4" style="cursor:all-scroll"></i></td>
+                        <td>多选</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">5</td>
+                        <td><a href="#">Larry the Bird</a></td>
+                        <td>系统字典</td>
+                        <td>领取</td>
+                        <td></td>
+                        <td><i class="fas fa-arrows-alt-v ms-4" style="cursor:all-scroll"></i></td>
+                        <td>多选</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example" class="p-3 pt-0">
+            <ul class="pagination">
+                <li class="page-item">
+                    <div class="btn-group">
+                        <span class="page-link" href="#temp">共123条记录。每页</span>
+                        <button class="btn btn-sm border dropdown-toggle bg-white rounded-0 border-end-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            30
+                        </button>
+                        <ul class="dropdown-menu border-start-0" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">10</a></li>
+                            <li><a class="dropdown-item" href="#">20</a></li>
+                            <li><a class="dropdown-item" href="#">30</a></li>
+                            <li><a class="dropdown-item" href="#">40</a></li>
+                            <li><a class="dropdown-item" href="#">50</a></li>
+                        </ul><span class="page-link rounded-0 m-0" href="#">条.</span>
+                    </div>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+                <li class="page-item"><a class="page-link bg-purple" href="#">1</a></li>
+                <li class="page-item"><a class="page-link bg-light" href="#"><i class="fas fa-caret-right"></i>&nbsp;2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+            </ul>
+        </nav>
+    </div>
+<script>
+    $('#icon_name').toggle();
+    $('#icon_type').toggle();
+    $('#icon_module').toggle();
+    $('#icon_content').toggle();
+    $('#icon_sort').toggle();
+    $('#icon_select').toggle();
+
+    $('#temp_button').click(function () {
+        $('#temp_arrow').toggleClass("fa-angle-double-up");
+    }
+    );
+    $('#th_name,#th_type,#th_module,#th_content,#th_sort,#th_select').mouseover(function () {
+        var tempName = this.id.replace('th', 'icon');
+        $('#' + tempName).show();
+    }
+    );
+    $('#th_name,#th_type,#th_module,#th_content,#th_sort,#th_select').mouseout(function () {
+        var tempName = this.id.replace('th', 'icon');
+        $('#' + tempName).hide();
+    }
+    );
+    $('#herf_change').click(function () {
+        this.hide();
+        $('#div_change').toggle();
+    }
+    );
+</script>

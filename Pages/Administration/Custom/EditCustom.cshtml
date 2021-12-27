@@ -1,0 +1,118 @@
+﻿@page
+@model Koala.Pages.Custom.EditCustomModel
+@{
+}
+<div class="p-4 pb-0">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/?menuName=管理主页&id=欢迎" class="text-decoration-none"><i class="fas fa-cat"></i>&nbsp;主页</a></li>
+            @*<li class="breadcrumb-item ">
+                    <div class="btn-group pb-2">
+                        <a href="#" class="text-decoration-none" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-caret-right"></i>&nbsp;自定义属性</a>
+                        <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">院单位管理</a></li>
+                            <li><a class="dropdown-item" href="#">科室管理</a></li>
+                            <li><a class="dropdown-item" href="#">用户管理</a></li>
+                            <li><a class="dropdown-item" href="#">角色权限</a></li>
+                        </ul>
+                    </div>
+                </li>*@
+            <li class="breadcrumb-item" aria-current="page"><a href="/Custom/AllCustom" class="text-decoration-none">自定义属性</a></li>
+            <li class="breadcrumb-item active" aria-current="page">新增自定义属性</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="ps-0 p-1">
+    <div class="row m-3">
+        <div class="col-6 bg-light p-3">
+            <table class="w-100">
+                <tr>
+                    <td class="lh-lg fw-bold" style="text-align:right;width:66px;">格式：</td>
+                    <td class="lh-lg">
+                        <select class="form-select" aria-label="Default select example">
+                            <option>字符串</option>
+                            <option>整数</option>
+                            <option>浮点数</option>
+                            <option>文本</option>
+                            <option>日期</option>
+                            <option>True/Flase</option>
+                            <option>列表</option>
+                            <option>文件</option>
+                            <option>用户</option>
+                            <option>科室</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right" class=" fw-bold"><span class="text-danger fw-bold">*</span>&nbsp;名称：</td>
+                    <td><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right" class=" fw-bold">描述：</td>
+                    <td><textarea class="form-control" rows="6" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <div class="row bg-light ms-1">
+                <fieldset>
+                    <legend><i class="fas fa-caret-right"></i>&nbsp;选项:</legend>
+                    <table class="m-3 mt-0 border-1 border-danger">
+                        <tr>
+                            <td>
+                                <div class="form-check m-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label fw-bold" for="flexCheckDefault">
+                                        必填
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check m-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                    <label class="form-check-label fw-bold" for="flexCheckDefault1">
+                                        用作列表显示
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check m-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                                    <label class="form-check-label fw-bold" for="flexCheckDefault2">
+                                        用作搜索条件
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check m-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                                    <label class="form-check-label fw-bold" for="flexCheckDefault3">
+                                        可打印
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <legend><i class="fas fa-caret-right"></i>&nbsp;可见度：</legend>
+                    <legend><i class="fas fa-caret-right"></i>&nbsp;可用模块：</legend>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="ps-0 m-3 p-3 bg-light ps-3">
+        <a href="/Custom/EditCustom?menuName=自定义属性&id=新增属性" class="btn btn-success align-items-end">保存</a>
+        <a href="/Custom/NewCustom?menuName=自定义属性&id=新增属性" class="btn btn-success align-items-end">上一步</a>
+        <a href="/Custom/AllCustom?menuName=自定义属性&id=查看所有属性" class="btn btn-warning align-items-end">取消</a>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@page
+@model Koala.Pages.Administration.Accounts.ExitModel
+@{
+    ViewData["Title"] = "是否退出登录？";
+}
+<div class="container-fluid">
+    <div class="row p-3">
+        <div class="rounded-0 modal-content">
+            <div class="modal-header text-danger">
+                <i class="bi bi-exclamation-circle fs-5"></i><h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation"></i>&nbsp;系统提示</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                是否退出 蓝鹰追溯3.0管理系统？
+            </div>
+            <div class="modal-footer">
+                <a href="/" class="btn btn-primary">退出</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

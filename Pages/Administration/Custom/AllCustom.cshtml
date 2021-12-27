@@ -1,0 +1,77 @@
+﻿@page
+@model Koala.Pages.Custom.AllCustomModel
+@{
+}
+<div class="m-0 pt-1 bg-white">
+    <div class="position-relative">
+        <div class="dropdown fixed-top" style="left:auto;right:0px; margin-right:113px;margin-top:6px;">
+            <a href="/Custom/NewCustom?menuName=自定义属性&id=新增属性" class="btn-sm btn-success align-items-end shadow"><i class="fas fa-plus"></i>&nbsp;新建自定义属性</a>
+        </div>
+    </div>
+    <!-- RH: this is bootstrap 5 tabbed panel -->
+    <ul class="nav nav-tabs ms-1 mr-1 shadow" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link m-0 active" id="indexpage-tab" data-bs-toggle="tab" href="#indexpage" role="tab" aria-controls="indexpage" aria-selected="true">医院</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link m-0" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">科室</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">用户</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">设备</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">产品</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">网篮</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">制造商</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">无菌库</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active p-3" id="indexpage" role="tabpanel" aria-labelledby="indexpage-tab">
+            <table class="table table-striped table-hover" >
+                <thead>
+                    <tr>
+                        <th scope="col">名称</th>
+                        <th scope="col">格式</th>
+                        <th scope="col">必填</th>
+                        <th scope="col">查询</th>
+                        <th scope="col">打印</th>
+                        <th scope="col">列表显示</th>
+                        <th scope="col">使用模块</th>
+                        <th scope="col">显示位置</th>
+                        <th scope="col" class="text-center">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="fw-normal"><a href="#">提出日期</a></th>
+                        <td>日期</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td><a href="#temp">回收</a>、<a href="#temp">灭菌</a></td>
+                        <td style="width:80px;">&nbsp;&nbsp;<i class="fas fa-arrows-alt-v text-success" style="cursor:all-scroll"></i></td>
+                        <td style="width:80px;" class="text-center">🗑️<a href="#temp">删除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade ms-3 mr-1" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            同左
+        </div>
+        <div class="tab-pane fade ms-3 mr-1" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            同左
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+﻿@page
+@model Koala.Pages.Menus.CreateModel
+
+@{
+    Layout = "/Pages/Shared/_MenuLayout.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Menu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Menu.Name" class="control-label"></label>
+                <input asp-for="Menu.Name" class="form-control" />
+                <span asp-validation-for="Menu.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.ParentId" class="control-label"></label>
+                <input asp-for="Menu.ParentId" class="form-control" value="@Model.Parent_id" />
+                <span asp-validation-for="Menu.ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.Class" class="control-label"></label>
+                <input asp-for="Menu.Class" class="form-control" />
+                <span asp-validation-for="Menu.Class" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.AspPage" class="control-label"></label>
+                <input asp-for="Menu.AspPage" class="form-control" />
+                <span asp-validation-for="Menu.AspPage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.Position" class="control-label"></label>
+                <input asp-for="Menu.Position" class="form-control" />
+                <span asp-validation-for="Menu.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />&nbsp;<a class="btn btn-secondary" href="@Model.Referer_url">Back to List</a>
+            </div>
+            <input type="hidden" asp-for="Referer_url"/>
+            <input type="hidden" asp-for="Menu.Area" value="m"/>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+

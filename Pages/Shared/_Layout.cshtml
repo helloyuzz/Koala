@@ -1,0 +1,391 @@
+﻿@using Koala.Models;
+@inject MenuHelper menuHelper;
+@{
+    var menu_name = Context.Request.Query["Menu_name"];
+    var module_id = Context.Request.Query["Module_id"];
+    var menu_id = Context.Request.Query["Menu_id"];
+
+    var isLogon = User.Identity.IsAuthenticated;
+
+    var sys_menus = menuHelper.All();
+    if (string.IsNullOrEmpty(menu_name)) {
+        var title = ViewData["Title"];
+        if (title != null) {
+            menu_name = title.ToString();
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Koala</title>
+    @*<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">*@
+    @*<link rel="stylesheet" href="~/lib/bootstrap-5.0.0-beta3/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/examples/sidebars/sidebars.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
+    <style>
+        .main_menu_default {
+            margin-left: 0px !important;
+            transition: margin-left 0.3s;
+            -moz-transition: margin-left 0.1s;
+            -webkit-transition: margin-left 0.1s;
+            -o-transition: margin-left 0.1s;
+        }
+
+        .main_menu_hover {
+            margin-left: -263px !important;
+            transition: margin-left 0.1s;
+            -moz-transition: margin-left 0.1s;
+            -webkit-transition: margin-left 0.3s;
+            -o-transition: margin-left 0.1s;
+        }
+
+        .btn-toggle:hover {
+            background-color: #ccc !important;
+        }
+
+        .btn-toggle:focus {
+            background: #ffc107 !important;
+            padding-top: 9px !important;
+            padding-left: 6px !important;
+            box-shadow: none !important;
+            /*box-shadow: 0 0 0 2px #686868 !important;*/
+        }
+
+        .btn-toggle::before {
+            display: none;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            transform: rotate(-90deg) !important;
+        }
+
+        tr.active {
+            background-color: #e7f1ff;
+            /*border: 2px dotted #9a9a9a;*/
+        }
+
+        .accordion-button:hover {
+            background-color: #ececec;
+        }
+        /*.accordion-button:active {
+            box-shadow: 0 0 0 .25rem rgba(13,110,253,.25) !important;
+        }*/
+        button {
+            cursor: default !important;
+        }
+
+        .icon-panel.accordion-button::after {
+            display: none !important;
+        }
+
+        .main_menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            /*transition: 0.5s;*/
+            padding-top: 60px;
+        }
+
+        #right_content {
+            /*transition: margin-left .5s;*/
+            margin-left: 268px;
+        }
+
+        #turn_btn {
+            transition: transform .5s ease-in-out;
+        }
+
+        .div-main {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .main_menu {
+                padding-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+    @if (isLogon == false) {
+        <div class="div-main">
+            @RenderBody()
+        </div>
+    } else {
+        <div id="main_menu" class="main_menu p-0 m-0 shadow overflow-hidden bg-white" style="width:268px;z-index:999;">
+            <div id="menu_title" class="row w-100 bg-dark m-0 p-2">
+                <div class="col p-0">
+                    <table class="w-100" onclick="showMenu();">
+                        <tr>
+                            <td>
+                                <a href="/" class="d-flex align-items-center fw-bold link-light text-decoration-none fs-5 shadow">
+                                    &nbsp;蓝鹰追溯3.0后台管理
+                                </a>
+                            </td>
+                            <td width="43px" class="text-center">
+                                <a href="#Temp">
+                                    <span class="fw-semibold text-white">
+                                        <i class="bi bi-grid-3x3-gap-fill fs-5" style="cursor:pointer"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="menu_panel" class="row w-100 m-0 p-3" style="background:#fff">
+                <div class="accordion-flush p-0" id="accordionExample">
+                    @{ if (sys_menus.Count > 0) {
+                            var btnClass = "collapsed";
+                            var divClass = "";
+                            foreach (SysMenu menu in sys_menus) {
+                                if (module_id.Equals(menu.Id.ToString())) {
+                                    btnClass = "";
+                                    divClass = "show";
+                                }
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading_@menu.Id">
+                                        <button class="accordion-button @btnClass" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@menu.Id" aria-expanded="true" aria-controls="collapse_@menu.Id">
+                                            <i class="bi bi-@menu.Class fs-4"></i>&nbsp;&nbsp;<span class="fs-6">@menu.Name</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_@menu.Id" class="accordion-collapse collapse @divClass" aria-labelledby="heading_@menu.Id" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul class="list-group list-group-flush">
+                                                @{
+                                                    foreach (MenuItem subItem in menu.SubMenus) {
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <a href="@subItem.AspPage?Module_id=@menu.Id&Menu_id=@subItem.Id&Menu_name=@subItem.Name" class="text-dark text-decoration-none ps-3 @subItem.Class" style="font-size:14px !important;">@subItem.Name</a>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                btnClass = "collapsed";
+                                divClass = "";
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="right_content" class="h-100 vh-100 overflow-hidden">
+            @{ if (sys_menus.Count > 0) {
+                    <div class="row w-100 h-100 m-0 p-0">
+                        <div id="icon_panel" class="d-none m-0 p-0 bg-white" style="top:0px;width:53px;margin-top:49px !important;z-index:1000;">
+                            <div class="p-3 ps-2 pe-2">
+                                <div class="accordion-flush p-0" id="accordionExample">
+                                    @{ if (sys_menus.Count > 0) {
+                                            foreach (SysMenu menu in sys_menus) {
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header justify-content-center" id="heading_@menu.Id">
+                                                        <button class="icon-panel accordion-button collapsed border-0 justify-content-center" type="button" title="@menu.Name" aria-expanded="true" aria-controls="collapse_@menu.Id">
+                                                            <i class="bi bi-@menu.Class fs-4"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m-0 p-0">
+                            <div class="row w-100 m-0 border-bottom" style="height:40px;">
+                                <div class="col p-1">
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="39px" class="text-center" onclick="toggleNav()" style="cursor:pointer;"><i id="turn_btn" class="bi bi-arrow-left-circle m-1 fs-4"></i></td>
+                                            <td><span class="fs-4 mt-1">@menu_name</span></td>
+                                            <td></td>
+                                            <td class="pe-1">
+                                                <a class="btn float-end shadow btn-warning p-2 pt-0 pb-0" data-bs-toggle="offcanvas" href="#logout_Panel" role="button" aria-controls="logout_Panel">
+                                                    <i class="bi bi-person-circle fs-5"></i>&nbsp;<span>Admin</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row h-100 w-100 m-0 p-0" style="background: #f3f6f9;">
+                                <div class="col p-0 m-0">
+                                    @RenderBody()
+                                </div>
+                                <div class="col-1 border-start bg-white m-0 p-1 pt-2" style="width:50px;">
+                                    <a href="#Temp" class="btn btn-toggle p-2 m-0 text-center"><i class="bi bi-file-earmark-plus fs-4"></i><br />新增</a>
+                                    <a href="#Temp" class="btn btn-toggle p-2 m-0 text-center text-success"><i class="bi bi-pencil-square fs-4"></i><br />编辑</a>
+                                    <a href="#Temp" class="btn btn-toggle p-2 m-0 text-center text-danger"><i class="bi bi-trash fs-4"></i><br />删除</a>
+                                    <a href="#Temp" class="btn btn-toggle p-2 m-0 text-center text-secondary"><i class="bi bi-toggle-off fs-4"></i><br />禁用</a>
+                                    <div class="btn-group dropstart p-0 m-0 text-center">
+                                        <a href="#temp" class="btn btn-toggle p-2 m-0 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-layout-sidebar fs-4"></i><br />显示</a>
+                                        <hr />
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow" style="width:180px !important;">
+                                            <li>
+                                                <a class="dropdown-item" href="#temp">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input btn-secondary" type="checkbox" checked disabled id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">序号</label>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#temp">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input btn-secondary" type="checkbox" checked disabled id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">字典名称</label>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="#">显示默认字段</a></li>
+                                            <li><a class="dropdown-item" href="#">恢复默认排序</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                } else { @RenderBody()
+            }
+            }
+        </div>
+        <div class="position-relative">
+            <div id="online_help" class="fixed-bottom" style="left:0px;right:auto; margin-left:18px;margin-bottom:26px;">
+                <span><a href="/Menus/Index" class="text-decoration-none text-dark" target="_blank"><i class="fas fa-question"></i>&nbsp;在线帮助？</a></span>
+                <span class="ms-2"><a href="#AA" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-lock"></i>&nbsp;锁定系统</a></span>                
+            </div>
+            <div class="fixed-bottom" style="left:auto;right:63px;margin-bottom:13px;">
+                &copy; 2021 - Koala - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content div-main" style="background-image:url('/images/9.jpg');background-position:center center;background-size:cover;">
+                    @*<div class="modal-header">
+                    </div>*@
+                    <div class="modal-body position-absolute rounded-3 justify-content-center text-center bg-white border-1 shadow" style="width:600px;height:300px;flex:none !important;">
+                        <h5 class="modal-title fs-3" id="exampleModalLabel"><i class="bi bi-info-circle fs-2"></i>&nbsp;系统已锁定!</h5>
+                        <div class="modal-body p-5 pt-3 pb-3">
+                            <div class="mb-3"><br /><br />
+                                <input type="password" class="form-control" id="recipient-name" placeholder="管理员密码"><br />
+                            </div>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Unlock</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新登陆</button>
+                        </div>                        
+                    </div>
+                    @*<div class="modal-footer">
+                        
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    }
+    }
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="logout_Panel" aria-labelledby="logout_PanelLabel">
+        <div class="offcanvas-header bg-warning" data-bs-dismiss="offcanvas" aria-label="Close" style="cursor:pointer">
+            <h5 class="offcanvas-title fs-5" id="logout_PanelLabel"><i class="bi bi-person-circle fs-4"></i>&nbsp;Admin - 已登录</h5>
+            <i class="fas fa-arrow-right" data-bs-dismiss="offcanvas" aria-label="Close" style="cursor:pointer;margin-top:6px;"></i>
+            @*<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>*@
+        </div>
+        <div class="offcanvas-body">
+            <div class="fs-5 mb-1">
+                上次登录：<br /><span class="fs-6">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span><br /><br />
+                登录IP地址：<br /><span class="fs-6">192.168.0.1</span>
+            </div>
+            <div class="mt-3">
+                <hr class="dropdown-divider">
+                <a class="dropdown-item mb-2" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">锁定</a>
+                <a class="dropdown-item mb-2" href="#exit">关于</a>
+                <a class="dropdown-item mb-2" href="/Administration/Accounts/Validation">修改登录密码</a>
+                <a class="dropdown-item mb-2" href="#" onclick="setFullScreen();">全屏模式</a>
+                <a class="dropdown-item mb-2 text-danger" href="/Logout">退出登录</a>
+                <br /><br /><br /><br /><br /><br />
+                <a class="dropdown-item" href="#temp">language：zh_cn</a>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    @RenderSection("Scripts", required: false)
+    <script>
+        function setFullScreen() {
+            let el = document.documentElement
+            let rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen
+            if (rfs) { // typeof rfs != "undefined" && rfs
+                rfs.call(el)
+            } else if (typeof window.ActiveXObject !== 'undefined') {
+                // for IE，这里其实就是模拟了按下键盘的F11，使浏览器全屏
+                let wscript = new ActiveXObject('WScript.Shell')
+                if (wscript != null) {
+                    wscript.SendKeys('{F11}')
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('#mainTable').length > 0) {
+                $("#mainTable tr").click(function () {              // issue绑定click，支持选中效果
+                    $("#mainTable tr").removeClass('active');
+                    $(this).addClass('active');
+                });
+            }
+        });
+        var canToggle = true;
+        function toggleNav() {
+            if (canToggle) {
+                document.getElementById("main_menu").style.left = "-213px";
+                document.getElementById("right_content").style.marginLeft = "0";
+                //$('#icon_panel').fadeIn(1300);
+                // $('#turn_btn').toggleClass('bi bi-arrow-left-circle');
+
+                canToggle = false;
+            } else {
+                document.getElementById("main_menu").style.left = "0px";
+                document.getElementById("right_content").style.marginLeft = "268px";
+                //$('#icon_panel').fadeOut(100);
+                //$('#turn_btn').toggleClass('bi bi-arrow-left-circle');
+                canToggle = true;
+            }
+            $('#accordionExample').toggle();
+            $('#online_help').toggle();
+            $('#icon_panel').toggleClass("d-none");
+        }
+    </script>
+    }
+</body>
+</html>

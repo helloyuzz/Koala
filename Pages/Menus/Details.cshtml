@@ -1,0 +1,100 @@
+﻿@page
+@model Koala.Pages.Menus.DetailsModel
+
+@{
+    Layout = "/Pages/Shared/_MenuLayout.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4 class="fs-4">Menu-@Model.Menu.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.ParentId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.ParentId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.Class)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.Class)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.AspPage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.AspPage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.Position)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.Position)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Menu.Id">Edit</a> |
+    <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
+    <a class="btn btn-warning" asp-page="Create" asp-route-parent_id="@Model.Menu.Id">Create New</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].AspPage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].Position)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SubMenu) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParentId)
+                </td>
+                <td>
+                    <a asp-page="./Details" class="text-decoration-none" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspPage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

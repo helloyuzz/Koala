@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "欢迎登录!";
+}
+<form method="post" autocomplete="off">
+    <div class="container-lg">
+        <div class="row pt-0">
+            <div class="col text-center pt-1 me-5 pb-3">
+                <img src="~/images/ed51b9679225bac855f2dd361b601246.gif" /><br />
+                (设计插画)<br />&nbsp;
+            </div>
+            <div class="col p-3 pt-0 pt-5">
+                <div class="row mb-4">
+                    <label for="exampleFormControlInput1" class="form-label p-0"><i class="fas fa-user"></i>&nbsp;欢迎使用!</label>
+                    <input type="text" class="form-control p-2" asp-for="Account.Login" placeholder="登录帐号">
+                </div>
+                <div class="row mb-4">
+                    <label for="exampleFormControlInput1" class="form-label p-0"><i class="fas fa-lock"></i>&nbsp;密码：</label>
+                    <input type="password" class="form-control p-2" asp-for="Account.HashedPassword" placeholder="登录密码">
+                </div>
+                <div class="row mb-2">
+                    <div class="col p-0">
+                        <input type="email" class="form-control p-2" id="exampleFormControlInput1" placeholder="验证码">
+                    </div>
+                    <div class="col-3 p-3">
+                        <span class="bg-title p-2 w-100 fw-bold">T6PD</span>
+                    </div>
+                </div>
+                <div class="row mb-3 mt-4 p-0">
+                    <input type="submit" class="btn btn-success p-2 w-100" value="登录" />
+                </div>
+
+                <div class="mb-3 p-2 mb-4">
+                    <a class="link-success">忘记密码？</a>
+                </div>
+            </div>
+        </div>
+        <span class="text-danger fs-4">
+            &nbsp;
+            @TempData["loginMessage"]
+        </span>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('#Account_Login').focus();
+    });
+</script>
