@@ -17,16 +17,16 @@ namespace Koala.Pages.Administration.Accounts {
         }
 
         [BindProperty]
-        public Account Account { get; set; }
+        public User User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id) {
             if (id == null) {
                 return NotFound();
             }
 
-            Account = await _context.Accounts.FirstOrDefaultAsync(m => m.Id == id);
+            User = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Account == null) {
+            if (User == null) {
                 return NotFound();
             }
             return Page();
@@ -39,12 +39,12 @@ namespace Koala.Pages.Administration.Accounts {
                 return Page();
             }
 
-            _context.Attach(Account).State = EntityState.Modified;
+            _context.Attach(User).State = EntityState.Modified;
 
             try {
                 await _context.SaveChangesAsync();
             } catch (DbUpdateConcurrencyException) {
-                if (!AccountExists(Account.Id)) {
+                if (!AccountExists(User.Id)) {
                     return NotFound();
                 } else {
                     throw;
@@ -55,7 +55,7 @@ namespace Koala.Pages.Administration.Accounts {
         }
 
         private bool AccountExists(int id) {
-            return _context.Accounts.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

@@ -19,11 +19,11 @@ namespace Koala.Pages {
             koalaContext = _koalaContext;
         }
         [BindProperty(SupportsGet = true)]
-        public Account Account { get; set; }
+        public User User { get; set; }
         public IActionResult OnGet() {
-            Account account = CookieUtils.Get(HttpContext.User.Claims.ToList());
-            if (account != null) {
-                if (account.IsAdmin.Value) {
+            User user = CookieUtils.Get(HttpContext.User.Claims.ToList());
+            if (user != null) {
+                if (user.IsAdmin.Value) {
                     return Redirect("/Administration/Index");
                 } else {
                     return Redirect("/Client/Index");
@@ -37,7 +37,7 @@ namespace Koala.Pages {
                 return Page();
             }
 
-            var result = koalaContext.Accounts.FirstOrDefault(t => t.Login.Equals(Account.Login) && t.HashedPassword.Equals(Account.HashedPassword));
+            var result = koalaContext.Users.FirstOrDefault(t => t.Login.Equals(User.Login) && t.HashedPassword.Equals(User.HashedPassword));
             if (result != null) {
                 result.LastLoginOn = DateTime.Now;
                 koalaContext.SaveChanges();
@@ -52,7 +52,7 @@ namespace Koala.Pages {
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties() { IsPersistent = true, ExpiresUtc = DateTime.Now.AddMinutes(16) });
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties() { IsPersistent = true, ExpiresUtc = DateTime.Now.AddDays(16) });
                 if (result.IsAdmin.Value) {
                     return RedirectToPage("/Administration/Index");
                 } else {

@@ -2,61 +2,57 @@
 @model Koala.Pages.Administration.Accounts.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "登录帐号管理";
 }
 <style>
 </style>
 
 <div class="container-fluid p-3">
-    @*<h1>Index</h1>
-        <p>
-            <a asp-page="Create">Create New</a>
-        </p>*@
     <div class="bg-white p-3">
         <table id="mainTable" class="table table-hover">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].Login)
+                        @Html.DisplayNameFor(model => model.User[0].Login)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].HashedPassword)
+                        @Html.DisplayNameFor(model => model.User[0].HashedPassword)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].Name)
+                        @Html.DisplayNameFor(model => model.User[0].Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].IsAdmin)
+                        @Html.DisplayNameFor(model => model.User[0].IsAdmin)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].Status)
+                        @Html.DisplayNameFor(model => model.User[0].Status)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].LastLoginOn)
+                        @Html.DisplayNameFor(model => model.User[0].LastLoginOn)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].CreateOn)
+                        @Html.DisplayNameFor(model => model.User[0].CreateOn)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].UpdateOn)
+                        @Html.DisplayNameFor(model => model.User[0].UpdateOn)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].Type)
+                        @Html.DisplayNameFor(model => model.User[0].Type)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].Salt)
+                        @Html.DisplayNameFor(model => model.User[0].Salt)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].MustChangePasswd)
+                        @Html.DisplayNameFor(model => model.User[0].MustChangePasswd)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account[0].HospitalId)
+                        @Html.DisplayNameFor(model => model.User[0].HospitalId)
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Account) {
+                @foreach (var item in Model.User) {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Login)

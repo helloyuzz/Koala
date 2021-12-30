@@ -1,0 +1,64 @@
+﻿@page
+@model Koala.Pages.Administration.Roles.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Role</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.SectionId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.SectionId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.HospitalId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.HospitalId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.CreateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.CreateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.UpdateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.UpdateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.IsDelete)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.IsDelete)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Role.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

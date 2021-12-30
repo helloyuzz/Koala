@@ -6,3 +6,4 @@ Scaffold-DbContext "Server=localhost;Port=3306;Database=bitnami_redmineplusagile
 
 Scaffold-DbContext "Server=localhost;Port=3306;Database=bitnami_redmineplusagile;Uid=bitnami;Pwd=e32a9b7bd9;SslMode=None;AllowPublicKeyRetrieval=true;" Pomelo.EntityFrameworkCore.Mysql -f -o Models_temp
 Scaffold-DbContext "Server=localhost;Port=3306;Database=koala;Uid=root;Pwd=aa123456;SslMode=None;AllowPublicKeyRetrieval=true;" Pomelo.EntityFrameworkCore.Mysql -f -o Models
+

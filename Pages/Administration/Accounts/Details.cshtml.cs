@@ -15,16 +15,16 @@ namespace Koala.Pages.Administration.Accounts {
             _context = context;
         }
 
-        public Account Account { get; set; }
+        public User User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id) {
             if (id == null) {
                 return NotFound();
             }
 
-            Account = await _context.Accounts.FirstOrDefaultAsync(m => m.Id == id);
+            User = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Account == null) {
+            if (User == null) {
                 return NotFound();
             }
             return Page();

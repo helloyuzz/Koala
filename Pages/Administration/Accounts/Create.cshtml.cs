@@ -20,7 +20,7 @@ namespace Koala.Pages.Administration.Accounts {
         }
 
         [BindProperty]
-        public Account Account { get; set; }
+        public User User { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -29,7 +29,7 @@ namespace Koala.Pages.Administration.Accounts {
                 return Page();
             }
 
-            _context.Accounts.Add(Account);
+            _context.Users.Add(User);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

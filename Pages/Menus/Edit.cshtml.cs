@@ -18,6 +18,7 @@ namespace Koala.Pages.Menus {
 
         [BindProperty]
         public Menu Menu { get; set; }
+        [BindProperty(SupportsGet =true)]
         public string Referer_url { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id) {

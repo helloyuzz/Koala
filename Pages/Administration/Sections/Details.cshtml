@@ -1,0 +1,73 @@
+﻿@page
+@model Koala.Pages.Administration.Sections.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Section</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.ShortName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.ShortName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.HospitalId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.HospitalId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.Pinyin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.Pinyin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.ManagerId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.ManagerId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.CreateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.CreateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.UpdateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.UpdateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section.IsDelete)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section.IsDelete)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Section.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

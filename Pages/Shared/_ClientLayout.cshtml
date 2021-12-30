@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/client.css" />
     <style>
         .tab-pane {
-            transition: linear 0.5s;
+            /*transition: linear 0.3s;*/
             /*transform:rotate3d(90 dge);*/
         }
     </style>
@@ -22,46 +22,46 @@
                     <tr>
                         <td>
                             <ul class="nav nav-tabs ms-1 w-100" id="myTab" role="tablist" style="margin-bottom:-2px;margin-top:3px;">
-                                <li class="nav-item mr-1">
-                                    <a id="top_index_button" class="nav-link text-white p-2 ps-1 shadow" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="padding-top: 5px !important;">
-                                        <span class="fs-6"><i class="bi bi-house-fill"></i></span>蓝鹰追溯3.0
+                                <li class="nav-item ms-4 mr-3" style="padding-top:2px">
+                                    <a id="top_index_button" class="nav-link text-white m-0 mt-1 p-0 shadow" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                                        <span class="fs-6" style="font-family:Arial;"><i class="bi bi-paypal"></i>&nbsp;蓝鹰CSSD智能化供应室</span>
                                     </a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">开始</a>
+                                <li class="nav-item ms-3" role="presentation">
+                                    <a class="nav-link fs-7 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">开始菜单</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">回收</a>
+                                    <a class="nav-link fs-7" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">回收</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="clean-tab" data-bs-toggle="tab" href="#clean" role="tab" aria-controls="clean" aria-selected="false">清洗消毒</a>
+                                    <a class="nav-link fs-7" id="clean-tab" data-bs-toggle="tab" href="#clean" role="tab" aria-controls="clean" aria-selected="false">清洗</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="package-tab" data-bs-toggle="tab" href="#package" role="tab" aria-controls="package" aria-selected="false">包装</a>
+                                    <a class="nav-link fs-7" id="package-tab" data-bs-toggle="tab" href="#package" role="tab" aria-controls="package" aria-selected="false">包装</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="miejun-tab" data-bs-toggle="tab" href="#miejun" role="tab" aria-controls="miejun" aria-selected="false">灭菌</a>
+                                    <a class="nav-link fs-7" id="miejun-tab" data-bs-toggle="tab" href="#miejun" role="tab" aria-controls="miejun" aria-selected="false">灭菌</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="store-tab" data-bs-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="false">发放</a>
+                                    <a class="nav-link fs-7" id="store-tab" data-bs-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="false">发放</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="quality-tab" data-bs-toggle="tab" href="#quality" role="tab" aria-controls="quality" aria-selected="false">CSSD追溯</a>
+                                    <a class="nav-link fs-7" id="quality-tab" data-bs-toggle="tab" href="#quality" role="tab" aria-controls="quality" aria-selected="false">追溯</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="report-tab" data-bs-toggle="tab" href="#report" role="tab" aria-controls="report" aria-selected="false">报表</a>
+                                    <a class="nav-link fs-7" id="report-tab" data-bs-toggle="tab" href="#report" role="tab" aria-controls="report" aria-selected="false">报表</a>
                                 </li>
+                                @*<li class="nav-item" role="presentation">
+                                    <a class="nav-link fs-7" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">档案维护</a>
+                                </li>*@
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">档案维护</a>
+                                    <a class="nav-link fs-7" id="help-tab" data-bs-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">系统</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="help-tab" data-bs-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">帮助培训</a>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="clinic-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="clinic" aria-selected="false">临床科室</a>
-                                </li>
+                                @*<li class="nav-item" role="presentation">
+                                    <a class="nav-link fs-7" id="clinic-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="clinic" aria-selected="false">临床科室</a>
+                                </li>*@
                                 <li id="dynamicPage" class="nav-item d-none" role="presentation">
-                                    <a class="nav-link" id="dynamic-tab" data-bs-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="false">设置</a>
+                                    <a class="nav-link fs-7" id="dynamic-tab" data-bs-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="false">设置</a>
                                 </li>
                                 @*<li class="nav-item ps-1 float-end" role="presentation" style="padding-top:1px;">
                                         <div class="text-white bg-white text-right rounded-1" style="margin-top:-1px;margin-right:2px;">
@@ -75,7 +75,10 @@
                                     </li>*@
                             </ul>
                         </td>
-                        <td class="pr-3" width="180px">
+                        <td class="text-center" width="180px">
+                            <span class="badge bg-warning text-dark"><i class="bi bi-sun-fill"></i>&nbsp;
+                                @DateTime.Now.ToString("MM月dd日 HH:mm ddd")
+                            </span>
                         </td>
                     </tr>
                 </table>
@@ -84,8 +87,8 @@
         <tr>
             <td height="80px" class="bg-f3f3f3 border-bottom border-d2d2d2">
                 <div class="tab-content bg-f3f3f3" id="myTabContent">
-                    <div class="tab-pane fade show active p-1" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="hstack gap-3">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -101,7 +104,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -117,7 +120,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="clean" role="tabpanel" aria-labelledby="clean-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -133,7 +136,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="miejun" role="tabpanel" aria-labelledby="miejun-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -149,7 +152,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="package" role="tabpanel" aria-labelledby="package-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -165,7 +168,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="store" role="tabpanel" aria-labelledby="store-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -181,7 +184,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="quality" role="tabpanel" aria-labelledby="quality-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -197,7 +200,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
@@ -213,7 +216,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
-                        <div class="hstack gap-3">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
                             <div class="vr"></div>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
@@ -224,8 +227,8 @@
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade p-1" id="about" role="tabpanel" aria-labelledby="about-tab">
-                        <div class="hstack gap-3">
+                    <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
                             <div class="vr"></div>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
@@ -236,8 +239,8 @@
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade p-1" id="clinic" role="tabpanel" aria-labelledby="clinic-tab">
-                        <div class="hstack gap-3">
+                    <div class="tab-pane fade" id="clinic" role="tabpanel" aria-labelledby="clinic-tab">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />接收确认</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
@@ -250,8 +253,8 @@
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定审核</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade p-1" id="dynamic" role="tabpanel" aria-labelledby="dynamic-tab">
-                        <div class="hstack gap-3">
+                    <div class="tab-pane fade" id="dynamic" role="tabpanel" aria-labelledby="dynamic-tab">
+                        <div class="hstack gap-3 ps-3">
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />dynamic</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
                             <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
@@ -283,7 +286,7 @@
         </tr>
     </table>
 
-    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:266px;margin-top:36px;margin-bottom:30px;">
+    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:254px;margin-top:41px;margin-bottom:30px;">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title ms-2" id="offcanvasExampleLabel">欢迎您：张三&nbsp;<i class="bi bi-person-fill fs-5"></i></h5>
             <a id="btn_CloseExample" href="#hide_panel" class="btn-link text-white fs-4 float-end" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-arrow-left-circle"></i></a>
@@ -298,16 +301,16 @@
                 <tr>
                     <td height="100px">
                         <ul class="list-group list-group-flush mt-4">
-                            <li class="list-group-item list-group-item-action text-center">无菌包</li>
-                            <li class="list-group-item list-group-item-action text-center">无菌库</li>
-                            <li class="list-group-item list-group-item-action text-center">网篮</li>
-                            <li class="list-group-item list-group-item-action text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">个性化</li>
-                            <li class="list-group-item list-group-item-action text-center">流程/选项</li>
+                            <li class="list-group-item list-group-item-action text-center"><i class="bi bi-pause-btn"></i>&nbsp;无菌包</li>
+                            <li class="list-group-item list-group-item-action text-center"><i class="bi bi-basket"></i>&nbsp;网篮</li>
+                            <li class="list-group-item list-group-item-action text-center"><i class="bi bi-building"></i>&nbsp;无菌库</li>
+                            <li class="list-group-item list-group-item-action text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-palette text-info"></i>&nbsp;个性化</li>
                             <li class="list-group-item list-group-item-action text-center" attr-action="print"><i class="bi bi-printer-fill"></i>&nbsp;打印设置</li>
-                            <li class="list-group-item list-group-item-action text-center">未读消息(xxx)</li>
+                            <li class="list-group-item list-group-item-action text-center"><i class="bi bi-shuffle"></i>&nbsp;流程/选项</li>
+                            <li class="list-group-item list-group-item-action text-center"><i class="bi bi-chat-dots text-warning"></i>&nbsp;未读消息(xxx)</li>
                             <li class="list-group-item list-group-item-action text-center">触屏模式</li>
                             <li class="list-group-item list-group-item-action text-center">扫码模式</li>
-                            <li class="list-group-item list-group-item-action text-center">档案管理</li>
+                            <li class="list-group-item list-group-item-action text-center"><a href="/Administration/Index" class="text-white fs-6 text-decoration-none" target="_blank"><i class="bi bi-shield-check"></i>&nbsp;进入后台管理</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -330,7 +333,7 @@
                 <tr>
                     <td height="30px">
                         <div class="ps-3 pb-3 text-white">
-                            <span>蓝鹰追溯CSSD3.0系统 Copyright - v3.0.xx</span>
+                            <span>蓝鹰追溯3.0系统 Copyright - v3.0.xx</span>
                         </div>
                     </td>
                 </tr>

@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace Koala {
     public class Globals {
-        private readonly koalaContext _context;
-        private List<SysMenu> _SysMenus = null;
-        public List<SysMenu> SysMenus {
-            get {
-                return null;
-            }
-        }
+        
     }
 }

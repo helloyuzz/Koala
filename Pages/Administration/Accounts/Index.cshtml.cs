@@ -13,10 +13,10 @@ namespace Koala.Pages.Administration.Accounts {
             _context = context;
         }
 
-        public IList<Account> Account { get; set; }
+        public IList<User> User { get; set; }
 
         public void OnGet() {
-            Account = _context.Accounts.ToList();
+            User = _context.Users.ToList();
         }
     }
 }

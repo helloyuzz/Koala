@@ -1,0 +1,57 @@
+﻿@page
+@model Koala.Pages.Administration.Versions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Version</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Version.Id" />
+            <div class="form-group">
+                <label asp-for="Version.Name" class="control-label"></label>
+                <input asp-for="Version.Name" class="form-control" />
+                <span asp-validation-for="Version.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version.PublishOn" class="control-label"></label>
+                <input asp-for="Version.PublishOn" class="form-control" />
+                <span asp-validation-for="Version.PublishOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version.VersionLog" class="control-label"></label>
+                <input asp-for="Version.VersionLog" class="form-control" />
+                <span asp-validation-for="Version.VersionLog" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version.UpdateOn" class="control-label"></label>
+                <input asp-for="Version.UpdateOn" class="form-control" />
+                <span asp-validation-for="Version.UpdateOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version.UpdateBy" class="control-label"></label>
+                <input asp-for="Version.UpdateBy" class="form-control" />
+                <span asp-validation-for="Version.UpdateBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version.UpdateLog" class="control-label"></label>
+                <input asp-for="Version.UpdateLog" class="form-control" />
+                <span asp-validation-for="Version.UpdateLog" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

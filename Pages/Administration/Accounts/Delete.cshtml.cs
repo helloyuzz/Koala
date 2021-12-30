@@ -16,14 +16,14 @@ namespace Koala.Pages.Administration.Accounts {
         }
 
         [BindProperty]
-        public Account Account { get; set; }
+        public User Account { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id) {
             if (id == null) {
                 return NotFound();
             }
 
-            Account = await _context.Accounts.FirstOrDefaultAsync(m => m.Id == id);
+            Account = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Account == null) {
                 return NotFound();
@@ -36,10 +36,10 @@ namespace Koala.Pages.Administration.Accounts {
                 return NotFound();
             }
 
-            Account = await _context.Accounts.FindAsync(id);
+            Account = await _context.Users.FindAsync(id);
 
             if (Account != null) {
-                _context.Accounts.Remove(Account);
+                _context.Users.Remove(Account);
                 await _context.SaveChangesAsync();
             }
 
