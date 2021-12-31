@@ -1,0 +1,67 @@
+﻿@page
+@model Koala.Pages.Administration.Packages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Package</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.Code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.Code)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.ShortName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.ShortName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.CreateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.CreateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.CreateBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.CreateBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.UpdateOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.UpdateOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.UpdateBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.UpdateBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Package.IsDelete)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Package.IsDelete)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Package.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

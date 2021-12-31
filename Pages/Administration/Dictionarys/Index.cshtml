@@ -57,13 +57,13 @@
                 </table>
             </div>
             <div class="bg-light mt-2 p-1 ps-4">
-                <a class="btn btn-primary">
+                <a class="btn btn-sm btn-primary">
                     <i class="bi bi-search"></i>&nbsp;查询
                 </a>
-                <a class="btn btn-secondary ms-1">
+                <a class="btn btn-sm btn-secondary ms-1">
                     <i class="fas fa-window-minimize"></i>&nbsp;清空
                 </a>
-                <a id="temp_button" class="btn btn-warning ms-1" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <a id="temp_button" class="btn btn-sm btn-warning ms-1" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     更多条件&nbsp;&nbsp;<i id="temp_arrow" class="bi bi-chevron-double-down"></i>
                 </a>
             </div>
@@ -172,7 +172,7 @@
     $('#icon_select').toggle();
 
     $('#temp_button').click(function () {
-        $('#temp_arrow').toggleClass("fa-angle-double-up");
+        $('#temp_arrow').toggleClass("bi-chevron-double-up");
     }
     );
     $('#th_name,#th_type,#th_module,#th_content,#th_sort,#th_select').mouseover(function () {

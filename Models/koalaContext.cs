@@ -20,6 +20,7 @@ namespace Koala.Models
         public virtual DbSet<Hospital> Hospitals { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
@@ -176,6 +177,46 @@ namespace Koala.Models
                     .HasComment("状态：启用，禁用");
             });
 
+            modelBuilder.Entity<Package>(entity =>
+            {
+                entity.ToTable("packages");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(60)
+                    .HasColumnName("code");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("create_by");
+
+                entity.Property(e => e.CreateOn)
+                    .HasColumnType("date")
+                    .HasColumnName("create_on");
+
+                entity.Property(e => e.IsDelete).HasColumnName("is_delete");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.ShortName)
+                    .HasMaxLength(60)
+                    .HasColumnName("short_name");
+
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("update_by");
+
+                entity.Property(e => e.UpdateOn)
+                    .HasColumnType("date")
+                    .HasColumnName("update_on");
+            });
+
             modelBuilder.Entity<Right>(entity =>
             {
                 entity.ToTable("rights");
@@ -266,6 +307,14 @@ namespace Koala.Models
                 entity.Property(e => e.Edit)
                     .HasColumnName("edit")
                     .HasComment("编辑");
+
+                entity.Property(e => e.Export)
+                    .HasColumnName("export")
+                    .HasComment("导出");
+
+                entity.Property(e => e.Print)
+                    .HasColumnName("print")
+                    .HasComment("打印");
 
                 entity.Property(e => e.RightId)
                     .HasColumnType("int(11)")

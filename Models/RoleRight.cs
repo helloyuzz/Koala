@@ -14,5 +14,7 @@ namespace Koala.Models
         public bool? View { get; set; }
         public bool? Edit { get; set; }
         public bool? Drop { get; set; }
+        public bool? Export { get; set; }
+        public bool? Print { get; set; }
     }
 }

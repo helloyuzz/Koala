@@ -23,6 +23,27 @@ a {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+.nav-link::before {
+        content: "" !important;
+        position:  relative !important;
+        width: 20px !important;
+        height: 20px !important;
+        left: -20px !important;
+        bottom: 0 !important;
+        background: #000 !important;
+        background:radial-gradient(circle at 0 0, transparent 20px, #e91e63 21px) !important;
+    }
+.nav-link::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 20px !important;
+    height: 20px !important;
+    right: -20px !important;
+    bottom: 0 !important;
+    background: #000 !important;
+    background: radial-gradient(circle at 100% 0, transparent 20px, #e91e63 21px) !important;
+}
+
 .nav-link.active {
     font-weight:bold !important;
 }

@@ -1,4 +1,4 @@
-﻿<html lang="en">
+﻿<html lang="en" style="overflow-x:hidden;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,28 +7,55 @@
     @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/client.css" />
+    <link rel="stylesheet" href="/css/nav-link.css" />
     <style>
         .tab-pane {
             /*transition: linear 0.3s;*/
             /*transform:rotate3d(90 dge);*/
         }
+      
     </style>
 </head>
-<body class="h-100 m-0 p-0">
+<body class="h-100 m-0 p-0" style="overflow-x:hidden;">
+    <div id="top_content" class="fixed-top w-100">
+        <div id="top_menu_panel" class="d-flex">
+            <div class='nav-btn hide-arrow clicked' html-clicked="clicked" html-id="profile-tab"><span class="m-0 ms-3 me-3">开始</span></div>
+            <div class='nav-btn' html-id="clean-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">回收</span></div>
+            <div class='nav-btn' html-id="clean-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">清洗</span></div>
+            <div class='nav-btn' html-id="package-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">包装</span></div>
+            <div class='nav-btn' html-id="miejun-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">灭菌</span></div>
+            <div class='nav-btn' html-id="store-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">发放</span></div>
+            <div class='nav-btn' html-id="about-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">库存</span></div>
+            <div class='nav-btn' html-id="clean-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">追溯</span></div>
+            <div class='nav-btn' html-id="clean-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">报表</span></div>
+            <div class='nav-btn' html-id="clean-tab" html-clicked="clicked"><span class="m-0 ms-3 me-3">管理</span></div>
+
+            @*<div class='nav-btn-1 nav-clicked' html-id="profile-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">开始</span></div>
+            <div class='nav-btn-1' html-id="clean-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">回收</span></div>
+            <div class='nav-btn-1' html-id="clean-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">清洗</span></div>
+            <div class='nav-btn-1' html-id="package-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">包装</span></div>
+            <div class='nav-btn-1' html-id="miejun-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">灭菌</span></div>
+            <div class='nav-btn-1' html-id="store-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">发放</span></div>
+            <div class='nav-btn-1' html-id="about-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">库存</span></div>
+            <div class='nav-btn-1' html-id="clean-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">追溯</span></div>
+            <div class='nav-btn-1' html-id="clean-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">报表</span></div>
+            <div class='nav-btn-1' html-id="clean-tab" html-clicked="nav-clicked"><span class="m-0 ms-3 me-3">管理</span></div>*@
+        </div>
+    </div>
     <table width="100%" height="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td height="31px" valign="top" class="bg-2b579a padding-top-1">
                 <table width="100%">
                     <tr>
                         <td>
-                            <ul class="nav nav-tabs ms-1 w-100" id="myTab" role="tablist" style="margin-bottom:-2px;margin-top:3px;">
+                            <ul class="nav nav-tabs ms-1 w-100 d-flex" id="myTab" role="tablist" style="margin-bottom:-2px;margin-top:3px;">
                                 <li class="nav-item ms-4 mr-3" style="padding-top:2px">
                                     <a id="top_index_button" class="nav-link text-white m-0 mt-1 p-0 shadow" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                                         <span class="fs-6" style="font-family:Arial;"><i class="bi bi-paypal"></i>&nbsp;蓝鹰CSSD智能化供应室</span>
                                     </a>
                                 </li>
                                 <li class="nav-item ms-3" role="presentation">
-                                    <a class="nav-link fs-7 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">开始菜单</a>
+                                    <a class="nav-link fs-7 active parallelogram" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">[科室名称/岗位名称]</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link fs-7" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">回收</a>
@@ -46,20 +73,20 @@
                                     <a class="nav-link fs-7" id="store-tab" data-bs-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="false">发放</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
+                                    <a class="nav-link fs-7" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">库存</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
                                     <a class="nav-link fs-7" id="quality-tab" data-bs-toggle="tab" href="#quality" role="tab" aria-controls="quality" aria-selected="false">追溯</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link fs-7" id="report-tab" data-bs-toggle="tab" href="#report" role="tab" aria-controls="report" aria-selected="false">报表</a>
                                 </li>
-                                @*<li class="nav-item" role="presentation">
-                                    <a class="nav-link fs-7" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">档案维护</a>
-                                </li>*@
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link fs-7" id="help-tab" data-bs-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">系统</a>
+                                    <a class="nav-link fs-7" id="help-tab" data-bs-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">档案维护</a>
                                 </li>
                                 @*<li class="nav-item" role="presentation">
-                                    <a class="nav-link fs-7" id="clinic-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="clinic" aria-selected="false">临床科室</a>
-                                </li>*@
+                                        <a class="nav-link fs-7" id="clinic-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="clinic" aria-selected="false">临床科室</a>
+                                    </li>*@
                                 <li id="dynamicPage" class="nav-item d-none" role="presentation">
                                     <a class="nav-link fs-7" id="dynamic-tab" data-bs-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="false">设置</a>
                                 </li>
@@ -76,7 +103,8 @@
                             </ul>
                         </td>
                         <td class="text-center" width="180px">
-                            <span class="badge bg-warning text-dark"><i class="bi bi-sun-fill"></i>&nbsp;
+                            <span class="badge bg-warning text-dark">
+                                <i class="bi bi-sun-fill"></i>&nbsp;
                                 @DateTime.Now.ToString("MM月dd日 HH:mm ddd")
                             </span>
                         </td>
@@ -89,182 +117,182 @@
                 <div class="tab-content bg-f3f3f3" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页a</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="clean" role="tabpanel" aria-labelledby="clean-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="miejun" role="tabpanel" aria-labelledby="miejun-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="package" role="tabpanel" aria-labelledby="package-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="store" role="tabpanel" aria-labelledby="store-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="quality" role="tabpanel" aria-labelledby="quality-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-house-fill"></i></span><br />主页</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shuffle"></i></span><br />流程</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-journal-check"></i></span><br />统计</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-blockquote-right"></i></span><br />内部交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-stickies"></i></span><br />误操作处理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-printer"></i></span><br />重打标签</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-basket"></i></span><br />回收交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-bar-chart-steps"></i></span><br />预定管理</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-volume-mute"></i></span><br />语音播报</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-graph-up"></i></span><br />今日看板</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />反馈问题</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />培训内容</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />反馈问题</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />培训内容</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />授权信息</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />授权信息</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />操作向导</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />反馈问题</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />培训内容</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />联系支持</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />反馈问题</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />培训内容</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />授权信息</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />授权信息</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />关于</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="clinic" role="tabpanel" aria-labelledby="clinic-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />接收确认</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />接收确认</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />借包</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />还包</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />借包</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />还包</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定审核</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定审核</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="dynamic" role="tabpanel" aria-labelledby="dynamic-tab">
                         <div class="hstack gap-3 ps-3">
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />dynamic</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />交接</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-patch-question"></i></span><br />dynamic</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-person-lines-fill"></i></span><br />入库</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-shield-check"></i></span><br />领取</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />交接</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />借包</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />还包</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-hourglass-split"></i></span><br />借包</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-info-circle"></i></span><br />还包</button>
                             <div class="vr"></div>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定</button>
-                            <button type="button" class="btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定审核</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定</button>
+                            <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-archive"></i></span><br />预定审核</button>
                         </div>
                     </div>
                 </div>
@@ -286,7 +314,7 @@
         </tr>
     </table>
 
-    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:254px;margin-top:41px;margin-bottom:30px;">
+    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:262px;margin-top:41px;margin-bottom:30px;">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title ms-2" id="offcanvasExampleLabel">欢迎您：张三&nbsp;<i class="bi bi-person-fill fs-5"></i></h5>
             <a id="btn_CloseExample" href="#hide_panel" class="btn-link text-white fs-4 float-end" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-arrow-left-circle"></i></a>
@@ -304,13 +332,13 @@
                             <li class="list-group-item list-group-item-action text-center"><i class="bi bi-pause-btn"></i>&nbsp;无菌包</li>
                             <li class="list-group-item list-group-item-action text-center"><i class="bi bi-basket"></i>&nbsp;网篮</li>
                             <li class="list-group-item list-group-item-action text-center"><i class="bi bi-building"></i>&nbsp;无菌库</li>
-                            <li class="list-group-item list-group-item-action text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-palette text-info"></i>&nbsp;个性化</li>
                             <li class="list-group-item list-group-item-action text-center" attr-action="print"><i class="bi bi-printer-fill"></i>&nbsp;打印设置</li>
                             <li class="list-group-item list-group-item-action text-center"><i class="bi bi-shuffle"></i>&nbsp;流程/选项</li>
                             <li class="list-group-item list-group-item-action text-center"><i class="bi bi-chat-dots text-warning"></i>&nbsp;未读消息(xxx)</li>
                             <li class="list-group-item list-group-item-action text-center">触屏模式</li>
                             <li class="list-group-item list-group-item-action text-center">扫码模式</li>
-                            <li class="list-group-item list-group-item-action text-center"><a href="/Administration/Index" class="text-white fs-6 text-decoration-none" target="_blank"><i class="bi bi-shield-check"></i>&nbsp;进入后台管理</a></li>
+                            <li class="list-group-item list-group-item-action text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-palette text-info"></i>&nbsp;个性化</li>
+                            <li class="list-group-item list-group-item-action text-center"><a href="/Administration/Index" class="text-white fs-6 text-decoration-none" target="_blank"><i class="bi bi-shield-check"></i>&nbsp;管理后台</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -323,7 +351,7 @@
                     <td height="198px" valign="top">
                         <ul class="list-group list-group-flush bottom-0">
                             <li class="list-group-item list-group-item-action text-center">帮助</li>
-                            <li class="list-group-item list-group-item-action text-center">反馈</li>
+                            <li class="list-group-item list-group-item-action text-center">问题反馈</li>
                             <li class="list-group-item list-group-item-action text-center">培训</li>
                             <li class="list-group-item list-group-item-action text-center">质控</li>
                             <li class="list-group-item list-group-item-action text-center"><a href="/Logout" class="text-white text-decoration-none fs-6">退出&nbsp;<i class="bi bi-power"></i></a></li>
@@ -428,7 +456,7 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         @await RenderSectionAsync("Scripts", required: false)
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $("#flush_menu li").click(function () {
                     var action = $(this).attr("attr-action");
                     switch (action) {
@@ -452,6 +480,15 @@
 
                             break;
                     }
+                });
+                $('#top_menu_panel div').click(function () {
+                    var className = $(this).attr("html-clicked");
+                    $('#top_menu_panel div').each(function () {
+                        $(this).removeClass(className);
+                    });
+                    $(this).toggleClass(className);
+                    var html_id = $(this).attr("html-id");
+                    $('#' + html_id)[0].click();
                 });
             });
         </script>

@@ -1,0 +1,67 @@
+﻿@page
+@model Koala.Pages.Administration.Packages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Package</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Package.Id" />
+            <div class="form-group">
+                <label asp-for="Package.Name" class="control-label"></label>
+                <input asp-for="Package.Name" class="form-control" />
+                <span asp-validation-for="Package.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.Code" class="control-label"></label>
+                <input asp-for="Package.Code" class="form-control" />
+                <span asp-validation-for="Package.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.ShortName" class="control-label"></label>
+                <input asp-for="Package.ShortName" class="form-control" />
+                <span asp-validation-for="Package.ShortName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.CreateOn" class="control-label"></label>
+                <input asp-for="Package.CreateOn" class="form-control" />
+                <span asp-validation-for="Package.CreateOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.CreateBy" class="control-label"></label>
+                <input asp-for="Package.CreateBy" class="form-control" />
+                <span asp-validation-for="Package.CreateBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.UpdateOn" class="control-label"></label>
+                <input asp-for="Package.UpdateOn" class="form-control" />
+                <span asp-validation-for="Package.UpdateOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.UpdateBy" class="control-label"></label>
+                <input asp-for="Package.UpdateBy" class="form-control" />
+                <span asp-validation-for="Package.UpdateBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Package.IsDelete" class="control-label"></label>
+                <input asp-for="Package.IsDelete" class="form-control" />
+                <span asp-validation-for="Package.IsDelete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
