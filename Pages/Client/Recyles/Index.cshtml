@@ -1,0 +1,350 @@
+﻿@page
+@model Koala.Pages.Client.Recyles.IndexModel
+
+@{
+    Layout = "/Pages/Shared/_ContentLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+<style>
+    th:hover {
+        background-color: #e9ecef !important;
+        background-image: url('/svg/search.svg') !important;
+        background-repeat: no-repeat;
+        background-position: right;
+        /*background-origin: content-box;
+        padding-right: 10px;*/
+    }
+    .pagination {
+        display: inline-block;
+    }
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+</style>
+<div class="container-fluid">
+    <div class="row pb-1">
+        <div class="col-10 overflow-scroll" style="height:700px;overflow-x:hidden !important;">
+            <table id="mainTable" class="table table-hover">
+                <thead>
+                    <tr style="cursor:default;" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">
+                        <th htmlid="txt_demo_focus">
+                            @Html.DisplayNameFor(model => model.Recyle[0].SeqNo)
+                        </th>
+                        <th htmlid="txt_recyleon_focus">
+                            @Html.DisplayNameFor(model => model.Recyle[0].RecyleOn)
+                        </th>
+                        <th htmlid="txt_section_id_focus">
+                            @Html.DisplayNameFor(model => model.Recyle[0].SectionId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recyle[0].UserId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recyle[0].RecyleBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recyle[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recyle[0].Summary)
+                        </th>
+                        <th>详情</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Recyle) {
+                        <tr>
+                            <td>
+                                <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.Id">  @Html.DisplayFor(modelItem => item.SeqNo)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecyleOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Section.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecyleUser.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </td>
+                            <td>
+                                <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.Id">查看</a>
+                                @*|
+                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col pe-0">
+            <div class="col w-100 tip-button bg-e1ddd9 rounded-135 shadow-4 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="col-5 fs-5 text-dark mt-2">紧急包</div>
+                    <span class="fs-4 text-white fw-bold">39</span>
+                    <div class="bg-danger float-end rounded-135 text-center" style="width:40px;height:40px;">
+                        <i class="bi bi-cart fs-4"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button bg-69d7c3 rounded-135 shadow-3 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="col-5 fs-5 text-dark mt-2">回收异常</div>
+                    <span class="fs-4 text-white fw-bold">39</span>
+                    <div class="bg-warning float-end rounded-135 text-center" style="width:40px;height:40px;">
+                        <i class="bi bi-exclamation-lg fs-4"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button bg-c1a0be rounded-135 shadow-2 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="col-5 fs-5 text-dark mt-2">外来器械</div>
+                    <span class="fs-4 text-white fw-bold">39</span>
+                    <div class="bg-light float-end rounded-135 text-center" style="width:40px;height:40px;">
+                        <i class="bi bi-cart fs-4"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button bg-2b579a rounded-135 shadow-1 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="fs-5 text-white mt-1">今日回收</div>
+                    <span class="fs-4 text-white fw-bold">16</span>
+                    <div class="bg-2 rounded-135 float-end text-center" style="width:40px;height:40px;">
+                        <i class="bi bi-arrow-clockwise fs-3 text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-none">
+            <table class="table table-hover">
+                <thead>
+                    <tr style="cursor:default;" data-bs-toggle="offcanvas" data-bs-target="#recyle_ex_offcanvasRight" aria-controls="recyle_ex_offcanvasRight">
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].RecyleOn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].ManufacturerId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].DespatcherId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].OperationDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].PatientName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].PackageCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ExternalRecyles) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecyleOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ManufacturerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DespatcherId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OperationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PatientName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PackageCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pagination">
+        <a href="#">❮</a>
+        <a href="#">❯</a>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end shadow-1" tabindex="-1" id="recyle_offcanvasRight" aria-labelledby="recyle_offcanvasRight" style="width:330px;">
+    <div class="offcanvas-header pb-0">
+        <h5 id="offcanvasRightLabel">回收记录查询</h5>
+        <div class="">
+            <button class="btn btn-primary p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">查询</button>
+            <button class="btn btn-secondary p-1" type="button">重置</button>
+        </div>
+        @*<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>*@
+    </div>
+    <div class="offcanvas-body">
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收序号</label>
+            <input type="text" class="form-control" id="txt_demo_focus" placeholder="">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收日期</label>
+            <input type="date" class="form-control" id="txt_recyleon_focus" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">科室</label>
+            <input type="email" class="form-select" id="txt_section_id_focus" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收人</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">送包人</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">状态</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <label for="exampleFormControlInput1" class="form-label">包数量</label><br />
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <button class="btn btn-outline-secondary dropdown-toggle fs-9 border-d2d2d2" type="button" data-bs-toggle="dropdown" aria-expanded="false">等于</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </div>
+        <label for="exampleFormControlInput1" class="form-label">器械数量</label>
+        <div class="input-group">
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <button class="btn btn-outline-secondary dropdown-toggle fs-9 border-d2d2d2" type="button" data-bs-toggle="dropdown" aria-expanded="false">等于</button>
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收序号</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">急件包</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end shadow-1" tabindex="-1" id="recyle_ex_offcanvasRight" aria-labelledby="recyle_ex_offcanvasRight" style="width:330px;">
+    <div class="offcanvas-header pb-0">
+        <h5 id="offcanvasRightLabel">外来器械回收查询</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收序号</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">送包日期</label>
+            <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">厂家</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">送包人</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">手术日期</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">病人姓名</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收人</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <label for="exampleFormControlInput1" class="form-label">包/器械数量</label><br />
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <button class="btn btn-outline-secondary dropdown-toggle fs-9 border-d2d2d2" type="button" data-bs-toggle="dropdown" aria-expanded="false">等于</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">回收序号</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="">
+            <label for="exampleFormControlInput1" class="form-label">急件包</label>
+            <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class=" mt-3">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">查询</button>
+            <button class="btn btn-secondary" type="button">重置</button>
+        </div>
+    </div>
+</div>
+<input id="hidden_id" type="hidden" value=""/>
+<script>
+    var myOffcanvas = document.getElementById('recyle_offcanvasRight')
+    myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
+        var htmlid = $('#hidden_id').val();
+        $('#' + htmlid).val('');
+        $('#' + htmlid).focus();
+    })
+    $(document).ready(function () {
+        $('#mainTable th').click(function () {
+            var htmlid = $(this).attr("htmlid");
+            $('#hidden_id').val(htmlid);
+        });
+    });
+</script>

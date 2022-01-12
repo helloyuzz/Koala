@@ -1,0 +1,52 @@
+﻿@page
+@model Koala.Pages.Client.Recyles.CreateModel
+
+@{
+    Layout = "/Pages/Shared/_ContentLayout.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Recyle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Recyle.SeqNo" class="control-label"></label>
+                <input asp-for="Recyle.SeqNo" class="form-control" />
+                <span asp-validation-for="Recyle.SeqNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recyle.UserId" class="control-label"></label>
+                <input asp-for="Recyle.UserId" class="form-control" />
+                <span asp-validation-for="Recyle.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recyle.SectionId" class="control-label"></label>
+                <input asp-for="Recyle.SectionId" class="form-control" />
+                <span asp-validation-for="Recyle.SectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recyle.RecyleOn" class="control-label"></label>
+                <input asp-for="Recyle.RecyleOn" class="form-control" />
+                <span asp-validation-for="Recyle.RecyleOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recyle.RecyleBy" class="control-label"></label>
+                <input asp-for="Recyle.RecyleBy" class="form-control" />
+                <span asp-validation-for="Recyle.RecyleBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

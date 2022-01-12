@@ -129,7 +129,34 @@ body {
 .bg-2b579a {
     background: #2b579a !important;
 }
-
+.bg-c1a0be {
+    background: #c1a0be !important;
+}
+.bg-5d98f1 {
+    background: #5d98f1 !important;
+}
+.bg-69d7c3 {
+    background: #69d7c3 !important;
+}
+.bg-e1ddd9 {
+    background: #e1ddd9 !important;
+}
+.shadow-1 {
+    border: 1px solid rgba(239,239,239,.75) !important;
+    box-shadow: 0px 0rem 1rem 0px rgb(223 223 223) !important
+}
+.shadow-2 {
+    border: 1px solid rgba(239,239,239,.75) !important;
+    box-shadow: 0px 0rem 1rem 0px rgb(223 223 223) !important
+}
+.shadow-3 {
+    border: 1px solid rgba(239,239,239,.75) !important;
+    box-shadow: 0px 0rem 1rem 0px rgb(223 223 223) !important
+}
+.shadow-4 {
+    border: 1px solid rgba(239,239,239,.75) !important;
+    box-shadow: 0px 0rem 1rem 0px rgb(223 223 223) !important
+}
 .fs-9 {
     font-size: 0.9rem !important;
 }
@@ -178,7 +205,12 @@ body {
 .menu-button.hover {
     background: #fff !important;
 }
-
+.ms-90 {
+    left:90% !important;
+}
+.top-9px {
+    top:9px !important;
+}
 /*                  .list-group-item                */
 .list-group-item {
     background: none !important;
@@ -194,4 +226,14 @@ body {
 
 .list-group-item-action:hover, .list-group-item-action:focus {
     background-color: #124078 !important;
+}
+
+.rounded-135 {
+    border-radius: 1.05rem !important;
+}
+.offcanvas-backdrop {
+    background-color: #849bbd !important;
+}
+.tip-button:hover {
+    background-color:#b9b9e3 !important;
 }

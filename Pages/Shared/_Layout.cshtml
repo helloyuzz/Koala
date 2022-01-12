@@ -1,13 +1,18 @@
 ﻿@using Koala.Models;
 @inject MenuHelper menuHelper;
-@{
+@{     
+    string baseUrl = "/Administration/";
+    if (ViewData.ContainsKey("base_url")) {
+        baseUrl = ViewData["base_url"].ToString();
+    }
+
     var menu_name = Context.Request.Query["Menu_name"];
     var module_id = Context.Request.Query["Module_id"];
     var menu_id = Context.Request.Query["Menu_id"];
 
     var isLogon = User.Identity.IsAuthenticated;
 
-    var sys_menus = menuHelper.All();
+    var sys_menus = menuHelper.All(false);
     var title = ViewData["Title"];
     if (title != null) {
         menu_name = title.ToString();
@@ -21,16 +26,18 @@
     <title>@ViewData["Title"] - Koala</title>
     @*<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">*@
     @*<link rel="stylesheet" href="~/lib/bootstrap-5.0.0-beta3/dist/css/bootstrap.min.css" />*@
-    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/examples/sidebars/sidebars.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <base href="@baseUrl" />
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="/css/font.css" />
     <style>
         .main_menu_default {
             margin-left: 0px !important;
@@ -53,7 +60,7 @@
         }
 
         .btn-toggle:focus {
-            background: #ffc107 !important; 
+            background: #ffc107 !important;
             box-shadow: none !important;
             /*box-shadow: 0 0 0 2px #686868 !important;*/
         }
@@ -69,6 +76,9 @@
         tr.active {
             background-color: #e7f1ff;
             /*border: 2px dotted #9a9a9a;*/
+        }
+        tr:hover {
+            background-color: #e6e6e640 !important;
         }
 
         .accordion-button:hover {
@@ -101,9 +111,11 @@
             /*transition: margin-left .5s;*/
             margin-left: 268px;
         }
+
         #content_panel {
             transition: width 3s;
         }
+
         #turn_btn {
             transition: transform .5s ease-in-out;
         }
@@ -124,14 +136,17 @@
                 padding-top: 15px;
             }
         }
+
         .hide-btn::after {
-            display:none !important;
+            display: none !important;
         }
+
         .accordion-header {
-            cursor:default !important;
+            cursor: default !important;
         }
+
         li.list-group-item {
-            cursor:pointer !important;
+            cursor: pointer !important;
         }
     </style>
 </head>
@@ -228,8 +243,24 @@
                                     <table width="100%">
                                         <tr>
                                             <td width="39px" class="text-center" onclick="toggleNav()" style="cursor:pointer;"><i id="turn_btn" class="bi bi-arrow-left-circle m-1 fs-4"></i></td>
-                                            <td onclick="toggleNav()" style="cursor:pointer;"><span class="fs-4 mt-1">@menu_name</span></td>
-                                            <td></td>
+                                            <td style="cursor:pointer;">
+                                                <span class="fs-4 mt-1" onclick="toggleNav()" style="cursor:pointer;">@menu_name</span>
+                                            </td>
+                                            <td width="600px">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control m-0 p-1" aria-label="Text input with dropdown button" placeholder="姓名或登录帐号...">
+                                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="bi bi-search"></i>&nbsp;查询</button>
+                                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">更多条件...</button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>&nbsp;</td>
                                             <td class="pe-1">
                                                 <a class="btn float-end shadow btn-success p-2 pt-0 pb-0 rounded-0" data-bs-toggle="offcanvas" href="#logout_Panel" role="button" aria-controls="logout_Panel">
                                                     <i class="bi bi-person-circle fs-5"></i>&nbsp;<span>Admin</span>
@@ -239,19 +270,19 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="row h-100 w-100 m-0 p-0" style="background: #f3f6f9;">
+                            <div class="row h-100 w-100 m-0 p-0" style="background:#f3f6f9;">
                                 <div id="content_panel" class="col p-0 m-0">
                                     @RenderBody()
                                 </div>
                                 <div id="btn_panel" class="col-1 border-start bg-white m-0 p-1 pt-2 shadow-sm text-center" style="width:86px;display:none;">
-                                    <a href="#Temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-plus-lg fs-4"></i>&nbsp;新建</a>
-                                    <a href="#Temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-pencil-square fs-4"></i>&nbsp;编辑</a>
+                                    <a href="./Create" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-files fs-4"></i>&nbsp;新建</a>
+                                    <a href="./Edit" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-pencil-square fs-4"></i>&nbsp;编辑</a>
                                     <hr class="dropdown-divider m-3 mt-0 mb-0">
-                                    <a href="#Temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-trash fs-4"></i>&nbsp;删除</a>
+                                    <a href="./Delete" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center"><i class="bi bi-trash fs-4"></i>&nbsp;删除</a>
                                     <hr class="dropdown-divider m-3 mt-0 mb-0">
                                     <a href="#Temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-center text-secondary"><i class="bi bi-toggle-off fs-4"></i>&nbsp;禁用</a>
                                     <div class="btn-group dropstart p-0 m-0 text-center">
-                                        <a href="#temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-layout-sidebar fs-4"></i>&nbsp;显示</a>
+                                        <a href="#temp" class="btn rounded-0 btn-toggle m-1 ps-2 pe-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-layout-sidebar fs-4"></i>&nbsp;列表</a>
                                         <hr />
                                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start rounded-0 shadow" style="width:180px !important;">
                                             <li>
@@ -289,7 +320,7 @@
                 <span><a href="/Menus/Index" class="text-decoration-none text-dark" target="_blank"><i class="fas fa-question"></i>&nbsp;在线帮助？</a></span>
                 <span class="ms-2"><a href="#AA" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-lock"></i>&nbsp;锁定系统</a></span>                
             </div>
-            <div class="fixed-bottom" style="left:auto;right:63px;margin-bottom:13px;">
+            <div class="fixed-bottom" style="left:auto;right:93px;margin-bottom:13px;">
                 &copy; 2021 - Koala - <a asp-area="" asp-page="/Privacy">Privacy</a>
             </div>
         </div>
@@ -369,12 +400,17 @@
     <script>
         $(document).ready(function () {
             if ($('#mainTable').length > 0) {
-                $("#mainTable tr").click(function () {              // issue绑定click，支持选中效果
-                    $("#mainTable tr").removeClass('active');
-                    $(this).addClass('active');
-                    $('#btn_panel').fadeIn(800);
+                $("#mainTable tr").click(function (e) {              // issue绑定click，支持选中效果
+                    var htmlAttr = e.target.tagName;
+                    if (htmlAttr == "A") {
+                    } else {
+                        $("#mainTable tr").removeClass('active');
+                        $(this).addClass('active');
+                        //$('#btn_panel').fadeIn(800);
+                        $('#btn_panel').show();
 
-                    return false;
+                        return false;
+                    }
                 });
                 $('#content_panel').click(function () {
                     var btn_panel = $('#btn_panel');
@@ -383,6 +419,10 @@
                     }
                 });
             }
+            $('.op-link').click(function (e) {
+                //e.preventDefault();
+                //e.stopPropagation();
+            });
         });
         var canToggle = true;
         function toggleNav() {

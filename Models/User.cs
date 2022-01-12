@@ -22,6 +22,8 @@ namespace Koala.Models
         public bool? MustChangePasswd { get; set; }
         public int? HospitalId { get; set; }
         public int? SectionId { get; set; }
-        public bool? IsDelete { get; set; }
+        public sbyte? IsDelete { get; set; }
+        public sbyte? IsTemp { get; set; }
+        public string Avator { get; set; }
     }
 }

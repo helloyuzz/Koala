@@ -26,6 +26,16 @@
                 <span asp-validation-for="Menu.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Menu.Area" class="control-label"></label>
+                <select asp-for="Menu.Area" class="form-select">
+                    <option value="Administration">Administration</option>
+                    <option value="Client">Client</option>
+                </select>
+                <span asp-validation-for="Menu.Area" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
                 <label asp-for="Menu.Class" class="control-label"></label>
                 <input asp-for="Menu.Class" class="form-control" />
                 <span asp-validation-for="Menu.Class" class="text-danger"></span>
@@ -39,6 +49,16 @@
                 <label asp-for="Menu.Position" class="control-label"></label>
                 <input asp-for="Menu.Position" class="form-control" />
                 <span asp-validation-for="Menu.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.Unread" class="control-label"></label>
+                <input asp-for="Menu.Unread" class="form-control" />
+                <span asp-validation-for="Menu.Unread" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.Hidden" class="control-label"></label>
+                <input asp-for="Menu.Hidden" class="form-control" />
+                <span asp-validation-for="Menu.Hidden" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <input type="submit" value="Save" class="btn btn-primary mr-3" />&nbsp;<a class="btn btn-secondary" asp-page="./Index">Back to List</a>

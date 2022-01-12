@@ -1,0 +1,7 @@
+@font-face {
+	font-family: ljk;
+	src: url('/font/SourceHanSans-Light.otf');
+}
+*,body {
+	font-family:ljk !important;
+}

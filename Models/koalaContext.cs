@@ -17,17 +17,27 @@ namespace Koala.Models
         {
         }
 
+        public virtual DbSet<Attachment> Attachments { get; set; }
+        public virtual DbSet<Clean> Cleans { get; set; }
+        public virtual DbSet<CustomFlow> CustomFlows { get; set; }
+        public virtual DbSet<Flow> Flows { get; set; }
+        public virtual DbSet<FlowStatus> FlowStatuses { get; set; }
         public virtual DbSet<Hospital> Hospitals { get; set; }
+        public virtual DbSet<Instrument> Instruments { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Recyle> Recyles { get; set; }
+        public virtual DbSet<RecyleInstrument> RecyleInstruments { get; set; }
+        public virtual DbSet<RecylePackage> RecylePackages { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserMapping> UserMappings { get; set; }
+        public virtual DbSet<UserRelation> UserRelations { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
+        public virtual DbSet<ExternalRecyle> ExternalRecyles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,6 +52,156 @@ namespace Koala.Models
         {
             modelBuilder.HasCharSet("utf8")
                 .UseCollation("utf8_general_ci");
+
+            modelBuilder.Entity<Attachment>(entity =>
+            {
+                entity.ToTable("attachments");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.AttachmentType)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("attachment_type");
+
+                entity.Property(e => e.DiskFile)
+                    .HasMaxLength(60)
+                    .HasColumnName("disk_file");
+
+                entity.Property(e => e.DiskPath)
+                    .HasMaxLength(60)
+                    .HasColumnName("disk_path");
+
+                entity.Property(e => e.DownloadCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("download_count");
+
+                entity.Property(e => e.FileExt)
+                    .HasMaxLength(60)
+                    .HasColumnName("file_ext");
+
+                entity.Property(e => e.FileLength)
+                    .HasColumnType("bigint(20)")
+                    .HasColumnName("file_length");
+
+                entity.Property(e => e.FileName)
+                    .HasMaxLength(60)
+                    .HasColumnName("file_name");
+
+                entity.Property(e => e.Hash)
+                    .HasMaxLength(60)
+                    .HasColumnName("hash");
+
+                entity.Property(e => e.ObjId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("obj_id");
+
+                entity.Property(e => e.Position)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("position");
+
+                entity.Property(e => e.UploadBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("upload_by");
+
+                entity.Property(e => e.UploadOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("upload_on");
+
+                entity.Property(e => e.ViewCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("view_count");
+            });
+
+            modelBuilder.Entity<Clean>(entity =>
+            {
+                entity.ToTable("cleans");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CreateOn)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("create_on");
+
+                entity.Property(e => e.FlowId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("flow_id");
+            });
+
+            modelBuilder.Entity<CustomFlow>(entity =>
+            {
+                entity.ToTable("custom_flows");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Clean)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("clean")
+                    .HasComment("清洗");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name")
+                    .HasComment("自定义流程名称");
+
+                entity.Property(e => e.Recyle)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("recyle")
+                    .HasComment("回收");
+            });
+
+            modelBuilder.Entity<Flow>(entity =>
+            {
+                entity.ToTable("flows");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CloseOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("close_on");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("create_by");
+
+                entity.Property(e => e.CreateOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_on");
+
+                entity.Property(e => e.CustomFlowId)
+                    .HasColumnType("int(60)")
+                    .HasColumnName("custom_flow_id")
+                    .HasComment("自定义流程编号");
+
+                entity.Property(e => e.PrevId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("prev_id");
+
+                entity.Property(e => e.StatusId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("status_id");
+            });
+
+            modelBuilder.Entity<FlowStatus>(entity =>
+            {
+                entity.ToTable("flow_status");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name")
+                    .HasComment("状态名称");
+            });
 
             modelBuilder.Entity<Hospital>(entity =>
             {
@@ -119,12 +279,37 @@ namespace Koala.Models
                     .HasColumnName("version_id");
             });
 
+            modelBuilder.Entity<Instrument>(entity =>
+            {
+                entity.ToTable("instruments");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Graphy)
+                    .HasMaxLength(60)
+                    .HasColumnName("graphy");
+
+                entity.Property(e => e.InstrumentId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("instrument_id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.PackageId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("package_id");
+            });
+
             modelBuilder.Entity<Menu>(entity =>
             {
                 entity.ToTable("menus");
 
                 entity.Property(e => e.Id)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("id");
 
                 entity.Property(e => e.Area)
@@ -144,12 +329,21 @@ namespace Koala.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.ParentId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("parent_id");
 
                 entity.Property(e => e.Position)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("position");
+
+                entity.Property(e => e.Unread)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("unread");
+
+                entity.Property(e => e.Hidden)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("hidden")
+                    .HasComment("已禁用");
             });
 
             modelBuilder.Entity<Module>(entity =>
@@ -198,11 +392,21 @@ namespace Koala.Models
                     .HasColumnType("date")
                     .HasColumnName("create_on");
 
+                entity.Property(e => e.Graphy)
+                    .HasMaxLength(60)
+                    .HasColumnName("graphy")
+                    .HasComment("修改痕迹");
+
                 entity.Property(e => e.IsDelete).HasColumnName("is_delete");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(60)
                     .HasColumnName("name");
+
+                entity.Property(e => e.PackageId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("package_id")
+                    .HasComment("id允许相同，graphy=null表示最新记录，graphy!=null标识历史修改记录");
 
                 entity.Property(e => e.ShortName)
                     .HasMaxLength(60)
@@ -215,6 +419,81 @@ namespace Koala.Models
                 entity.Property(e => e.UpdateOn)
                     .HasColumnType("date")
                     .HasColumnName("update_on");
+            });
+
+            modelBuilder.Entity<Recyle>(entity =>
+            {
+                entity.ToTable("recyles");
+
+                entity.HasIndex(e => e.RecyleBy, "fk_recyle_by");
+
+                entity.HasIndex(e => e.UserId, "fk_user_id");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.RecyleBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("recyle_by")
+                    .HasComment("回收人");
+
+                entity.Property(e => e.RecyleOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("recyle_on")
+                    .HasComment("回收日期");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id")
+                    .HasComment("移交科室");
+
+                entity.Property(e => e.SeqNo)
+                    .HasMaxLength(60)
+                    .HasColumnName("seq_no")
+                    .HasComment("流水号");
+
+                entity.Property(e => e.UserId).HasColumnType("int(6)").HasColumnName("user_id");
+                entity.Property(e => e.Summary).HasMaxLength(60).HasColumnName("summary").HasComment("摘要");
+                entity.Property(e => e.Status).HasMaxLength(60).HasColumnName("status").HasComment("状态");
+
+                entity.HasOne(d => d.RecyleUser).WithMany().HasForeignKey(d => d.RecyleBy);
+                entity.HasOne(d => d.User).WithMany().HasForeignKey(d => d.UserId);
+                entity.HasOne(d => d.Section).WithMany().HasForeignKey(d=>d.SectionId);
+            });
+
+            modelBuilder.Entity<RecyleInstrument>(entity =>
+            {
+                entity.ToTable("recyle_instruments");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.PackageId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("package_id");
+            });
+
+            modelBuilder.Entity<RecylePackage>(entity =>
+            {
+                entity.ToTable("recyle_packages");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Graphy)
+                    .HasMaxLength(60)
+                    .HasColumnName("graphy");
+
+                entity.Property(e => e.PackageId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("package_id");
+
+                entity.Property(e => e.RecyleId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("recyle_id");
             });
 
             modelBuilder.Entity<Right>(entity =>
@@ -381,9 +660,14 @@ namespace Koala.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id");
 
+                entity.Property(e => e.Avator)
+                    .HasMaxLength(60)
+                    .HasColumnName("avator");
+
                 entity.Property(e => e.CreateOn)
                     .HasColumnType("datetime")
-                    .HasColumnName("create_on");
+                    .HasColumnName("create_on")
+                    .HasComment("创建于");
 
                 entity.Property(e => e.HashedPassword)
                     .HasMaxLength(60)
@@ -392,22 +676,36 @@ namespace Koala.Models
 
                 entity.Property(e => e.HospitalId)
                     .HasColumnType("int(8)")
-                    .HasColumnName("hospital_id");
+                    .HasColumnName("hospital_id")
+                    .HasComment("院区");
 
-                entity.Property(e => e.IsAdmin).HasColumnName("is_admin");
+                entity.Property(e => e.IsAdmin)
+                    .HasColumnName("is_admin")
+                    .HasComment("管理员");
 
-                entity.Property(e => e.IsDelete).HasColumnName("is_delete");
+                entity.Property(e => e.IsDelete)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("is_delete")
+                    .HasComment("已禁用");
+
+                entity.Property(e => e.IsTemp)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("is_temp")
+                    .HasComment("是否临时工");
 
                 entity.Property(e => e.LastLoginOn)
                     .HasColumnType("datetime")
-                    .HasColumnName("last_login_on");
+                    .HasColumnName("last_login_on")
+                    .HasComment("最近登录");
 
                 entity.Property(e => e.Login)
                     .HasMaxLength(60)
                     .HasColumnName("login")
-                    .HasComment("帐号");
+                    .HasComment("登录帐号");
 
-                entity.Property(e => e.MustChangePasswd).HasColumnName("must_change_passwd");
+                entity.Property(e => e.MustChangePasswd)
+                    .HasColumnName("must_change_passwd")
+                    .HasComment("必须修改密码");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(60)
@@ -416,7 +714,8 @@ namespace Koala.Models
 
                 entity.Property(e => e.Pinyin)
                     .HasMaxLength(60)
-                    .HasColumnName("pinyin");
+                    .HasColumnName("pinyin")
+                    .HasComment("拼音");
 
                 entity.Property(e => e.Salt)
                     .HasMaxLength(60)
@@ -424,36 +723,40 @@ namespace Koala.Models
 
                 entity.Property(e => e.SectionId)
                     .HasColumnType("int(8)")
-                    .HasColumnName("section_id");
+                    .HasColumnName("section_id")
+                    .HasComment("科室");
 
                 entity.Property(e => e.Status)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("status");
+                    .HasColumnType("int(6)")
+                    .HasColumnName("status")
+                    .HasComment("状态");
 
                 entity.Property(e => e.Type)
                     .HasMaxLength(60)
-                    .HasColumnName("type");
+                    .HasColumnName("type")
+                    .HasComment("类型");
 
                 entity.Property(e => e.UpdateOn)
                     .HasColumnType("datetime")
-                    .HasColumnName("update_on");
+                    .HasColumnName("update_on")
+                    .HasComment("更新于");
             });
 
-            modelBuilder.Entity<UserMapping>(entity =>
+            modelBuilder.Entity<UserRelation>(entity =>
             {
-                entity.ToTable("user_mappings");
+                entity.ToTable("user_relations");
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int(11)")
                     .HasColumnName("id");
 
-                entity.Property(e => e.TargetId)
+                entity.Property(e => e.ObjId)
                     .HasColumnType("int(11)")
-                    .HasColumnName("target_id");
+                    .HasColumnName("obj_id");
 
-                entity.Property(e => e.Type)
+                entity.Property(e => e.RelationType)
                     .HasMaxLength(255)
-                    .HasColumnName("type")
+                    .HasColumnName("relation_type")
                     .HasComment("关联类型，院区、科室、角色、外来器械厂商");
 
                 entity.Property(e => e.UserId)
@@ -496,6 +799,55 @@ namespace Koala.Models
                     .HasColumnType("text")
                     .HasColumnName("version_log");
             });
+
+            modelBuilder.Entity<ExternalRecyle>(entity =>
+            {
+                entity.ToTable("external_recyles");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.DespatcherId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("despatcher_id")
+                    .HasComment("操作人员");
+
+                entity.Property(e => e.InstrumentCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("instrument_count");
+
+                entity.Property(e => e.ManufacturerId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("manufacturer_id")
+                    .HasComment("厂商名称");
+
+                entity.Property(e => e.OperationDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("operation_date");
+
+                entity.Property(e => e.PackageCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("package_count");
+
+                entity.Property(e => e.PatientName)
+                    .HasMaxLength(60)
+                    .HasColumnName("patient_name");
+
+                entity.Property(e => e.RecyleBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("recyle_by");
+
+                entity.Property(e => e.RecyleOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("recyle_on")
+                    .HasComment("申请日期");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(60)
+                    .HasColumnName("status");
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -8,6 +8,7 @@ namespace Koala.Models
     public partial class Package
     {
         public int Id { get; set; }
+        public int? PackageId { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public string ShortName { get; set; }
@@ -16,5 +17,6 @@ namespace Koala.Models
         public DateTime? UpdateOn { get; set; }
         public int? UpdateBy { get; set; }
         public bool? IsDelete { get; set; }
+        public string Graphy { get; set; }
     }
 }

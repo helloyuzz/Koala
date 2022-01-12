@@ -10,9 +10,9 @@ namespace Koala {
         public MenuHelper(koalaContext _koalaContext) {
             koalaContext = _koalaContext;
         }
-        public List<SysMenu> All() {
+        public List<SysMenu> All(bool isClient) {
             List<SysMenu> _sysMenus = new List<SysMenu>();
-            var items = koalaContext.Menus.ToList();
+            var items = koalaContext.Menus.Where(t => t.Area.Equals("Client") == isClient && t.Hidden != true).ToList();
             foreach (var item in items.Where(t => t.ParentId == null).OrderBy(t => t.Position)) {
                 SysMenu sysMenu = new SysMenu();
                 sysMenu.Id = item.Id;
@@ -28,6 +28,9 @@ namespace Koala {
                     subMenu.Class = subItem.Class;
                     subMenu.AspPage = subItem.AspPage;
                     subMenu.Area = subItem.Area;
+                    if (subItem.Unread.HasValue) {
+                        subMenu.Unread = subItem.Unread.Value;
+                    }
 
                     sysMenu.SubMenus.Add(subMenu);
                 }

@@ -3,8 +3,24 @@
 
 @{
     ViewData["Title"] = "登录帐号管理";
+    ViewData["base_url"] = "./Accounts/";
 }
 <style>
+    .avator {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-radius: 25px;
+        border: 1px solid lightgray;
+        background-color: #fff;
+    }
+    #mainTable td {
+        height:53px;
+        vertical-align:middle;
+    }
 </style>
 
 <div class="container-fluid p-3">
@@ -16,10 +32,13 @@
                         @Html.DisplayNameFor(model => model.User[0].Login)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.User[0].HashedPassword)
+                        @Html.DisplayNameFor(model => model.User[0].Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.User[0].Name)
+                        @Html.DisplayNameFor(model => model.User[0].HospitalId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User[0].SectionId)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.User[0].IsAdmin)
@@ -45,57 +64,54 @@
                     <th>
                         @Html.DisplayNameFor(model => model.User[0].MustChangePasswd)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.User[0].HospitalId)
-                    </th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.User) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Login)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HashedPassword)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsAdmin)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastLoginOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreateOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpdateOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Salt)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MustChangePasswd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HospitalId)
-                        </td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        <img src="@item.Avator" class="avator" />
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HospitalId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SectionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAdmin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastLoginOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdateOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MustChangePasswd)
+                    </td>
+                    @*<td>
+            <a class="op-link" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+            <a class="op-link" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+            <a class="op-link" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+                </tr>
                 }
             </tbody>
         </table>

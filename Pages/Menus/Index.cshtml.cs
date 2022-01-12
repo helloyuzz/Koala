@@ -18,7 +18,7 @@ namespace Koala.Pages.Menus {
         public IList<Menu> Menu { get; set; }
 
         public async Task OnGetAsync() {
-            Menu = await _context.Menus.Where(t => t.ParentId == null && t.Area.Equals("Administration")).OrderBy(t => t.Position).ToListAsync();
+            Menu = await _context.Menus.Where(t => t.ParentId == null).OrderBy(t=>t.Area).ThenBy(t => t.Position).ToListAsync();
         }
     }
 }

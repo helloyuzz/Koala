@@ -14,5 +14,7 @@ namespace Koala.Models
         public string AspPage { get; set; }
         public string Area { get; set; }
         public int? Position { get; set; }
+        public int? Unread { get; set; }
+        public bool? Hidden { get; set; }
     }
 }

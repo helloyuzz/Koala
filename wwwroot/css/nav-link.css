@@ -12,13 +12,13 @@
     flex-wrap: wrap;
     flex-direction: column;
     margin: auto;
-    height: 41px;
     background: #2b579a;
     margin-left: 226px;
     padding-left:16px;
 }
 #top_menu_panel {
-    margin-top: 9px;
+    height:35px;
+    margin-top: 3px;
     background: #2b579a;
 }
 
@@ -31,9 +31,9 @@
 }
 
 .nav-btn {
-    margin-left: 20px;
+    margin-left: 16px;
     margin-right: 0px;
-    margin-top: 0px;
+    margin-top: 2px;
     margin-bottom: 0px;
     flex-shrink: 0;
     padding: 0px;
@@ -45,13 +45,19 @@
     position: relative;
     cursor: pointer;
     user-select: none;
-    color: #afaba6;
+    color: #4ee189;
     font-size: 1.06rem !important;
-    border-radius: 6px 6px 0 0;
+    border-radius: 3px 3px 0 0;
+    padding-top: 4px;
 }
 .nav-btn:hover {
     /*top: -1px;*/
-    color:#bb83ee;
+    color:#36afa9;
+}
+.nav-menu-text {
+    font-size:1.06rem !important;
+    padding-left:10px;
+    padding-right:10px;
 }
 .clicked {
     top: 1px;
@@ -62,7 +68,7 @@
 }
 .clicked:hover {
     top: 1px;
-    color: #bb83ee;    
+    color: #007fa5;    
     font-weight: bold;
 }
 .menu-btn:hover {
@@ -76,17 +82,7 @@
     left: -9px;
     bottom: 0;
     background: #2b579a !important;
-    background: radial-gradient(circle at 0 0, transparent 10px, #f3f3f3 10px);
-}
-.clicked::before {
-    content: "";
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    left: -9px;
-    bottom: 0;
-    background: #2b579a !important;
-    background: radial-gradient(circle at 0 0, transparent 10px, #f3f3f3 10px) !important;
+    /*background: radial-gradient(circle at 0 0, transparent 9px, #f3f3f3 9px);*/
 }
 
 .nav-btn::after {
@@ -97,7 +93,17 @@
     right: -9px;
     bottom: 0;
     background: #2b579a !important;
-    background: radial-gradient(circle at 100% 0, transparent 10px, #f3f3f3 10px);
+    /*background: radial-gradient(circle at 100% 0, transparent 9px, #f3f3f3 9px);*/
+}
+.clicked::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: -9px;
+    bottom: 0;
+    /*background: #2b579a !important;*/
+    background: radial-gradient(circle at 0 0, transparent 9px, #f3f3f3 9px) !important;
 }
 .clicked::after {
     content: "";
@@ -106,11 +112,14 @@
     height: 9px;
     right: -9px;
     bottom: 0;
-    background: #2b579a !important;
-    background: radial-gradient(circle at 100% 0, transparent 10px, #f3f3f3 10px) !important;
+    /*background: #2b579a !important;*/
+    background: radial-gradient(circle at 100% 0, transparent 9px, #f3f3f3 9px) !important;
 }
 .hide-arrow::before {
     display:none;
+}
+.fs-106 {
+    font-size:1.06rem !important;
 }
 .arrow {
     background: linear-gradient( -135deg, transparent 22px, #04e6fb 22px, #65ff9a 100% ) top right, linear-gradient( -45deg, transparent 22px, #04e6fb 22px, #65ff9a 100% ) bottom right;
