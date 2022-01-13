@@ -20,7 +20,6 @@ namespace Koala.Models_temp
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<Clean> Cleans { get; set; }
         public virtual DbSet<CustomFlow> CustomFlows { get; set; }
-        public virtual DbSet<ExternalRecyle> ExternalRecyles { get; set; }
         public virtual DbSet<Flow> Flows { get; set; }
         public virtual DbSet<FlowStatus> FlowStatuses { get; set; }
         public virtual DbSet<Hospital> Hospitals { get; set; }
@@ -31,6 +30,8 @@ namespace Koala.Models_temp
         public virtual DbSet<Recyle> Recyles { get; set; }
         public virtual DbSet<RecyleInstrument> RecyleInstruments { get; set; }
         public virtual DbSet<RecylePackage> RecylePackages { get; set; }
+        public virtual DbSet<RequestExternalRecyle> RequestExternalRecyles { get; set; }
+        public virtual DbSet<RequestRecyle> RequestRecyles { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
@@ -153,54 +154,6 @@ namespace Koala.Models_temp
                     .HasColumnType("tinyint(4)")
                     .HasColumnName("recyle")
                     .HasComment("回收");
-            });
-
-            modelBuilder.Entity<ExternalRecyle>(entity =>
-            {
-                entity.ToTable("external_recyles");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("id");
-
-                entity.Property(e => e.DespatcherId)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("despatcher_id")
-                    .HasComment("操作人员");
-
-                entity.Property(e => e.InstrumentCount)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("instrument_count");
-
-                entity.Property(e => e.ManufacturerId)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("manufacturer_id")
-                    .HasComment("厂商名称");
-
-                entity.Property(e => e.OperationDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("operation_date");
-
-                entity.Property(e => e.PackageCount)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("package_count");
-
-                entity.Property(e => e.PatientName)
-                    .HasMaxLength(60)
-                    .HasColumnName("patient_name");
-
-                entity.Property(e => e.RecyleBy)
-                    .HasColumnType("int(6)")
-                    .HasColumnName("recyle_by");
-
-                entity.Property(e => e.RecyleOn)
-                    .HasColumnType("datetime")
-                    .HasColumnName("recyle_on")
-                    .HasComment("申请日期");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(60)
-                    .HasColumnName("status");
             });
 
             modelBuilder.Entity<Flow>(entity =>
@@ -501,7 +454,8 @@ namespace Koala.Models_temp
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(60)
-                    .HasColumnName("status");
+                    .HasColumnName("status")
+                    .UseCollation("utf8_unicode_ci");
 
                 entity.Property(e => e.Summary)
                     .HasMaxLength(60)
@@ -545,6 +499,112 @@ namespace Koala.Models_temp
                 entity.Property(e => e.RecyleId)
                     .HasColumnType("int(11)")
                     .HasColumnName("recyle_id");
+            });
+
+            modelBuilder.Entity<RequestExternalRecyle>(entity =>
+            {
+                entity.ToTable("request_external_recyles");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.DespatcherId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("despatcher_id")
+                    .HasComment("操作人员");
+
+                entity.Property(e => e.InstrumentCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("instrument_count");
+
+                entity.Property(e => e.ManufacturerId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("manufacturer_id")
+                    .HasComment("厂商名称");
+
+                entity.Property(e => e.OperationDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("operation_date");
+
+                entity.Property(e => e.PackageCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("package_count");
+
+                entity.Property(e => e.PatientName)
+                    .HasMaxLength(60)
+                    .HasColumnName("patient_name");
+
+                entity.Property(e => e.RecyleBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("recyle_by");
+
+                entity.Property(e => e.RecyleOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("recyle_on")
+                    .HasComment("回收日期");
+
+                entity.Property(e => e.RequestOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("request_on")
+                    .HasComment("申请日期");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(60)
+                    .HasColumnName("status");
+            });
+
+            modelBuilder.Entity<RequestRecyle>(entity =>
+            {
+                entity.ToTable("request_recyles");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.InstrumentCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("instrument_count");
+
+                entity.Property(e => e.PackageCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("package_count")
+                    .HasComment("包/器械数量");
+
+                entity.Property(e => e.RecyleBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("recyle_by")
+                    .HasComment("回收人");
+
+                entity.Property(e => e.RecyleNo)
+                    .HasMaxLength(60)
+                    .HasColumnName("recyle_no")
+                    .HasComment("回收序号");
+
+                entity.Property(e => e.RecyleOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("recyle_on")
+                    .HasComment("回收日期");
+
+                entity.Property(e => e.RequestBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("request_by")
+                    .HasComment("申请人");
+
+                entity.Property(e => e.RequestOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("request_on")
+                    .HasComment("申请日期");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id")
+                    .HasComment("申请科室");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(60)
+                    .HasColumnName("status")
+                    .HasComment("状态");
             });
 
             modelBuilder.Entity<Right>(entity =>

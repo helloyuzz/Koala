@@ -30,6 +30,8 @@ namespace Koala.Models
         public virtual DbSet<Recyle> Recyles { get; set; }
         public virtual DbSet<RecyleInstrument> RecyleInstruments { get; set; }
         public virtual DbSet<RecylePackage> RecylePackages { get; set; }
+        public virtual DbSet<RequestExternalRecyle> RequestExternalRecyles { get; set; }
+        public virtual DbSet<RequestRecyle> RequestRecyles { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
@@ -37,7 +39,6 @@ namespace Koala.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRelation> UserRelations { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
-        public virtual DbSet<ExternalRecyle> ExternalRecyles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -475,25 +476,57 @@ namespace Koala.Models
                     .HasColumnName("package_id");
             });
 
-            modelBuilder.Entity<RecylePackage>(entity =>
+            modelBuilder.Entity<RequestRecyle>(entity =>
             {
-                entity.ToTable("recyle_packages");
+                entity.ToTable("request_recyles");
 
                 entity.Property(e => e.Id)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("id");
 
-                entity.Property(e => e.Graphy)
+                entity.Property(e => e.InstrumentCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("instrument_count");
+
+                entity.Property(e => e.PackageCount)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("package_count")
+                    .HasComment("包/器械数量");
+
+                entity.Property(e => e.RecyleBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("recyle_by")
+                    .HasComment("回收人");
+
+                entity.Property(e => e.RecyleNo)
                     .HasMaxLength(60)
-                    .HasColumnName("graphy");
+                    .HasColumnName("recyle_no")
+                    .HasComment("回收序号");
 
-                entity.Property(e => e.PackageId)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("package_id");
+                entity.Property(e => e.RecyleOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("recyle_on")
+                    .HasComment("回收日期");
 
-                entity.Property(e => e.RecyleId)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("recyle_id");
+                entity.Property(e => e.RequestBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("request_by")
+                    .HasComment("申请人");
+
+                entity.Property(e => e.RequestOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("request_on")
+                    .HasComment("申请日期");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id")
+                    .HasComment("申请科室");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(60)
+                    .HasColumnName("status")
+                    .HasComment("状态");
             });
 
             modelBuilder.Entity<Right>(entity =>
@@ -800,9 +833,9 @@ namespace Koala.Models
                     .HasColumnName("version_log");
             });
 
-            modelBuilder.Entity<ExternalRecyle>(entity =>
+            modelBuilder.Entity<RequestExternalRecyle>(entity =>
             {
-                entity.ToTable("external_recyles");
+                entity.ToTable("request_external_recyles");
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int(6)")
@@ -821,6 +854,10 @@ namespace Koala.Models
                     .HasColumnType("int(6)")
                     .HasColumnName("manufacturer_id")
                     .HasComment("厂商名称");
+
+                entity.Property(e => e.RequestOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("request_on");
 
                 entity.Property(e => e.OperationDate)
                     .HasColumnType("datetime")
@@ -841,11 +878,14 @@ namespace Koala.Models
                 entity.Property(e => e.RecyleOn)
                     .HasColumnType("datetime")
                     .HasColumnName("recyle_on")
-                    .HasComment("申请日期");
+                    .HasComment("申请日期"); 
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(60)
                     .HasColumnName("status");
+                entity.Property(e => e.RequestNo)
+                   .HasMaxLength(60)
+                   .HasColumnName("request_no");
             });
 
 

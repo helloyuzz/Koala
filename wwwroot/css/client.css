@@ -237,3 +237,23 @@ body {
 .tip-button:hover {
     background-color:#b9b9e3 !important;
 }
+th[htmlid]:hover {
+    background-color: #e9ecef !important;
+    background-image: url('/svg/search.svg') !important;
+    background-repeat: no-repeat;
+    background-position: right;
+    /*background-origin: content-box;
+        padding-right: 10px;*/
+}
+.tr-pagination {
+    display: inline-block;
+}
+
+.tr-pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}

@@ -42,6 +42,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Models_temp\Role.cs" />
+    <Compile Include="Models_temp\RoleRight.cs" />
+    <Compile Include="Models_temp\Section.cs" />
+    <Compile Include="Models_temp\User.cs" />
+    <Compile Include="Models_temp\UserRelation.cs" />
+    <Compile Include="Models_temp\Version.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
