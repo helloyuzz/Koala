@@ -25,6 +25,9 @@
                             @Html.DisplayNameFor(model => model.Recyle[0].RequestOn)
                         </th>
                         <th htmlid="txt_demo_focus">
+                            @Html.DisplayNameFor(model => model.Recyle[0].Status)
+                        </th>
+                        <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.Recyle[0].RequestBy)
                         </th>
                         <th htmlid="txt_demo_focus">
@@ -32,9 +35,6 @@
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.Recyle[0].PackageCount)
-                        </th>
-                        <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.Recyle[0].Status)
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.Recyle[0].RecyleOn)
@@ -58,6 +58,9 @@
                             @Html.DisplayFor(modelItem => item.RequestOn)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.RequestBy)
                         </td>
                         <td>
@@ -65,9 +68,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PackageCount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RecyleOn)

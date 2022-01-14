@@ -1,0 +1,188 @@
+﻿@page
+@model Koala.Pages.Client.Recyles.NewExRecyleModel
+
+@{
+    Layout = "/Pages/Shared/_ContentLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+<table height="100%" width="100%">
+    <tr style="height:30px;">
+        <td class="ps-3"><span>- 外来器械登记 -</span></td>
+        <td>
+            <div class="row mb-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">厂商</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="inputPassword6" class="form-select" aria-describedby="passwordHelpInline" value="-">
+                </div>
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">包名称</label>
+                </div>
+                <div class="col-auto w-auto input-group">
+                    <input type="text" id="inputPassword6" class="form-select" aria-describedby="passwordHelpInline" value="-">
+                    <button type="button" class="btn btn-secondary">添加包</button>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:300px;" valign="top" class="pt-3 ps-3 bg-f3f6f9">
+            <div class="col w-100 bg-light tip-button shadow-1 mb-3 me-3" style="height:100px;">
+                <div class="row p-0 ps-3 pe-3">
+                    <div class="col-1 w-auto pt-3">
+                        <div class="bg-f3f6f9 rounded-135 float-end text-center" style="width:40px;height:40px;">
+                            <i class="bi bi-person-circle fs-3"></i><br /><span class="fs-9">普通</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="fs-5 fw-bold">爱新觉罗李<span class="fs-9 float-end fw-normal">性别：女</span></div>
+                        <p class="fs-9 p-0 m-0">住院号：123456789</p>
+                        <p class="fs-9 p-0 m-0">手术科室：123456789</p>
+                        <p class="fs-9 p-0 m-0">手术日期：123456789</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button shadow-1 mb-3 me-3" style="height:100px;">
+                <div class="row p-0 ps-3 pe-3">
+                    <div class="col-1 w-auto pt-3">
+                        <div class="bg-light rounded-135 float-end text-center" style="width:40px;height:40px;">
+                            <i class="bi bi-person-circle fs-3"></i><br /><span class="fs-9 text-danger">急诊</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="fs-5 fw-bold">爱新觉罗李<span class="fs-9 float-end fw-normal">性别：女</span></div>
+                        <p class="fs-9 p-0 m-0">住院号：123456789</p>
+                        <p class="fs-9 p-0 m-0">手术科室：123456789</p>
+                        <p class="fs-9 p-0 m-0">手术日期：123456789</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button shadow-1 mb-3 me-3" style="height:100px;">
+                <div class="row p-0 ps-3 pe-3">
+                    <div class="col-1 w-auto pt-3">
+                        <div class="bg-light rounded-135 float-end text-center" style="width:40px;height:40px;">
+                            <i class="bi bi-cart fs-3"></i><br /><span class="fs-9">备用</span>
+                        </div>
+                    </div>
+                    <div class="col pt-3">
+                        <div class="fs-5 fw-bold">消毒供应室</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button shadow-1 mb-3 me-3" style="height:100px;">
+                <div class="row p-0 ps-3 pe-3">
+                    <div class="col input-group pt-2">
+                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="病人编号/住院号">
+                        <button type="button" class="btn btn-secondary">添加病人</button>
+                    </div>
+                </div>
+                <div class="row p-0 ps-3 pe-3">
+                    <div class="col input-group pt-1">
+                        <input type="text" class="form-select form-select-sm" id="exampleFormControlInput1" placeholder="消毒供应室">
+                        <button type="button" class="btn btn-secondary">添加备用</button>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td valign="top">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    <div class="col-7 bg-f3f6f9 p-3 me-1">
+                        <table class="w-100 h-100 bg-white">
+                            <tr>
+                                <td height="50%" valign="top">
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">包名称</th>
+                                                <th scope="col">包分组</th>
+                                                <th scope="col">洗消费</th>
+                                                <th scope="col">重量(kg)</th>
+                                                <th scope="col">洗消费</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div class="row p-3 text-center">
+                                        <div class="w-100 h-100 bg-white border-1 border-secondary">
+                                            <img src="/images/1.jpg" class="img-thumbnail w-50" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col bg-f3f6f9 p-3">
+                        <table class="table table-sm table-hover bg-white">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">包名称</th>
+                                    <th scope="col">包分组</th>
+                                    <th scope="col">洗消费</th>
+                                    <th scope="col">重量(kg)</th>
+                                    <th scope="col">洗消费</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

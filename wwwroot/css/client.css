@@ -141,6 +141,9 @@ body {
 .bg-e1ddd9 {
     background: #e1ddd9 !important;
 }
+.bg-f3f6f9 {
+    background:#f3f6f9 !important;
+}
 .shadow-1 {
     border: 1px solid rgba(239,239,239,.75) !important;
     box-shadow: 0px 0rem 1rem 0px rgb(223 223 223) !important
@@ -205,6 +208,7 @@ body {
 .menu-button.hover {
     background: #fff !important;
 }
+
 .ms-90 {
     left:90% !important;
 }
@@ -256,4 +260,7 @@ th[htmlid]:hover {
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
+}
+.bg-d2d2d2 {
+    background: #d2d2d2 !important;
 }

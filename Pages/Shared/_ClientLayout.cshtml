@@ -298,7 +298,10 @@
                     }
                 });
                 $('button.menu-btn').click(function () {
-                    var url = $(this).attr("attr-url");
+                    var btn = $(this);
+                    btn.siblings().removeClass("bg-d2d2d2");
+                    var url = btn.attr("attr-url");
+                    btn.toggleClass("bg-d2d2d2");
                     if (url != "" || url != undefined) {
                         $('#html_content').attr("src", url);
                     }

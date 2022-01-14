@@ -36,6 +36,9 @@
             <thead>
                 <tr>
                     <th>
+                        @Html.DisplayNameFor(model=>model.Menu[0].Id)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Menu[0].ParentId)
                     </th>
                     <th>
@@ -59,6 +62,9 @@
             <tbody>
                 @foreach (var item in Model.Menu) {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ParentId)
                     </td>

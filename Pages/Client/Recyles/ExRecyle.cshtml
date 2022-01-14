@@ -13,8 +13,8 @@
                 <thead>
                     <tr style="cursor:default;" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">
                         @*<th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Id)
-                        </th>*@
+            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Id)
+        </th>*@
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].RequestNo)
                         </th>
@@ -22,22 +22,22 @@
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].ManufacturerId)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].RequestOn)
-                        </th>
-                        <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].DespatcherId)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].OperationDate)
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].RequestOn)
+                        </th>
+                        <th htmlid="txt_demo_focus">
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Status)
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].PatientName)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].PackageCount)
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].OperationDate)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].Status)
+                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].PackageCount)
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].RecyleOn)
@@ -49,8 +49,8 @@
                     @foreach (var item in Model.ExternalRecyles) {
                     <tr>
                         @*<td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>*@
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.RequestNo)
                         </td>
@@ -58,22 +58,22 @@
                             @Html.DisplayFor(modelItem => item.ManufacturerId)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.RequestOn)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.DespatcherId)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.OperationDate)
+                            @Html.DisplayFor(modelItem => item.RequestOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PatientName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PackageCount)
+                            @Html.DisplayFor(modelItem => item.OperationDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Status)
+                            @Html.DisplayFor(modelItem => item.PackageCount)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RecyleOn)
