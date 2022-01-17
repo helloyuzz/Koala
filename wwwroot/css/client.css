@@ -166,7 +166,9 @@ body {
 .fs-7 {
     font-size: 1.35rem !important;
 }
-
+.fs-35 {
+    font-size: 3rem !important;
+}
 .padding-top-1 {
     padding-top: 1px !important;
 }
