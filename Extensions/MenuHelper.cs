@@ -28,6 +28,7 @@ namespace Koala {
                     subMenu.Class = subItem.Class;
                     subMenu.AspPage = subItem.AspPage;
                     subMenu.Area = subItem.Area;
+                    subMenu.Actions = subItem.Actions;
                     if (subItem.Unread.HasValue) {
                         subMenu.Unread = subItem.Unread.Value;
                     }

@@ -2,113 +2,79 @@
 @model Koala.Pages.Client.Recyles.NewExRecyleModel
 
 @{
+    ViewData["barcode"] = "true";
     Layout = "/Pages/Shared/_ContentLayout.cshtml";
     ViewData["Title"] = "Index";
 }
-
+<style>
+    .bg-barcode {
+        background-image: url('/images/DE4A8F52-7381-4ef6-845A-F291A6279863.png');
+        background-position:center right;
+        background-size: cover;
+    }
+</style>
 <table height="100%" width="100%">
-    <tr style="height:30px;">
+    <tr style="height:53px;">
         <td>
-            <div class="row ps-3 pe-3 mb-2">
-                <div class="col input-group">
-                    <input type="text" class="form-select" id="exampleFormControlInput1" placeholder="使用科室">
-                    <button type="button" class="btn btn-secondary d-none" onclick="clone(false);">科室备用</button>
-                </div>
-            </div>
         </td>
-        <td>
-            <div class="row ps-3 mb-2 align-items-center">
-                <div class="input-group w-auto">
-                    <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="送包单位" style="width:200px;">
-                    <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="包名称" style="width:200px;">
-                    <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="外包装" style="width:130px;">
-                    <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="灭菌方式" style="width:130px;">
-                </div>                
-                <div class="input-group w-auto">
-                    <button type="button" class="btn btn-primary">添加</button>
-                </div>
-            </div>
-        </td>
-        <td colspan="2" align="right">
-            <div class="input-group mb-3 w-auto" style="width:266px !important;">
-                <span class="input-group-text" id="basic-addon2">网篮设置</span>
-                <select class="form-select w-auto" style="width:100px !important;">
-                    <option>绑定当前批次</option>
-                    <option>绑定到包</option>
-                    <option>绑定到分包</option>
-                    <option>绑定到器械明细</option>
-                </select>
+        <td colspan="3" valign="top">
+            <table class="w-100">
+                <tr>
+                    <td>
+                        <div class="col input-group w-auto" style="width:668px !important;">
+                            <input type="text" class="form-select d-none" id="exampleFormControlInput1" placeholder="使用科室">
+                            <button type="button" class="btn btn-secondary d-none">科室备用</button>
+                            <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="送包单位" style="width:160px;">
+                            <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="包名称" style="width:160px;">
+                            <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="外包装" style="width:130px;">
+                            <input type="text" id="inputPassword6" class="form-select me-1" aria-describedby="passwordHelpInline" placeholder="灭菌方式" style="width:130px;">
+                            <button type="button" class="btn btn-primary" onclick="add_tr();">添加</button>
+                        </div>
+                    </td>
+                    <td style="width:300px;">
+                        <div class="input-group w-auto">
+                            <span class="input-group-text" id="basic-addon2">网篮设置</span>
+                            <select class="form-select w-auto">
+                                <option>绑定当前批次</option>
+                                <option>绑定到包</option>
+                                <option>绑定到分包</option>
+                                <option>绑定到器械明细</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="row pe-3">
             </div>
         </td>
     </tr>
     <tr>
         <td style="width:300px;" valign="top">
-            <div id="temp_menus" class="accordion overflow-scroll h-100" style="overflow-x:hidden !important;">
+            <div id="temp_menus" class="accordion overflow-auto h-100" style="overflow-x:hidden !important;">
                 <div id="demo_note" class="col accordion-item w-100 bg-light tip-button shadow-1 mb-3 me-3 d-none" style="" ondblclick="$(this).remove();">
                     <div class="row p-0 ps-3 pe-3">
                         <div class="col-1 w-auto pt-3">
-                            <div class="bg-f3f6f9 rounded-135 float-end text-center pt-2" style="width:40px;height:40px;">
-                                <i class="bi bi-person-circle fs-3"></i><br /><span class="fs-9">普通</span>
+                            <div class="row">
+                                <div class="bg-f3f6f9 rounded-135 float-end text-center p-0 pt-2" style="width:40px;height:40px;">
+                                    <i class="bi bi-person-circle fs-3"></i>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">急诊</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div class="col" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <div class="fs-5 fw-bold"><span id="temp_title">爱新觉罗李</span><span class="fs-9 float-end fw-normal">性别：女</span></div>
                             <p class="fs-9 p-0 m-0">住院号：123456789</p>
                             <p class="fs-9 p-0 m-0">手术科室：123456789</p>
                             <p class="fs-9 p-0 m-0">手术日期：123456789</p>
                         </div>
                         <div id="collapseOne" class="accordion-collapse bg-white mb-1 collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body p-0">
-                                <table class="w-100">
-                                    <tr>
-                                        <td width="40px">姓名</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="爱新觉罗李">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">性别</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="女">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="80px">出生日期</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">病区</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="3病区">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">床号</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="#16">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">手术间</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">手术日期</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40px">手术台次</td>
-                                        <td>
-                                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div class="accordion-body p-0 pt-2">
+
                             </div>
                         </div>
                     </div>
@@ -121,11 +87,11 @@
                             </div>
                         </div>
                         <div class="col pt-3">
-                            <div class="fs-5 fw-bold">消毒供应室<br />&lt;备用&gt;</div>
+                            <div class="fs-5 fw-bold">消毒供应室/备用</div>
                         </div>
                     </div>
                 </div>
-                <div id="btn_clone" class="col w-100 tip-button shadow-1 mb-3 me-3" style="height:60px;">
+                <div id="btn_clone" class="col w-100 tip-button shadow-1 mb-3 me-3" style="height:100px;">
                     <span class="d-none">- 外来器械登记 -</span>
                     <div class="row p-0 ps-3 pe-3">
                         <div class="col input-group pt-2">
@@ -133,176 +99,156 @@
                             <button type="button" class="btn btn-secondary" onclick="clone(true);">添加病人</button>
                         </div>
                     </div>
+
+                    <div class="row p-0 ps-3 pe-3">
+                        <div class="col input-group pt-2">
+                            <input type="text" class="form-select form-select-sm" id="exampleFormControlInput1" placeholder="使用科室">
+                            <button type="button" class="btn btn-secondary" onclick="clone(false);">添加备用</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </td>
         <td valign="top" class="bg-white ps-1 pe-1">
-            <table class="w-100 h-100">
-                <tr>
-                    <td valign="top" class="bg-f3f3f3">
-                        <table class="table table-sm table-hover bg-f3f6f9">
-                            <tr>
-                                <td>
-                                    <div class="row m-0 p-0 w-100">
-                                        <div class="col m-0 p-0">
-                                            <ol class="breadcrumb m-0 p-0 fs-6 mt-1">
-                                                <li class="breadcrumb-item text-primary fw-bold" style="cursor:pointer;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">包名称</li>
-                                                @*<li class="breadcrumb-item active fs-9" aria-current="page">纸塑包装袋</li>
-                                                <li class="breadcrumb-item active fs-9" aria-current="page">高温灭菌</li>*@
-                                            </ol>
-
-                                        </div>
-                                        <div class="col-2 m-0 p-0">
-                                            <div class="input-group m-0 p-0 float-end">
-                                                <input type="text" class="form-control form-control-sm w-auto m-0 me-1 fs-9" placeholder="分包数量" style="width:80px !important">
+            <div class="h-100 overflow-auto" style="overflow-x:hidden !important;">
+                <table class="w-100 h-100 bg-f3f6f9">
+                    <tr>
+                        <td valign="top" class="bg-f3f3f3">
+                            <table id="tr_table" class="table table-sm table-hover bg-f3f6f9">
+                                <tr id="copy_tr" class="d-none" ondblclick="$(this).remove();">
+                                    <td height="80px">
+                                        <div class="row m-0 p-0 w-100 h-100">
+                                            <div class="col-1 pt-2">
+                                                <svg class="bd-placeholder-img img-thumbnail" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="" preserveAspectRatio="xMidYMid slice" focusable="false"><title>包图片</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="6%" y="50%" fill="#dee2e6" dy=".3em">包图片</text></svg>
                                             </div>
-
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="row m-0 p-0 w-100">
-                                        <div class="col m-0 p-0">
-                                            <ol class="breadcrumb m-0 p-0 fs-6 mt-1">
-                                                <li class="breadcrumb-item text-primary fw-bold" style="cursor:pointer;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">包名称</li>
-                                                @*<li class="breadcrumb-item active fs-9" aria-current="page">纸塑包装袋</li>
-                                                <li class="breadcrumb-item active fs-9" aria-current="page">高温灭菌</li>*@
-                                            </ol>
-
-                                        </div>
-                                        <div class="col-2 m-0 p-0">
-                                            <div class="input-group m-0 p-0 float-end">
-                                                <input type="text" class="form-control form-control-sm w-auto m-0 me-1 fs-9" placeholder="分包数量" style="width:80px !important">
+                                            <div class="col ps-0">
+                                                <div class="row ps-3">
+                                                    <ol class="breadcrumb m-0 p-0 fs-6 mt-1">
+                                                        <li class="breadcrumb-item text-primary fw-bold" style="cursor:pointer;">包名称包名称包名称</li>
+                                                    </ol>
+                                                </div>
+                                                <div class="row ps-3">
+                                                    <table class="w-100">
+                                                        <tr>
+                                                            <td width="60px">
+                                                                <select class="form-select form-select-sm w-auto bg-transparent">
+                                                                    <option>纸塑包装袋</option>
+                                                                </select>
+                                                            </td>
+                                                            <td width="80px">
+                                                                <select class="form-select form-select-sm w-auto bg-transparent">
+                                                                    <option>灭菌方式</option>
+                                                                </select>
+                                                            </td>
+                                                            <td width="60px">
+                                                                <select class="form-select form-select-sm w-auto bg-transparent">
+                                                                    <option>网篮</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
-
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="bg-white p-3">
-                                    <table class="table table-sm table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="fw-normal" scope="col" colspan="2" width="40px">#</th>
-                                                <th class="fw-normal" scope="col">包分组</th>
-                                                <th class="fw-normal" scope="col">洗消费</th>
-                                                <th class="fw-normal" scope="col">重量(kg)</th>
-                                                <th class="fw-normal" scope="col">网篮</th>
-                                                <th class="fw-normal" width="40px">清空</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" class="text-center">1</th>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>移除</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="text-center">2</th>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>移除</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="text-center">3</th>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-control form-control-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>
-                                                    <input class="form-select form-select-sm w-100" placeholder="-" />
-                                                </td>
-                                                <td>移除</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="row m-0 p-0 w-100">
-                                        <div class="col m-0 p-0">
-                                            <ol class="breadcrumb m-0 p-0 fs-6 mt-1">
-                                                <li class="breadcrumb-item text-primary fw-bold">包名称</li>
-                                                @*<li class="breadcrumb-item active fs-9" aria-current="page">纸塑包装袋</li>
-                                                <li class="breadcrumb-item active fs-9" aria-current="page">高温灭菌</li>*@
-                                            </ol>
-
-                                        </div>
-                                        <div class="col-2 m-0 p-0">
-                                            <div class="input-group m-0 p-0 float-end">
-                                                <input type="text" class="form-control form-control-sm w-auto m-0 me-1 fs-9" placeholder="分包数量" style="width:80px !important">
+                                            <div class="col fs-9 pt-3 text-center">
+                                                <span>器械：xxx</span><br />
+                                                <span>植入物：xxx</span>
                                             </div>
-
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="row m-0 p-0 w-100">
-                                        <div class="col m-0 p-0">
-                                            <ol class="breadcrumb m-0 p-0 fs-6 mt-1">
-                                                <li class="breadcrumb-item text-primary fw-bold">包名称</li>
-                                                @*<li class="breadcrumb-item active fs-9" aria-current="page">纸塑包装袋</li>
-                                                <li class="breadcrumb-item active fs-9" aria-current="page">高温灭菌</li>*@
-                                            </ol>
-
-                                        </div>
-                                        <div class="col-2 m-0 p-0">
-                                            <div class="input-group m-0 p-0 float-end">
-                                                <input type="text" class="form-control form-control-sm w-auto m-0 me-1 fs-9" placeholder="分包数量" style="width:80px !important">
+                                            <div class="col-3 mb-3 p-0 pt-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">分成</span>
+                                                    <input type="text" class="form-control" onkeyup="$(this).parent().parent().next().toggleClass('d-none');" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">个包</span>
+                                                </div>
                                             </div>
-
+                                            <table id="temp_count" class="w-100 d-none">
+                                                <tr>
+                                                    <td class="bg-white p-3">
+                                                        <table class="table table-sm table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="fw-normal" scope="col" colspan="2" width="40px">#</th>
+                                                                    <th class="fw-normal" scope="col">包分组</th>
+                                                                    <th class="fw-normal" scope="col">洗消费</th>
+                                                                    <th class="fw-normal" scope="col">重量(kg)</th>
+                                                                    <th class="fw-normal" scope="col">网篮</th>
+                                                                    <th class="fw-normal" width="40px">清空</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row" class="text-center">1</th>
+                                                                    <td></td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>移除</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-center">2</th>
+                                                                    <td></td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>移除</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-center">3</th>
+                                                                    <td></td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control form-control-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-select form-select-sm w-100" placeholder="-" />
+                                                                    </td>
+                                                                    <td>移除</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td height="200px" class="bg-f3f6f9">
-                        <div class="row p-3 text-center" style="height:200px">
-                            <div class="w-100 border-1 border-secondary" style="height:200px">
-                                <img src="/images/1.jpg" class="img-thumbnail w-50" style="height:169px" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="200px">
+                            <div class="row p-3 text-center d-none" style="height:200px">
+                                <div class="w-100 border-1 border-secondary" style="height:200px">
+                                    <img src="/images/1.jpg" class="img-thumbnail w-50" style="height:169px" />
+                                </div>
                             </div>
-                        </div>             
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </td>
         <td valign="top" width="30%" class="bg-white pe-1">
             <table class="table table-sm table-hover bg-f3f6f9">
@@ -313,7 +259,7 @@
                         <th scope="col">物品名称</th>
                         <th scope="col" width="80px">数量</th>
                         <th scope="col" width="80px">唯一编码</th>
-                        <th scope="col" width="60px">清空</th>
+                        <th scope="col" width="60px">异常</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -335,7 +281,17 @@
                             -
                         </td>
                         <td>
-                            <span class="fs-9">移除</span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle p-0 ps-1 pe-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-joystick"></i>
+                                </button>
+                                <ul class="dropdown-menu shadow">
+                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
+                                    <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -356,7 +312,17 @@
                             <input class="form-control form-control-sm w-100" placeholder="" />
                         </td>
                         <td>
-                            <span class="fs-9">移除</span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle p-0 ps-1 pe-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-joystick"></i>
+                                </button>
+                                <ul class="dropdown-menu shadow">
+                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
+                                    <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -377,17 +343,27 @@
                             -
                         </td>
                         <td>
-                            <span class="fs-9"></span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle p-0 ps-1 pe-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-joystick"></i>
+                                </button>
+                                <ul class="dropdown-menu shadow">
+                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
+                                    <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </td>
-        <td valign="top" width="80px" class="bg-f3f3f3 ps-1">
+        <td valign="top" width="100px" class="bg-f3f3f3 ps-1">
             <table class="table table-sm table-hover bg-f3f6f9">
                 <tr>
                     <td align="center">
-                        请扫描网篮条码
+                        <input type="text" class="form-control form-control-sm bg-barcode fs-9" placeholder="网篮条码" />
                     </td>
                 </tr>
                 <tr>
@@ -401,7 +377,7 @@
                                     <option>不区分</option>
                                     <option>机洗</option>
                                     <option>手洗</option>
-                                </select>                                
+                                </select>
                                 器械：41<br />
                                 植入物：45
                             </p>
@@ -432,32 +408,87 @@
 </table>
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width:319px;">
     <div class="offcanvas-header pb-0">
-        <h5 id="offcanvasRightLabel">修改包信息</h5>
+        <h5 id="offcanvasRightLabel">修改病人信息</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-0">
         <div class="input-group">
             <div class="mb-3 row fs-9 p-3 pe-0">
-                <div class="mb-3 row">
-                    <input type="text" class="form-control" id="inputPassword" value="包名称">
-                </div>
-                <div class="mb-3 row">
-                    <input type="text" class="form-select" id="inputPassword" placeholder="纸塑包装袋">
-                </div>
-                <div class="mb-3 row">
-                    <input type="text" class="form-select" id="inputPassword" placeholder="高温灭菌">
-                </div>
-                <div class="mb-3 row">
-                    <input type="text" class="form-select" id="inputPassword" placeholder="分包数量">
-                </div>
-                <div class="mb-3 row">
+                <table class="w-100">
+                    <tr>
+                        <td width="40px">姓名</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="爱新觉罗李">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">性别</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="女">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="80px">出生日期</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">病区</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="3病区">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">床号</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="#16">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">手术间</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">手术日期</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40px">手术台次</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="inputPassword" value="AA">
+                        </td>
+                    </tr>
+                </table>
+                @*<div class="mb-3 row">
+            <input type="text" class="form-control" id="inputPassword" value="包名称">
+        </div>
+        <div class="mb-3 row">
+            <input type="text" class="form-select" id="inputPassword" placeholder="纸塑包装袋">
+        </div>
+        <div class="mb-3 row">
+            <input type="text" class="form-select" id="inputPassword" placeholder="高温灭菌">
+        </div>
+        <div class="mb-3 row">
+            <input type="text" class="form-select" id="inputPassword" placeholder="分包数量">
+        </div>*@
+                <div class="mt-3 mb-3 row">
                     <div class="btn-group ps-0 pe-0" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">保存更改</button>
-                    <button type="button" class="btn btn-warning">移除</button>
+                        <button type="button" class="btn btn-primary">保存更改</button>
+                        <button type="button" class="btn btn-warning">移除</button>
                     </div>
                 </div>
+
+                <div class="form-check form-switch ps-5">
+                    <input class="form-check-input fs-6" type="checkbox" id="flexSwitchCheckChecked">
+                    <label class="form-check-label fs-6" for="flexSwitchCheckChecked">急诊</label>
+                </div>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -474,5 +505,13 @@
             $('#demo_tip_note').toggleClass('d-none');
         }
         index++;
+    }
+    function add_tr() {
+        var temp = $('#copy_tr').clone();
+        temp.toggleClass("d-none");
+        temp.insertAfter($('#copy_tr')[0]);
+    }
+    function change(obj) {
+        $('#temp_count').toggleClass('d-none');
     }
 </script>

@@ -1,4 +1,4 @@
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
@@ -265,4 +265,15 @@ th[htmlid]:hover {
 }
 .bg-d2d2d2 {
     background: #d2d2d2 !important;
+}
+.table > :not(:first-child) {
+    border-top: 2px solid #ebebeb !important;
+}
+
+.text-新建 {
+    color: green;
+}
+
+.text-完成 {
+    color: darkgray;
 }

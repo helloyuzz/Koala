@@ -37,16 +37,20 @@
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].OperationDate)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.ExternalRecyles[0].PackageCount)
+                            申请数量
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.ExternalRecyles[0].RecyleOn)
                         </th>
-                        <th>申请单</th>
+                        <th>详情</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.ExternalRecyles) {
+                        var html_view = "查看";
+                        if (item.Status.Equals("新建")) {
+                            html_view = "开始回收";
+                        }
                     <tr>
                         @*<td>
             @Html.DisplayFor(modelItem => item.Id)
@@ -63,7 +67,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.RequestOn)
                         </td>
-                        <td>
+                        <td class="text-@item.Status">
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
@@ -73,13 +77,13 @@
                             @Html.DisplayFor(modelItem => item.OperationDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PackageCount)
+                            @Html.DisplayFor(modelItem => item.InstrumentCount)/@Html.DisplayFor(modelItem => item.PackageCount)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RecyleOn)
                         </td>
                         <td>
-                            <a href="#Temp" class="text-decoration-none">查看</a>
+                            <a href="#Temp" class="text-decoration-none fs-9">@html_view</a>
                             @* |
             <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
             <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
@@ -90,7 +94,25 @@
             </table>
         </div>
         <div class="col pe-0">
-            <div class="col w-100 tip-button bg-e1ddd9 rounded-135 shadow-4 mb-3 me-3" style="height:80px;">
+            <div class="col w-100 tip-button bg-2b579a rounded-135 shadow-1 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="fs-5 text-white mt-1">今日外来器械</div>
+                    <span class="fs-4 text-white fw-bold">168</span>
+                    <div class="bg-2 rounded-135 float-end text-center" style="width:40px;height:40px;">
+                        <i class="bi bi-arrow-clockwise fs-3 text-white"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 tip-button bg-69d7c3 rounded-135 shadow-3 mb-3 me-3" style="height:80px;">
+                <div class="p-0 ps-3 pe-3">
+                    <div class="col-5 fs-5 text-dark mt-2">回收异常</div>
+                    <span class="fs-4 text-white fw-bold">39</span>
+                    <div class="bg-warning float-end rounded-135 text-center pt-2" style="width:40px;height:40px;">
+                        <i class="bi bi-exclamation-lg fs-4"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-none w-100 tip-button bg-e1ddd9 rounded-135 shadow-4 mb-3 me-3" style="height:80px;">
                 <div class="p-0 ps-3 pe-3">
                     <div class="col-5 fs-5 text-dark mt-2">紧急包</div>
                     <span class="fs-4 text-white fw-bold">39</span>
@@ -99,30 +121,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col w-100 tip-button bg-69d7c3 rounded-135 shadow-3 mb-3 me-3" style="height:80px;">
+            <div class="col d-none w-100 tip-button bg-c1a0be rounded-135 shadow-2 mb-3 me-3" style="height:80px;">
                 <div class="p-0 ps-3 pe-3">
-                    <div class="col-5 fs-5 text-dark mt-2">回收异常</div>
-                    <span class="fs-4 text-white fw-bold">39</span>
-                    <div class="bg-warning float-end rounded-135 text-center" style="width:40px;height:40px;">
-                        <i class="bi bi-exclamation-lg fs-4"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col w-100 tip-button bg-c1a0be rounded-135 shadow-2 mb-3 me-3" style="height:80px;">
-                <div class="p-0 ps-3 pe-3">
-                    <div class="col-5 fs-5 text-dark mt-2">外来器械</div>
+                    <div class="col-5 fs-5 text-dark mt-2">西安中邦</div>
                     <span class="fs-4 text-white fw-bold">39</span>
                     <div class="bg-light float-end rounded-135 text-center" style="width:40px;height:40px;">
                         <i class="bi bi-cart fs-4"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col w-100 tip-button bg-2b579a rounded-135 shadow-1 mb-3 me-3" style="height:80px;">
-                <div class="p-0 ps-3 pe-3">
-                    <div class="fs-5 text-white mt-1">今日回收</div>
-                    <span class="fs-4 text-white fw-bold">16</span>
-                    <div class="bg-2 rounded-135 float-end text-center" style="width:40px;height:40px;">
-                        <i class="bi bi-arrow-clockwise fs-3 text-white"></i>
                     </div>
                 </div>
             </div>
@@ -136,7 +140,7 @@
 
 <div class="offcanvas offcanvas-end shadow-1" tabindex="-1" id="recyle_offcanvasRight" aria-labelledby="recyle_offcanvasRight" style="width:330px;">
     <div class="offcanvas-header pb-0">
-        <h5 id="offcanvasRightLabel">回收申请查询</h5>
+        <h5 id="offcanvasRightLabel">外来器械查询</h5>
         <div class="">
             <button class="btn btn-primary p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">查询</button>
             <button class="btn btn-secondary p-1" type="button">重置</button>

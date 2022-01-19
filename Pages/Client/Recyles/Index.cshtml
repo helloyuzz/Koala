@@ -22,7 +22,7 @@
                             @Html.DisplayNameFor(model => model.Recyle[0].RecyleBy)
                         </th>
                         <th htmlid="txt_section_id_focus">
-                            @Html.DisplayNameFor(model => model.Recyle[0].SectionId)
+                            来源
                         </th>
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.Recyle[0].UserId)
@@ -31,7 +31,7 @@
                             @Html.DisplayNameFor(model => model.Recyle[0].Status)
                         </th>
                         <th htmlid="txt_demo_focus">
-                            @Html.DisplayNameFor(model => model.Recyle[0].Summary)
+                            回收明细
                         </th>
                         <th>详情</th>
                     </tr>
@@ -54,14 +54,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.User.Name)
                             </td>
-                            <td>
+                            <td class="text-@item.Status">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Summary)
                             </td>
                             <td>
-                                <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.Id">查看</a>
+                                <a class="text-decoration-none fs-9" asp-page="./Edit" asp-route-id="@item.Id">查看</a>
                                 @*|
                                     <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                                     <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
@@ -76,7 +76,7 @@
                 <div class="row p-0 ps-3 pe-3">
                     <div class="col">
                         <div class="fs-5 text-white mt-1">今日回收总计</div>
-                        <span class="fs-4 text-white fw-bold">106</span>
+                        <span class="fs-4 text-white fw-bold">106 / 339</span>
                     </div>
                     <div class="col pt-3">
                         <div class="bg-light rounded-135 float-end text-center" style="width:40px;height:40px;">
@@ -101,7 +101,7 @@
             <div class="col w-100 tip-button bg-69d7c3 rounded-135 shadow-3 mb-3 me-3" style="height:80px;">
                 <div class="row p-0 ps-3 pe-3">
                     <div class="col">
-                        <div class="fs-5 text-dark mt-2">回收异常</div>
+                        <div class="fs-5 text-dark mt-2">回收异常包</div>
                         <span class="fs-4 text-white fw-bold">43</span>
                     </div>
                     <div class="col pt-3">
@@ -114,7 +114,7 @@
             <div class="col w-100 tip-button bg-c1a0be rounded-135 shadow-2 mb-3 me-3" style="height:80px;">
                 <div class="row p-0 ps-3 pe-3">
                     <div class="col">
-                        <div class="fs-5 text-dark mt-2">外来器械</div>
+                        <div class="fs-5 text-dark mt-2">外来器械包</div>
                         <span class="fs-4 text-white fw-bold">41</span>
                     </div>
                     <div class="col pt-3">
@@ -265,6 +265,13 @@
         <div class="">
             <label for="exampleFormControlInput1" class="form-label">急件包</label>
             <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+        </div>
+        <div class="position-fixed bottom-0 pe-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">每页显示</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="30">
+                <span class="input-group-text" id="inputGroup-sizing-sm">条记录.</span>
+            </div>
         </div>
     </div>
 </div>

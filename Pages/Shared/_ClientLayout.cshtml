@@ -2,6 +2,7 @@
 @inject MenuHelper menuHelper;
 @{
     var sys_menus = menuHelper.All(true);
+    var showBarcode = ViewData.ContainsKey("barcode");
 }
 <html lang="en" style="overflow-x:hidden;">
 <head>
@@ -14,10 +15,16 @@
     <link rel="stylesheet" href="/css/client.css" />
     <link rel="stylesheet" href="/css/font.css" />
     <link rel="stylesheet" href="/css/nav-link.css" />
+
     <style>
         .tab-pane {
             /*transition: linear 0.3s;*/
             /*transform:rotate3d(90 dge);*/
+        }
+        .bg-barcode {
+            background-image: url('/images/DE4A8F52-7381-4ef6-845A-F291A6279863.png');
+            background-position: center right;
+            background-size: cover;
         }
     </style>
 </head>
@@ -30,7 +37,7 @@
                         <td valign="bottom">
                             <ul class="nav nav-tabs ms-1 w-100 d-flex" id="myTab" role="tablist" style="height:36px;margin-bottom:-2px;">
                                 <li html-imgore="true" class="ms-1 mr-3" style="padding-top:3px;">
-                                    <div id="top_index_button" class="text-white m-0 p-0 shadow" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                                    <div id="top_index_button" class="text-white m-0 p-0 shadow" data-bs-toggle="offcanvas" href="#offcanvas_menu" role="button" aria-controls="offcanvas_menu">
                                         <span class="fs-6" style="font-family:Arial;"><i class="bi bi-paypal"></i>&nbsp;蓝鹰CSSD智能化供应室 V3.0</span>
                                     </div>
                                 </li>
@@ -48,27 +55,33 @@
                                         </li>
                                         rowIndex++;
                                     }
-                                }
+
+
+}
                                 <li id="dynamicPage" class="nav-btn d-none" role="presentation">
                                     <div class="nav-menu-text" id="dynamic-tab" data-bs-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="false">设置</div>
                                 </li>
                                 @*<li class="nav-item ps-1 float-end" role="presentation" style="padding-top:1px;">
-                            <div class="text-white bg-white text-right rounded-1" style="margin-top:-1px;margin-right:2px;">
-                                <table width="100%">
-                                    <tr>
-                                        <td class="ps-2"><i class="bi bi-upc-scan"></i></td>
-                                        <td><input type="email" class="form-control fs-9 w-auto p-1 border-0 rounded-0" id="exampleFormControlInput1" placeholder="请扫描蓝鹰条码" style="width:100% !important;"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </li>*@
+                                        <div class="text-white bg-white text-right rounded-1">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td class="ps-2"><i class="bi bi-upc-scan"></i></td>
+                                                    <td><input type="email" class="form-control fs-9 w-auto p-1 border-0 rounded-0" id="exampleFormControlInput1" placeholder="请扫描蓝鹰条码" style="width:100% !important;"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </li>*@
                             </ul>
                         </td>
-                        <td class="text-center" width="180px">
-                            <div class="bg-warning fs-9 rounded-1 me-1 p-1 text-dark shadow">
+                        <td class="text-center" width="180px">                            
+                            <div id="btn_Barcode" class="d-none me-1">
+                                <input type="text" class="form-control form-control-sm bg-barcode" placeholder="输入或扫描条码"/>
+                            </div>
+                            
+                            <div id="btn_dt" class="bg-warning fs-9 rounded-1 me-1 p-1 text-dark shadow">
                                 <i class="bi bi-sun-fill"></i>&nbsp;
                                 @DateTime.Now.ToString("MM月dd日 HH:mm ddd")
-                            </div>
+                            </div>                            
                         </td>
                     </tr>
                 </table>
@@ -86,13 +99,13 @@
                                 itemClass = "fade";
                             }
                             <div class="tab-pane @itemClass" id="@menu_id" role="tabpanel" aria-labelledby="@menu_id">
-                                <div class="hstack gap-3 ps-3">
+                                <div class="hstack gap-3 ps-3 w-100 position-relative">
                                     @if (item.SubMenus != null) {
                                         @foreach (var subMenu in item.SubMenus) {
                                             if (subMenu.Name.Equals("-")) {
                                                 <div class="vr mt-1"></div>
                                             } else {
-                                                <button type="button" class="btn menu-btn position-relative btn-outline-f3f3f3 rounded-0 border-0 fs-9" attr-url="@subMenu.AspPage">
+                                                <button type="button" class="btn menu-btn position-relative btn-outline-f3f3f3 rounded-0 border-0 fs-9" attr-menuid="@item.Id" attr-actions="@subMenu.Actions" attr-url="@subMenu.AspPage">
                                                     <span class="fs-4"><i class="bi bi-@subMenu.Class"></i></span><br />@subMenu.Name
                                                     @if (subMenu.Unread > 0) {
                                                         <span class="position-absolute ms-90 top-9px translate-middle badge rounded-pill bg-danger">
@@ -103,6 +116,30 @@
                                                 </button>
                                             }
                                         }
+                                        <div class="w-auto position-absolute end-0 pe-3">
+                                            <div class="" role="group" aria-label="">
+                                                <button id="btn_View_@item.Id" type="button" class="action-btn btn d-none btn-primary shadow-sm me-1 p-1 ps-2 pe-2">查看</button>
+                                                <button id="btn_Pass_@item.Id" type="button" class="action-btn btn d-none btn-success shadow-sm me-1 p-1 ps-2 pe-2">审批通过</button>
+                                                <button id="btn_Refuse_@item.Id" type="button" class="action-btn btn d-none btn-danger shadow-sm me-1 p-1 ps-2 pe-2">审批不通过</button>
+                                                <button id="btn_Submit_@item.Id" type="button" class="action-btn btn d-none btn-success shadow-sm me-1 p-1 ps-2 pe-2">提交</button>
+                                                <button id="btn_Refresh_@item.Id" type="button" class="action-btn btn d-none btn-outline-secondary shadow-sm me-1 p-1 ps-2 pe-2">刷新</button>
+                                                <button id="btn_Cancel_@item.Id" type="button" class="action-btn btn d-none btn-secondary shadow-sm me-1 p-1 ps-2 pe-2">取消</button>
+                                                <!-- Example split danger button -->
+                                                <div id="btn_SubmitTo_@item.Id" class="action-btn btn-group d-none">
+                                                    <button type="button" class="btn btn-danger p-1 ps-2 pe-2">提交至</button>
+                                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu shadow">
+                                                        <li><a class="dropdown-item fs-9" href="#">南院供应室</a></li>
+                                                        <li><a class="dropdown-item fs-9" href="#">北约供应室</a></li>
+                                                        <li><a class="dropdown-item fs-9" href="#">Something else here</a></li>
+                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li><a class="dropdown-item fs-9" href="#">选择科室...</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     } else {
                                         <button type="button" class="btn menu-btn btn-outline-f3f3f3 rounded-0 border-0 fs-9"><span class="fs-4"><i class="bi bi-question"></i></span><br />null</button>
                                     }
@@ -130,9 +167,9 @@
         </tr>
     </table>
 
-    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:263px;margin-bottom:30px;">
+    <div class="offcanvas offcanvas-start shadow-sm bg-2b579a text-white" tabindex="-1" id="offcanvas_menu" aria-labelledby="offcanvas_menu_title" style="width:263px;margin-bottom:30px;">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title ms-2" id="offcanvasExampleLabel">欢迎您：张三&nbsp;<i class="bi bi-person-fill fs-5"></i></h5>
+            <h5 class="offcanvas-title ms-2" id="offcanvas_menu_title">欢迎您：张三&nbsp;<i class="bi bi-person-fill fs-5"></i></h5>
             <a id="btn_CloseExample" href="#hide_panel" class="btn-link text-white fs-4 float-end" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-arrow-left-circle"></i></a>
         </div>
         <div class="w-100 text-center lh-lg">
@@ -186,7 +223,7 @@
     </div>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header p-2">
-            <h5 class="offcanvas-title fs-6" id="offcanvasExampleLabel">个性化设置</h5>
+            <h5 class="offcanvas-title fs-6" id="offcanvasRightLabel">个性化设置</h5>
             <a href="#hide_panel" class="btn-link text-white fs-4 float-end" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-arrow-left-circle"></i></a>
         </div>
         <div class="offcanvas-body">
@@ -266,58 +303,84 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="~/lib/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
-        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
-        <script>
-            $(document).ready(function () {
-                $("#flush_menu li").click(function () {
-                    var action = $(this).attr("attr-action");
-                    switch (action) {
-                        case "print":   // 打印设置
-                            //$('#dynamicPage a').show();
-                            $('#btn_CloseExample')[0].click();
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $("#flush_menu li").click(function () {
+                var action = $(this).attr("attr-action");
+                switch (action) {
+                    case "print":   // 打印设置
+                        //$('#dynamicPage a').show();
+                        $('#btn_CloseExample')[0].click();
 
-                            var dynamicPage = $('#dynamicPage');
-                            var dynamicText = $('#dynamic-tab');
+                        var dynamicPage = $('#dynamicPage');
+                        var dynamicText = $('#dynamic-tab');
 
-                            if (dynamicPage.hasClass("d-none")) {
-                                dynamicPage.removeClass("d-none");
-                            }
-                            dynamicPage.addClass("d-block");
-                            dynamicText.text('打印设置');
+                        if (dynamicPage.hasClass("d-none")) {
+                            dynamicPage.removeClass("d-none");
+                        }
+                        dynamicPage.addClass("d-block");
+                        dynamicText.text('打印设置');
 
-                            var dynamicTabEl = document.querySelector('#dynamicPage a');
-                            var dynamicTab = new bootstrap.Tab(dynamicTabEl);
+                        var dynamicTabEl = document.querySelector('#dynamicPage a');
+                        var dynamicTab = new bootstrap.Tab(dynamicTabEl);
 
-                            dynamicTab.show();
+                        dynamicTab.show();
 
-                            break;
-                    }
-                });
-                $('button.menu-btn').click(function () {
-                    var btn = $(this);
-                    btn.siblings().removeClass("bg-d2d2d2");
-                    var url = btn.attr("attr-url");
-                    btn.toggleClass("bg-d2d2d2");
-                    if (url != "" || url != undefined) {
-                        $('#html_content').attr("src", url);
-                    }
-                });
-                $('#myTab li').click(function () {
-                    var ingore = $(this).attr("html-imgore");
-                    if (ingore == "true") {
-
-                    } else {
-                        $('#myTab li').each(function () {
-                            $(this).removeClass("clicked");
-                        });
-                        $(this).toggleClass("clicked");
-                    }
-                });
+                        break;
+                }
             });
-        </script>
+            $('button.menu-btn').click(function () {
+                $('.action-btn').each(function () {
+                    $(this).addClass("d-none");
+                });
+                var btn = $(this);
+                btn.siblings().removeClass("bg-d2d2d2");
+                var url = btn.attr("attr-url");
+                var actions = btn.attr("attr-actions");
+                btn.toggleClass("bg-d2d2d2");
+                if (url != "" || url != undefined) {
+                    $('#html_content').attr("src", url);
+                }
+
+                var btn_dt = $('#btn_dt');
+                var btn_Barcode = $('#btn_Barcode');
+                var menu_id = btn.attr("attr-menuid");
+                if (actions != undefined) {
+                    if (actions.indexOf("Barcode") == -1) {
+                        btn_dt.removeClass("d-none");
+                        btn_Barcode.addClass("d-none");
+                    }
+                    var temp = actions.split(",");
+                    $.each(temp, function (index, value) {
+                        var htmlid = $('#btn_' + value + "_" + menu_id);
+                        //alert(htmlid.attr("id"));
+                        $(htmlid[0]).removeClass("d-none");
+                        if (value == "Barcode") {
+                            btn_Barcode.removeClass("d-none");
+                            btn_dt.addClass("d-none");
+                        }
+                    });
+                }
+            });
+            $('#myTab li').click(function () {
+                var ingore = $(this).attr("html-imgore");
+                if (ingore == "true") {
+
+                } else {
+                    $('#myTab li').each(function () {
+                        $(this).removeClass("clicked");
+                    });
+                    $(this).toggleClass("clicked");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

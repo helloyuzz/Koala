@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model=>model.Menu[0].Id)
+                        @Html.DisplayNameFor(model => model.Menu[0].Id)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Menu[0].ParentId)
@@ -55,6 +55,9 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Menu[0].Position)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Menu[0].Actions)
                     </th>
                     <th></th>
                 </tr>
@@ -82,6 +85,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Actions)
                     </td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

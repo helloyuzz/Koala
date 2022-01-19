@@ -18,6 +18,7 @@ namespace Koala {
         public string AspPage { get; set; }
         public string Area { get; set; }
         public int Unread { get; set; }
+        public string Actions { get; set; }
 
     }
 }

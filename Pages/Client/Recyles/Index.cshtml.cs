@@ -19,7 +19,7 @@ namespace Koala.Pages.Client.Recyles {
         public IList<RequestExternalRecyle> ExternalRecyles { get; set; }
 
         public async Task OnGetAsync() {
-            Recyle = await _context.Recyles.Include(t=>t.User).Include(t=>t.RecyleUser).Include(t=>t.Section).ToListAsync();
+            Recyle = await _context.Recyles.Include(t=>t.User).Include(t=>t.RecyleUser).Include(t=>t.Section).OrderByDescending(t=>t.SeqNo).ToListAsync();
             ExternalRecyles = await _context.RequestExternalRecyles.ToListAsync();
         }
     }

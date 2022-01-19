@@ -50,7 +50,7 @@
     <a class="btn btn-warning" asp-page="Create" asp-route-parent_id="@Model.Menu.Id">Create New</a>
 </div>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -70,6 +70,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SubMenu[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenu[0].Actions)
             </th>
             <th></th>
         </tr>
@@ -94,6 +97,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actions)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

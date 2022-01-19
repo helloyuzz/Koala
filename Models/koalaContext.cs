@@ -345,6 +345,7 @@ namespace Koala.Models
                     .HasColumnType("tinyint(4)")
                     .HasColumnName("hidden")
                     .HasComment("已禁用");
+                entity.Property(e => e.Actions).HasMaxLength(60).HasColumnName("actions");
             });
 
             modelBuilder.Entity<Module>(entity =>
