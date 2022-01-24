@@ -528,6 +528,9 @@ namespace Koala.Models
                     .HasMaxLength(60)
                     .HasColumnName("status")
                     .HasComment("状态");
+                entity.HasOne(e => e.RequestByUser).WithMany().HasForeignKey(d => d.RequestBy);
+                entity.HasOne(e => e.RecyleByUser).WithMany().HasForeignKey(d => d.RecyleBy);
+                entity.HasOne(e=> e.RequestSection).WithMany().HasForeignKey(d => d.SectionId);
             });
 
             modelBuilder.Entity<Right>(entity =>
@@ -679,9 +682,8 @@ namespace Koala.Models
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
-                entity.Property(e => e.UpdateOn)
-                    .HasColumnType("date")
-                    .HasColumnName("update_on");
+                entity.Property(e => e.UpdateOn).HasColumnType("date").HasColumnName("update_on");
+                entity.Property(e => e.ParentId).HasColumnType("int(6)").HasColumnName("parent_id");
             });
 
             modelBuilder.Entity<User>(entity =>

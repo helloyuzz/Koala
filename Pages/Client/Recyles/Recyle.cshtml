@@ -13,8 +13,8 @@
                 <thead>
                     <tr style="cursor:default;" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">
                         @*<th htmlid="txt_demo_focus">
-            @Html.DisplayNameFor(model => model.Recyle[0].Id)
-        </th>*@
+                                @Html.DisplayNameFor(model => model.Recyle[0].Id)
+                            </th>*@
                         <th htmlid="txt_demo_focus">
                             @Html.DisplayNameFor(model => model.Recyle[0].RecyleNo)
                         </th>
@@ -48,42 +48,52 @@
                         if (item.Status.Equals("新建")) {
                             html_view = "开始回收";
                         }
-                    <tr>
-                        @*<td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RecyleNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SectionId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequestOn)
-                        </td>
-                        <td class="text-@item.Status">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequestBy)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RecyleBy)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PackageCount)/
-                            @Html.DisplayFor(modelItem => item.InstrumentCount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RecyleOn)
-                        </td>
-                        <td>
-                            <a href="#Temp" class="text-decoration-none fs-9">@html_view</a>
-                            @* |
-            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
-                        </td>
-                    </tr>
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecyleNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequestSection.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequestOn)
+                            </td>
+                            <td class="text-@item.Status">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="#Temp" class="" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill" style="font-size:14pt;"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item fs-9" href="#" onclick="top.call();">发送信息</a></li>
+                                        <li><a class="dropdown-item fs-9" href="#">查看申请记录</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item fs-9" href="#">查看资料</a></li>
+                                    </ul>
+                                </div>
+                                @Html.DisplayFor(modelItem => item.RequestByUser.Name)
+                            </td>
+                            <td>
+                                <i class="bi bi-person-fill text-secondary" style="font-size:14pt;"></i>
+                                @Html.DisplayFor(modelItem => item.RecyleByUser.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PackageCount)/
+                                @Html.DisplayFor(modelItem => item.InstrumentCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecyleOn)
+                            </td>
+                            <td>
+                                <a href="#Temp" class="text-decoration-none fs-9">@html_view</a>
+                                @* |
+                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -270,6 +280,7 @@
     </div>
 </div>
 <input id="hidden_id" type="hidden" value="" />
+
 <script>
     var myOffcanvas = document.getElementById('recyle_offcanvasRight')
     myOffcanvas.addEventListener('shown.bs.offcanvas', function () {

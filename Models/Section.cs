@@ -17,5 +17,6 @@ namespace Koala.Models
         public DateTime? CreateOn { get; set; }
         public DateTime? UpdateOn { get; set; }
         public bool? IsDelete { get; set; }
+        public int? ParentId { get; set; }
     }
 }

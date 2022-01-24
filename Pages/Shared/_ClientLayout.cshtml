@@ -21,14 +21,302 @@
             /*transition: linear 0.3s;*/
             /*transform:rotate3d(90 dge);*/
         }
+
         .bg-barcode {
             background-image: url('/images/DE4A8F52-7381-4ef6-845A-F291A6279863.png');
             background-position: center right;
             background-size: cover;
         }
     </style>
+    <style>
+        .card {
+            background: #fff;
+            transition: .5s;
+            border: 0;
+            margin-bottom: 30px;
+            border-radius: .55rem;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+        }
+
+        .chat-app .people-list {
+            width: 180px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 7
+        }
+
+        .chat-app .chat {
+            margin-left: 180px;
+            border-left: 1px solid #eaeaea
+        }
+
+        .people-list {
+            -moz-transition: .5s;
+            -o-transition: .5s;
+            -webkit-transition: .5s;
+            transition: .5s
+        }
+
+            .people-list .chat-list li {
+                padding: 10px 15px;
+                list-style: none;
+                border-radius: 3px
+            }
+
+                .people-list .chat-list li:hover {
+                    background: #efefef;
+                    cursor: pointer
+                }
+
+                .people-list .chat-list li.active {
+                    background: #efefef
+                }
+
+                .people-list .chat-list li .name {
+                    font-size: 15px
+                }
+
+            .people-list .chat-list img {
+                width: 45px;
+                border-radius: 50%
+            }
+
+            .people-list img {
+                float: left;
+                border-radius: 50%
+            }
+
+            .people-list .about {
+                float: left;
+                padding-left: 8px
+            }
+
+            .people-list .status {
+                color: #999;
+                font-size: 13px
+            }
+
+        .chat .chat-header {
+            padding: 15px 20px;
+            border-bottom: 2px solid #f4f7f6
+        }
+
+            .chat .chat-header img {
+                float: left;
+                border-radius: 40px;
+                width: 40px
+            }
+
+            .chat .chat-header .chat-about {
+                float: left;
+                padding-left: 10px
+            }
+
+        .chat .chat-history {
+            padding: 20px;
+            border-bottom: 2px solid #fff
+        }
+
+            .chat .chat-history ul {
+                padding: 0
+            }
+
+                .chat .chat-history ul li {
+                    list-style: none;
+                    margin-bottom: 30px
+                }
+
+                    .chat .chat-history ul li:last-child {
+                        margin-bottom: 0px
+                    }
+
+            .chat .chat-history .message-data {
+                margin-bottom: 15px
+            }
+
+                .chat .chat-history .message-data img {
+                    border-radius: 40px;
+                    width: 40px
+                }
+
+            .chat .chat-history .message-data-time {
+                color: #434651;
+                padding-left: 6px
+            }
+
+            .chat .chat-history .message {
+                color: #444;
+                padding: 18px 20px;
+                line-height: 26px;
+                font-size: 16px;
+                border-radius: 7px;
+                display: inline-block;
+                position: relative
+            }
+
+                .chat .chat-history .message:after {
+                    bottom: 100%;
+                    left: 7%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-bottom-color: #fff;
+                    border-width: 10px;
+                    margin-left: -10px
+                }
+
+            .chat .chat-history .my-message {
+                background: #efefef
+            }
+
+                .chat .chat-history .my-message:after {
+                    bottom: 100%;
+                    left: 30px;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-bottom-color: #efefef;
+                    border-width: 10px;
+                    margin-left: -10px
+                }
+
+            .chat .chat-history .other-message {
+                background: #e8f1f3;
+                text-align: right
+            }
+
+                .chat .chat-history .other-message:after {
+                    border-bottom-color: #e8f1f3;
+                    left: 93%
+                }
+
+        .chat .chat-message {
+            padding: 20px
+        }
+
+        .online,
+        .offline,
+        .me {
+            margin-right: 2px;
+            font-size: 8px;
+            vertical-align: middle
+        }
+
+        .online {
+            color: #86c541
+        }
+
+        .offline {
+            color: #e47297
+        }
+
+        .me {
+            color: #1d8ecd
+        }
+
+        .float-right {
+            float: right
+        }
+
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0
+        }
+    </style>
 </head>
 <body class="h-100 m-0 p-0" style="overflow-x:hidden;">
+
+    <div id="chat_form" class="container position-absolute end-0 bottom-0 overflow-hidden bg-light rounded-3 d-none mb-1" style="z-index:9999;width:600px;height:460px;">
+        <div class="row clearfix">
+            <div class="col-lg-12 pt-3">
+                <div class="card chat-app border-1 shadow">
+                    <div id="plist" class="people-list">
+                        <div class="input-group">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <input type="text" class="form-control form-control-sm" placeholder="Search...">
+                            </div>
+                        </div>
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                            <li class="clearfix active">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">临床科室/张三</div>
+                                    <div class="status"> <i class="fa fa-circle offline"></i>在线</div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">手术室/李静蕾</div>
+                                    <div class="status"> <i class="fa fa-circle online"></i>离线</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0">Admin</h6>
+                                        <small>消毒供应室</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg hidden-sm text-right ps-4">
+                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="bi bi-camera-fill"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="bi bi-image"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="bi bi-gear"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-warning" onclick="$('#chat_form').addClass('d-none');"><i class="bi bi-x"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-history">
+                            <ul class="m-b-0">
+                                <li class="clearfix">
+                                    <div class="message-data">
+                                        <span class="message-data-time">10:12 AM, Today</span>
+                                    </div>
+                                    <div class="message my-message">申请收到了吗?</div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="message-data">
+                                        <span class="message-data-time">10:15 AM, Today</span>
+                                    </div>
+                                    <div class="message my-message">已收到.</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-message clearfix">
+                            <div class="input-group mb-0">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-send"></i></span>
+                                    <input id="tbx_chat" type="text" class="form-control shadow" autocomplete="off" placeholder="发送信息...">
+                                    <button class="btn btn-primary">发送</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <table width="100%" height="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td height="39px" valign="top" class="bg-2b579a padding-top-1">
@@ -57,7 +345,7 @@
                                     }
 
 
-}
+                                }
                                 <li id="dynamicPage" class="nav-btn d-none" role="presentation">
                                     <div class="nav-menu-text" id="dynamic-tab" data-bs-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="false">设置</div>
                                 </li>
@@ -73,15 +361,15 @@
                                     </li>*@
                             </ul>
                         </td>
-                        <td class="text-center" width="180px">                            
+                        <td class="text-center" width="180px">
                             <div id="btn_Barcode" class="d-none me-1">
-                                <input type="text" class="form-control form-control-sm bg-barcode" placeholder="输入或扫描条码"/>
+                                <input type="text" class="form-control form-control-sm bg-barcode" placeholder="输入或扫描条码" />
                             </div>
-                            
+
                             <div id="btn_dt" class="bg-warning fs-9 rounded-1 me-1 p-1 text-dark shadow">
                                 <i class="bi bi-sun-fill"></i>&nbsp;
                                 @DateTime.Now.ToString("MM月dd日 HH:mm ddd")
-                            </div>                            
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -121,6 +409,7 @@
                                                 <button id="btn_View_@item.Id" type="button" class="action-btn btn d-none btn-primary shadow-sm me-1 p-1 ps-2 pe-2">查看</button>
                                                 <button id="btn_Pass_@item.Id" type="button" class="action-btn btn d-none btn-success shadow-sm me-1 p-1 ps-2 pe-2">审批通过</button>
                                                 <button id="btn_Refuse_@item.Id" type="button" class="action-btn btn d-none btn-danger shadow-sm me-1 p-1 ps-2 pe-2">审批不通过</button>
+                                                <button id="btn_Draft_@item.Id" type="button" class="action-btn btn d-none btn-success shadow-sm me-1 p-1 ps-2 pe-2">暂存</button>
                                                 <button id="btn_Submit_@item.Id" type="button" class="action-btn btn d-none btn-success shadow-sm me-1 p-1 ps-2 pe-2">提交</button>
                                                 <button id="btn_Refresh_@item.Id" type="button" class="action-btn btn d-none btn-outline-secondary shadow-sm me-1 p-1 ps-2 pe-2">刷新</button>
                                                 <button id="btn_Cancel_@item.Id" type="button" class="action-btn btn d-none btn-secondary shadow-sm me-1 p-1 ps-2 pe-2">取消</button>
@@ -162,6 +451,7 @@
             <td height="30px" class="bg-light border-top">
                 <div class="container-fluid fs-9 w-100">
                     &copy; 2021 - Client - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                    <a href="#Temp" class="float-end me-3 fs-9 text-decoration-none" onclick="call();"><i class="bi bi-chat-right-dots"></i> 收到 <span class="text-danger">5</span> 条未读信息.</a>
                 </div>
             </td>
         </tr>
@@ -381,6 +671,9 @@
                 }
             });
         });
+        function call() {
+            $('#chat_form').removeClass('d-none'); $('#tbx_chat').focus();
+        }
     </script>
 </body>
 </html>

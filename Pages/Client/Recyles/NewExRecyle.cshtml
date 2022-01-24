@@ -9,10 +9,63 @@
 <style>
     .bg-barcode {
         background-image: url('/images/DE4A8F52-7381-4ef6-845A-F291A6279863.png');
-        background-position:center right;
+        background-position: center right;
         background-size: cover;
     }
 </style>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight_Exception" aria-labelledby="offcanvasRightLabel" style="width:360px;">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">器械异常登记&nbsp;(9)</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body overflow-auto" style="overflow-x:hidden !important">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">器械名称</th>
+                    <th scope="col">登记类型</th>
+                    <th scope="col">数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="30px" scope="row">1</th>
+                    <td width="100px">Mark</td>
+                    <td>
+                        <select class="form-select form-select-sm m-0" onclick="$('#btn_Exception').removeClass('d-none');">
+                            <option>缺失</option>
+                            <option>损坏</option>
+                        </select>
+                    </td>
+                    <td width="80px"><input type="text" class="form-control form-control-sm w-100 m-0 p-0 ps-1" value="3"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td width="100px">Mark</td>
+                    <td>
+                        <select class="form-select form-select-sm m-0">
+                            <option>损坏</option>
+                            <option>缺失</option>
+                        </select>
+                    </td>
+                    <td width="80px"><input type="text" class="form-control form-control-sm w-100 m-0 p-0 ps-1" value="1"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td width="100px">Mark</td>
+                    <td>
+                        <select class="form-select form-select-sm m-0">
+                            <option>缺失</option>
+                            <option>损坏</option>
+                        </select>
+                    </td>
+                    <td width="80px"><input type="text" class="form-control form-control-sm w-100 m-0 p-0 ps-1" value="6"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <table height="100%" width="100%">
     <tr style="height:53px;">
         <td>
@@ -33,8 +86,12 @@
                     </td>
                     <td style="width:300px;">
                         <div class="input-group w-auto">
-                            <span class="input-group-text" id="basic-addon2">网篮设置</span>
+                            <button id="btn_Exception" type="button" class="btn btn-outline-f3f3f3 d-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Exception" aria-controls="offcanvasRight_Exception">
+                                器械异常 <span class="badge bg-danger">9</span>
+                            </button>
+                            <span class="input-group-text d-none" id="basic-addon2"></span>
                             <select class="form-select w-auto">
+                                <option>-网篮设置-</option>
                                 <option>绑定当前批次</option>
                                 <option>绑定到包</option>
                                 <option>绑定到分包</option>
@@ -286,8 +343,8 @@
                                     <i class="bi bi-joystick"></i>
                                 </button>
                                 <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
-                                    <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
+                                    <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Exception" aria-controls="offcanvasRight_Exception"><a class="dropdown-item fs-9" href="#">数量缺失</a></li>
+                                    <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Exception" aria-controls="offcanvasRight_Exception"><a class="dropdown-item fs-9" href="#">损坏</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
                                 </ul>
@@ -317,7 +374,7 @@
                                     <i class="bi bi-joystick"></i>
                                 </button>
                                 <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
+                                    <li><a class="dropdown-item fs-9" href="#">数量缺失</a></li>
                                     <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
@@ -348,7 +405,7 @@
                                     <i class="bi bi-joystick"></i>
                                 </button>
                                 <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item fs-9" href="#">丢失</a></li>
+                                    <li><a class="dropdown-item fs-9" href="#">数量缺失</a></li>
                                     <li><a class="dropdown-item fs-9" href="#">损坏</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item fs-9" href="#">其它...</a></li>
@@ -465,17 +522,17 @@
                     </tr>
                 </table>
                 @*<div class="mb-3 row">
-            <input type="text" class="form-control" id="inputPassword" value="包名称">
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-select" id="inputPassword" placeholder="纸塑包装袋">
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-select" id="inputPassword" placeholder="高温灭菌">
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-select" id="inputPassword" placeholder="分包数量">
-        </div>*@
+                        <input type="text" class="form-control" id="inputPassword" value="包名称">
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="text" class="form-select" id="inputPassword" placeholder="纸塑包装袋">
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="text" class="form-select" id="inputPassword" placeholder="高温灭菌">
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="text" class="form-select" id="inputPassword" placeholder="分包数量">
+                    </div>*@
                 <div class="mt-3 mb-3 row">
                     <div class="btn-group ps-0 pe-0" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-primary">保存更改</button>

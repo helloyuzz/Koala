@@ -25,5 +25,8 @@ namespace Koala.Models {
         public int? PackageCount { get; set; }
         [Display(Name = "申请单号")]
         public int? InstrumentCount { get; set; }
+        public User RequestByUser { get; set; }
+        public User RecyleByUser { get; set; }
+        public Section RequestSection { get; set; }
     }
 }

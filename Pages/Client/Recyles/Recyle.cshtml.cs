@@ -17,7 +17,7 @@ namespace Koala.Pages.Client.Recyles {
 
         public IList<RequestRecyle> Recyle { get; set; }
         public async Task OnGetAsync() {
-            Recyle = await _context.RequestRecyles.ToListAsync();
+            Recyle = await _context.RequestRecyles.Include(t=>t.RequestByUser).Include(t=>t.RecyleByUser).Include(t=>t.RequestSection).ToListAsync();
         }
     }
 }

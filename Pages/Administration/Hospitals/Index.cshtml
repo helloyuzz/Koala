@@ -1,113 +1,114 @@
 ﻿@page
 @model Koala.Pages.Administration.Hospitals.IndexModel
+@using Koala.Models;
 
 @{
     ViewData["Title"] = "院单位管理";
 }
 
+@functions{
+    public string BuildTree(int pid,List<TreeNode> nodes) {
+        string html_string = "";
+        
+        foreach (var item in nodes) {
+            var html_id = "collapseExample_" + item.Id;
+            html_string += "<ul class='list-group'>";
+            if (item.SubNodes.Count > 0) {
+                html_string += "    <li class='list-group-item' data-bs-toggle='collapse' href='#" + html_id + "' role='button' aria-expanded='false' aria-controls='" + html_id + "'>" + item.Name + "</li>";
+            } else {
+                html_string += "    <li class='list-group-item' data-bs-toggle='' href='#Temp' role='button' aria-expanded='false' aria-controls='Temp'>" + item.Name + "</li>";
+            }
+            html_string += "</ul>";
+            if (item.SubNodes.Count > 0) {
+                html_string += "<div class='collapse' id='" + html_id + "'>";
+                html_string += "    <div class='card card-body'>";
+                html_string += BuildTree(item.Id,item.SubNodes);
+                html_string += "    </div>";
+                html_string += "</div>";
+            }
+        }
+        return html_string;
+    }
+}
+
+
+<p>
+</p>
+<ul class="list-group">
+    <li class="list-group-item" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Link with href
+    </li>
+</ul>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p>
+            <ul class="list-group">
+                <li class="list-group-item" data-bs-toggle="collapse" href="#Temp" role="button" aria-expanded="false" aria-controls="Temp">
+                    Link with href
+                </li>
+                <li class="list-group-item" data-bs-toggle="collapse" href="#collapseExample_a" role="button" aria-expanded="false" aria-controls="collapseExample_a">
+                    Link with href
+                </li>
+            </ul>
+        </p>
+        <div class="collapse" id="collapseExample_a">
+            <div class="card card-body">
+                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid p-3">
-    <div class="bg-white p-3">
-        <table id="mainTable" class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].ShortName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].ManagerId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].LogoUrl)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].BackgroundUrl)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].LicenceCode)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].LicenceTo)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].ParentId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].GroupId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].CreateOn)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].UpdateOn)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].IsRoot)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].Status)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Hospital[0].Position)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Hospital) {
+    <div class="row">
+        <div class="col-3">
+            <table class="table table-hover bg-white">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShortName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ManagerId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LogoUrl)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BackgroundUrl)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LicenceCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LicenceTo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParentId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GroupId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreateOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpdateOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsRoot)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Position)
-                        </td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        <th scope="col">#</th>
+                        <th scope="col">名称</th>
+                        <th scope="col">科室</th>
+                        <th scope="col">人员</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4">
+                            @Html.Raw(BuildTree(-1,Model.TreeView.Where(t => t.Parent_id == -1).ToList()))
                         </td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table bg-white">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
