@@ -15,9 +15,77 @@
     <script src="/lib/echarts-5.2.2/dist/echarts.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
-<body style="overflow:hidden;" class="p-3 h-100">
-        @RenderBody()
+<body style="overflow:hidden;" class="h-100">
+    @RenderBody()
 
+    <div class="offcanvas offcanvas-end shadow-1" tabindex="-1" id="recyle_offcanvasRight" aria-labelledby="recyle_offcanvasRight" style="width:330px;">
+        <div class="offcanvas-header pb-0">
+            <h5 id="offcanvasRightLabel" class="fs-3">查询 [模块标题]</h5>
+            @*<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>*@
+        </div>
+        <div class="offcanvas-body">
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">科室名称</label>
+                <input type="text" class="form-control" id="txt_demo_focus" placeholder="">
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">联系人</label>
+                <input type="text" class="form-control" id="txt_recyleon_focus" placeholder="-">
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">联系电话</label>
+                <input type="email" class="form-select" id="txt_section_id_focus" placeholder="-">
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">回收人</label>
+                <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">送包人</label>
+                <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">状态</label>
+                <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+            </div>
+            <label for="exampleFormControlInput1" class="form-label">更多条件</label><br />
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button class="btn btn-outline-secondary dropdown-toggle fs-9 border-d2d2d2" type="button" data-bs-toggle="dropdown" aria-expanded="false">等于</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+            <label for="exampleFormControlInput1" class="form-label">更多条件</label>
+            <div class="input-group">
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button class="btn btn-outline-secondary dropdown-toggle fs-9 border-d2d2d2" type="button" data-bs-toggle="dropdown" aria-expanded="false">等于</button>
+            </div>
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label">更多条件</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="-">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">更多条件</label>
+                <input type="email" class="form-select" id="exampleFormControlInput1" placeholder="-">
+            </div>
+            <div class="">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">查询</button>
+                <button class="btn btn-secondary" type="button">重置</button>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function () {
             if ($('#mainTable').length > 0) {

@@ -1,0 +1,105 @@
+﻿@page
+@model Koala.Pages.Administration.WorkGroups.CreateModel
+
+@{
+    ViewData["Title"] = "工作组管理";
+}
+<div class="container-fluid p-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">工作组档案</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="bi bi-file-text"></i>新增工作组</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="wizard-tab" data-bs-toggle="tab" href="#wizard" role="tab" aria-controls="wizard" aria-selected="false"><i class="bi bi-question-circle"></i>&nbsp;操作向导</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade bg-white show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        </div>
+        <div class="tab-pane fade bg-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <form method="post">
+                <div class="container-fluid p-3">
+                    <div class="bg-white p-3">
+                        <h1>Create</h1>
+
+                        <h4>Workgroup</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <fieldset>
+                                    <legend>工作组基本信息</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Workgroup.Name" class="control-label must-field">工作组名称</label>
+                                        <input asp-for="Workgroup.Name" class="form-control" />
+                                        <span asp-validation-for="Workgroup.Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Workgroup.HospitalId" class="control-label not-must-field">显示排序</label>
+                                        <input asp-for="Workgroup.HospitalId" class="form-control" />
+                                        <span asp-validation-for="Workgroup.HospitalId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input type="submit" value="新增" class="btn btn-primary" />
+                                        <input type="submit" value="新增并继续" class="btn btn-warning" />
+                                        <a class="btn btn-secondary" asp-page="Index">Back to List</a>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>所属院区/科室</legend>
+
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Workgroup.HospitalId" class="control-label must-field">院区</label>
+                                        <input asp-for="Workgroup.HospitalId" class="form-control" readonly placeholder="-" />
+                                        <span asp-validation-for="Workgroup.HospitalId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Workgroup.SectionId" class="control-label must-field">科室</label>
+                                        <input asp-for="Workgroup.SectionId" class="form-control" readonly placeholder="-" />
+                                        <span asp-validation-for="Workgroup.SectionId" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>工作组成员</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Workgroup.CreateOn" class="control-label must-field">成员列表</label>
+                                        <input asp-for="Workgroup.CreateOn" class="form-control" />
+                                        <span asp-validation-for="Workgroup.CreateOn" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Workgroup.CreateBy" class="control-label"></label>
+                                        <input asp-for="Workgroup.CreateBy" class="form-control" />
+                                        <span asp-validation-for="Workgroup.CreateBy" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Workgroup.Status" class="control-label"></label>
+                                        <input asp-for="Workgroup.Status" class="form-control" />
+                                        <span asp-validation-for="Workgroup.Status" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="tab-pane fade bg-white" id="wizard" role="tabpanel" aria-labelledby="wizard-tab">
+
+        </div>
+    </div>
+</div>

@@ -4,24 +4,29 @@
 
 @{
     ViewData["Title"] = "院单位管理";
+    ViewData["base_url"] = Request.Path;
 }
-
+<style>
+    .list-group-item,.card {
+        border: none !important;
+    }
+</style>
 @functions{
     public string BuildTree(int pid,List<TreeNode> nodes) {
         string html_string = "";
         
         foreach (var item in nodes) {
             var html_id = "collapseExample_" + item.Id;
-            html_string += "<ul class='list-group'>";
+            html_string += "<ul class='list-group list-group-flush'>";
             if (item.SubNodes.Count > 0) {
-                html_string += "    <li class='list-group-item' data-bs-toggle='collapse' href='#" + html_id + "' role='button' aria-expanded='false' aria-controls='" + html_id + "'>" + item.Name + "</li>";
+                html_string += "    <li class='list-group-item list-group-item-action fs-9' data-bs-toggle='collapse' href='#" + html_id + "' role='button' aria-expanded='false' aria-controls='" + html_id + "'><a href='#Temp' class='text-decoration-none'><i class='bi bi-chevron-right'></i>&nbsp;" + item.Name +"&nbsp;(" + item.SubNodes.Count + ")" + "</a></li>";
             } else {
-                html_string += "    <li class='list-group-item' data-bs-toggle='' href='#Temp' role='button' aria-expanded='false' aria-controls='Temp'>" + item.Name + "</li>";
+                html_string += "    <li class='list-group-item list-group-item-action fs-9' data-bs-toggle='' href='#Temp' role='button' aria-expanded='false' aria-controls='Temp'><a href='#Temp' class='text-decoration-none'><i class='bi bi-file-text'></i>&nbsp;" + item.Name + "</a></li>";
             }
             html_string += "</ul>";
             if (item.SubNodes.Count > 0) {
-                html_string += "<div class='collapse' id='" + html_id + "'>";
-                html_string += "    <div class='card card-body'>";
+                html_string += "<div class='collapse show' id='" + html_id + "'>";
+                html_string += "    <div class='card card-body pt-0 pb-0'>";
                 html_string += BuildTree(item.Id,item.SubNodes);
                 html_string += "    </div>";
                 html_string += "</div>";
@@ -31,84 +36,34 @@
     }
 }
 
-
-<p>
-</p>
-<ul class="list-group">
-    <li class="list-group-item" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Link with href
-    </li>
-</ul>
-<div class="collapse" id="collapseExample">
-    <div class="card card-body">
-        <p>
-            <ul class="list-group">
-                <li class="list-group-item" data-bs-toggle="collapse" href="#Temp" role="button" aria-expanded="false" aria-controls="Temp">
-                    Link with href
-                </li>
-                <li class="list-group-item" data-bs-toggle="collapse" href="#collapseExample_a" role="button" aria-expanded="false" aria-controls="collapseExample_a">
-                    Link with href
-                </li>
-            </ul>
-        </p>
-        <div class="collapse" id="collapseExample_a">
-            <div class="card card-body">
-                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid p-3">
-    <div class="row">
-        <div class="col-3">
+<table class="w-100 h-100 m-1">
+    <tr>
+        <td width="26%" valign="top" class="p-1">
             <table class="table table-hover bg-white">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">名称</th>
-                        <th scope="col">科室</th>
-                        <th scope="col">人员</th>
+                        <th scope="col">医院列表<a href="#Temp" class="float-end">增加院区</a></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="4">
-                            @Html.Raw(BuildTree(-1,Model.TreeView.Where(t => t.Parent_id == -1).ToList()))
+                        <td class="bg-light p-0">
+                            @Html.Raw(BuildTree(-1, Model.TreeView.Where(t => t.Parent_id == -1).ToList()))
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </td>
+        <td valign="top" class="p-1">
+            <iframe src="Sections" class="w-100 h-100"></iframe>
+        </td>
+    </tr>
+</table>
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col-3">
         </div>
         <div class="col">
-            <table class="table bg-white">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

@@ -42,12 +42,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Models_temp\RequestExternalRecyle.cs" />
+    <Compile Include="Models_temp\RequestRecyle.cs" />
+    <Compile Include="Models_temp\Right.cs" />
     <Compile Include="Models_temp\Role.cs" />
+    <Compile Include="Models_temp\RoleDataRange.cs" />
     <Compile Include="Models_temp\RoleRight.cs" />
     <Compile Include="Models_temp\Section.cs" />
     <Compile Include="Models_temp\User.cs" />
     <Compile Include="Models_temp\UserRelation.cs" />
     <Compile Include="Models_temp\Version.cs" />
+    <Compile Include="Models_temp\Workgroup.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,86 +2,131 @@
 @model Koala.Pages.Administration.Accounts.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "帐号管理";
 }
 <div class="container-fluid p-3">
-    <h1>Create</h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">帐号档案</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="bi bi-file-text"></i>新增帐号</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="wizard-tab" data-bs-toggle="tab" href="#wizard" role="tab" aria-controls="wizard" aria-selected="false"><i class="bi bi-question-circle"></i>&nbsp;操作向导</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade bg-white show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-    <h4>Account</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
+        </div>
+        <div class="tab-pane fade bg-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
             <form method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="User.Login" class="control-label"></label>
-                    <input asp-for="User.Login" class="form-control" />
-                    <span asp-validation-for="User.Login" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.HashedPassword" class="control-label"></label>
-                    <input asp-for="User.HashedPassword" class="form-control" />
-                    <span asp-validation-for="User.HashedPassword" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.Name" class="control-label"></label>
-                    <input asp-for="User.Name" class="form-control" />
-                    <span asp-validation-for="User.Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.IsAdmin" class="control-label"></label>
-                    <input asp-for="User.IsAdmin" class="form-control" />
-                    <span asp-validation-for="User.IsAdmin" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.Status" class="control-label"></label>
-                    <input asp-for="User.Status" class="form-control" />
-                    <span asp-validation-for="User.Status" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.LastLoginOn" class="control-label"></label>
-                    <input asp-for="User.LastLoginOn" class="form-control" />
-                    <span asp-validation-for="User.LastLoginOn" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.CreateOn" class="control-label"></label>
-                    <input asp-for="User.CreateOn" class="form-control" />
-                    <span asp-validation-for="User.CreateOn" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.UpdateOn" class="control-label"></label>
-                    <input asp-for="User.UpdateOn" class="form-control" />
-                    <span asp-validation-for="User.UpdateOn" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.Type" class="control-label"></label>
-                    <input asp-for="User.Type" class="form-control" />
-                    <span asp-validation-for="User.Type" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.Salt" class="control-label"></label>
-                    <input asp-for="User.Salt" class="form-control" />
-                    <span asp-validation-for="User.Salt" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.MustChangePasswd" class="control-label"></label>
-                    <input asp-for="User.MustChangePasswd" class="form-control" />
-                    <span asp-validation-for="User.MustChangePasswd" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="User.HospitalId" class="control-label"></label>
-                    <input asp-for="User.HospitalId" class="form-control" />
-                    <span asp-validation-for="User.HospitalId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="container-fluid p-3">
+                    <div class="bg-white p-3">
+                        <h1>Create</h1>
+
+                        <h4>Account</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>帐号基本信息</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.Name" class="control-label must-field">姓名</label>
+                                        <input asp-for="User.Name" class="form-control" />
+                                        <span asp-validation-for="User.Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.Login" class="control-label must-field">登录帐号</label>
+                                        <input asp-for="User.Login" class="form-control" />
+                                        <span asp-validation-for="User.Login" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.Pinyin" class="control-label not-must-field">检索拼音</label>
+                                        <input asp-for="User.Pinyin" class="form-control" />
+                                        <span asp-validation-for="User.Pinyin" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.HashedPassword" class="control-label must-field">登录密码</label>
+                                        <input asp-for="User.HashedPassword" class="form-control" />
+                                        <span asp-validation-for="User.HashedPassword" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.IsAdmin" class="control-label must-field">是否管理员</label>
+                                        <input asp-for="User.IsAdmin" class="form-control" />
+                                        <span asp-validation-for="User.IsAdmin" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.Status" class="control-label must-field">状态</label>
+                                        <input asp-for="User.Status" class="form-control" />
+                                        <span asp-validation-for="User.Status" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group mt-3">
+                                    <input type="submit" value="新增" class="btn btn-primary" />
+                                    <input type="submit" value="新增并继续" class="btn btn-warning" />
+                                    <a class="btn btn-secondary" asp-page="Index">Back to List</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>所属院区/科室</legend>
+
+                                    <div class="form-group mb-3">
+                                        <label asp-for="User.HospitalId" class="control-label must-field">院区</label>
+                                        <input asp-for="User.HospitalId" class="form-control" readonly placeholder="-" />
+                                        <span asp-validation-for="User.HospitalId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.SectionId" class="control-label must-field">科室</label>
+                                        <input asp-for="User.SectionId" class="form-control" readonly placeholder="-" />
+                                        <span asp-validation-for="User.SectionId" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>个性化设置</legend>
+                                    <div class="form-group">
+                                        <label asp-for="User.Type" class="control-label"></label>
+                                        <input asp-for="User.Type" class="form-control" />
+                                        <span asp-validation-for="User.Type" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.Salt" class="control-label"></label>
+                                        <input asp-for="User.Salt" class="form-control" />
+                                        <span asp-validation-for="User.Salt" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.MustChangePasswd" class="control-label"></label>
+                                        <input asp-for="User.MustChangePasswd" class="form-control" />
+                                        <span asp-validation-for="User.MustChangePasswd" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.HospitalId" class="control-label"></label>
+                                        <input asp-for="User.HospitalId" class="form-control" />
+                                        <span asp-validation-for="User.HospitalId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="User.UpdateOn" class="control-label"></label>
+                                        <input asp-for="User.UpdateOn" class="form-control" />
+                                        <span asp-validation-for="User.UpdateOn" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
-    </div>
+        <div class="tab-pane fade bg-white" id="wizard" role="tabpanel" aria-labelledby="wizard-tab">
 
-    <div>
-        <a asp-page="Index">Back to List</a>
+        </div>
     </div>
-
 </div>

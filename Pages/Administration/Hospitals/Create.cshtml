@@ -2,103 +2,197 @@
 @model Koala.Pages.Administration.Hospitals.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "院区管理";
 }
+<style>
+</style>
 <div class="container-fluid p-3">
-    <div class="bg-white p-3">
-        <h1>Create</h1>
-
-        <h4>Hospital</h4>
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.Id" class="control-label"></label>
-                        <input asp-for="Hospital.Id" class="form-control" />
-                        <span asp-validation-for="Hospital.Id" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.Name" class="control-label"></label>
-                        <input asp-for="Hospital.Name" class="form-control" />
-                        <span asp-validation-for="Hospital.Name" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.ShortName" class="control-label"></label>
-                        <input asp-for="Hospital.ShortName" class="form-control" />
-                        <span asp-validation-for="Hospital.ShortName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.ManagerId" class="control-label"></label>
-                        <input asp-for="Hospital.ManagerId" class="form-control" />
-                        <span asp-validation-for="Hospital.ManagerId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.LogoUrl" class="control-label"></label>
-                        <input asp-for="Hospital.LogoUrl" class="form-control" />
-                        <span asp-validation-for="Hospital.LogoUrl" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.BackgroundUrl" class="control-label"></label>
-                        <input asp-for="Hospital.BackgroundUrl" class="form-control" />
-                        <span asp-validation-for="Hospital.BackgroundUrl" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.LicenceCode" class="control-label"></label>
-                        <input asp-for="Hospital.LicenceCode" class="form-control" />
-                        <span asp-validation-for="Hospital.LicenceCode" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.LicenceTo" class="control-label"></label>
-                        <input asp-for="Hospital.LicenceTo" class="form-control" />
-                        <span asp-validation-for="Hospital.LicenceTo" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.ParentId" class="control-label"></label>
-                        <input asp-for="Hospital.ParentId" class="form-control" />
-                        <span asp-validation-for="Hospital.ParentId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.GroupId" class="control-label"></label>
-                        <input asp-for="Hospital.GroupId" class="form-control" />
-                        <span asp-validation-for="Hospital.GroupId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.CreateOn" class="control-label"></label>
-                        <input asp-for="Hospital.CreateOn" class="form-control" />
-                        <span asp-validation-for="Hospital.CreateOn" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.UpdateOn" class="control-label"></label>
-                        <input asp-for="Hospital.UpdateOn" class="form-control" />
-                        <span asp-validation-for="Hospital.UpdateOn" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.IsRoot" class="control-label"></label>
-                        <input asp-for="Hospital.IsRoot" class="form-control" />
-                        <span asp-validation-for="Hospital.IsRoot" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.Status" class="control-label"></label>
-                        <input asp-for="Hospital.Status" class="form-control" />
-                        <span asp-validation-for="Hospital.Status" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hospital.Position" class="control-label"></label>
-                        <input asp-for="Hospital.Position" class="form-control" />
-                        <span asp-validation-for="Hospital.Position" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">院区档案</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="bi bi-file-text"></i>新增院区</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="wizard-tab" data-bs-toggle="tab" href="#wizard" role="tab" aria-controls="wizard" aria-selected="false"><i class="bi bi-question-circle"></i>&nbsp;操作向导</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade bg-white show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">医院名称</th>
+                        <th scope="col">医院简称</th>
+                        <th scope="col">上级医疗单位</th>
+                        <th scope="col">管理员</th>
+                        <th scope="col">状态</th>
+                        <th scope="col">授权至</th>
+                        <th scope="col">区域化</th>
+                        <th scope="col">区域中心</th>
+                        <th scope="col">科室数量</th>
+                        <th scope="col">人员数量</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Hospitals) {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>@item.Name</td>
+                        <td>@item.ShortName</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <form method="post">
+                <input type="hidden" asp-for="Hospital.Id" class="form-control" />
 
-        <div>
-            <a asp-page="Index">Back to List</a>
+                <div class="bg-white p-3">
+                    <h1>Create</h1>
+
+                    <h4>Hospital</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <fieldset>
+                                <legend>院区基本信息</legend>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label must-field">医院名称</label>
+                                    <input asp-for="Hospital.Name" class="form-control" />
+                                    <span asp-validation-for="Hospital.Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label not-must-field">医院简称</label>
+                                    <input asp-for="Hospital.ShortName" class="form-control" />
+                                    <span asp-validation-for="Hospital.ShortName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label must-field">检索拼音</label>
+                                    <input asp-for="Hospital.Pinyin" class="form-control" />
+                                    <span asp-validation-for="Hospital.Pinyin" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label asp-for="Hospital.ParentId" class="control-label not-must-field">上级医疗单位</label>
+                                    <input type="text" asp-for="Hospital.ParentId" class="form-control" readonly placeholder="-" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Unit" aria-controls="offcanvasRight_Unit" />
+                                    <span asp-validation-for="Hospital.ParentId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label not-must-field">管理员</label>
+                                    <input type="text" asp-for="Hospital.ManagerId" class="form-control" readonly placeholder="-" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Employee" aria-controls="offcanvasRight_Employee"/>
+                                    <span asp-validation-for="Hospital.ManagerId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Hospital.Status" class="control-label must-field">状态</label>
+                                    <input asp-for="Hospital.Status" class="form-control" />
+                                    <span asp-validation-for="Hospital.Status" class="text-danger"></span>
+                                </div>
+                                @*<div class="form-group">
+                                        <label asp-for="Hospital.Position" class="control-label">显示次序</label>
+                                        <input asp-for="Hospital.Position" class="form-control" />
+                                        <span asp-validation-for="Hospital.Position" class="text-danger"></span>
+                                    </div>*@
+                                <div class="form-group mt-3">
+                                    <input type="submit" value="新增" class="btn btn-primary" />
+                                    <input type="submit" value="新增并继续" class="btn btn-warning" />
+                                    <a class="btn btn-secondary" asp-page="/Administration/Hospitals/Index">返回院单位管理</a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>授权验证</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Hospital.LicenceCode" class="control-label must-field">注册码</label>
+                                        <input asp-for="Hospital.LicenceCode" class="form-control" placeholder="xx-xxxx-xxxx-xxxx-xxxx" />
+                                        <span asp-validation-for="Hospital.LicenceCode" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Hospital.LicenceTo" class="control-label must-field">授权至</label>
+                                        <input type="text" asp-for="Hospital.LicenceTo" class="form-control" placeholder="yyyy/mm/dd" />
+                                        <span asp-validation-for="Hospital.LicenceTo" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>个性化设置</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Hospital.LogoUrl" class="control-label not-must-field">医院标识Logo</label>
+                                        <input asp-for="Hospital.LogoUrl" class="form-control" />
+                                        <span asp-validation-for="Hospital.LogoUrl" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Hospital.BackgroundUrl" class="control-label not-must-field">自定义首页背景图片</label>
+                                        <input asp-for="Hospital.BackgroundUrl" class="form-control" />
+                                        <span asp-validation-for="Hospital.BackgroundUrl" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group mt-3">
+                                <fieldset>
+                                    <legend>区域化设置</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Hospital.GroupId" class="control-label not-must-field">选择区域中心</label>
+                                        <input asp-for="Hospital.GroupId" class="form-control" />
+                                        <span asp-validation-for="Hospital.GroupId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Hospital.IsRoot" class="control-label not-must-field">本医疗单位作为区域中心结点</label>
+                                        <input asp-for="Hospital.IsRoot" class="form-control" />
+                                        <span asp-validation-for="Hospital.IsRoot" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+        <div class="tab-pane fade" id="wizard" role="tabpanel" aria-labelledby="wizard-tab">
+
         </div>
     </div>
 </div>
 
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight_Employee" aria-labelledby="offcanvasRightLabel" style="width:600px;">
+    <div class="offcanvas-header">
+        <h3 id="offcanvasRightLabel">科室/人员选择</h3>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight_Unit" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">选择医疗单位</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#Hospital_Name').focus();
+    });
+</script>

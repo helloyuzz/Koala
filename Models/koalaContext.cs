@@ -39,6 +39,7 @@ namespace Koala.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRelation> UserRelations { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
+        public virtual DbSet<Workgroup> Workgroups { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -889,6 +890,39 @@ namespace Koala.Models
                 entity.Property(e => e.RequestNo)
                    .HasMaxLength(60)
                    .HasColumnName("request_no");
+            });
+
+            modelBuilder.Entity<Workgroup>(entity =>
+            {
+                entity.ToTable("workgroups");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("create_by");
+
+                entity.Property(e => e.CreateOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_on");
+
+                entity.Property(e => e.HospitalId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("hospital_id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id");
+
+                entity.Property(e => e.Status)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("status");
             });
 
 

@@ -142,3 +142,46 @@ th[htmlValue="issue"] {
 #menu_panel::-webkit-scrollbar-thumb:hover {
     background: blue;
 }
+
+legend {
+    float: inherit !important;
+    border-style: none;
+    border-width: 0;
+    font-weight: bold;
+    font-size: 1.3rem !important;
+    line-height: 20px;
+    margin-bottom: 0;
+    width: auto;
+    padding: 0 10px;
+    border: 1px solid #e0e0e0;
+}
+
+fieldset {
+    border: 1px solid #e0e0e0;
+    padding: 1.3rem;
+}
+
+th[htmlid]:hover {
+    background-color: #e9ecef !important;
+    background-image: url('/svg/search.svg') !important;
+    background-repeat: no-repeat;
+    background-position: right;
+    cursor:zoom-in;
+    /*background-origin: content-box;
+        padding-right: 10px;*/
+}
+
+
+.must-field::before {
+    content: "*";
+    color: red;
+    padding-right: 3px;
+}
+.must-field::after {
+    content:"(必填)";
+    color: red;
+}
+
+.not-must-field::after {
+    content: "(可选)";
+}

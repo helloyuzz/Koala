@@ -11,6 +11,7 @@ namespace Koala.Models_temp
         public string Name { get; set; }
         public string ShortName { get; set; }
         public int? HospitalId { get; set; }
+        public int? ParentId { get; set; }
         public string Pinyin { get; set; }
         public bool? Status { get; set; }
         public int? ManagerId { get; set; }

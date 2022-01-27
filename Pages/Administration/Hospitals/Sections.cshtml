@@ -1,0 +1,220 @@
+﻿@page
+@model Koala.Pages.Administration.Hospitals.SectionsModel
+@{
+    Layout = "/Pages/Shared/_ContentLayout.cshtml";
+}
+
+<style>
+    .avator {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-radius: 25px;
+        border: 1px solid lightgray;
+        background-color: #fff;
+    }
+
+/*    #mainTable td {
+        height: 53px;
+        vertical-align: middle;
+    }*/
+</style>
+<table class="w-100 h-100">
+    <tr style="height:30%">
+        <td valign="top" class="bg-light">
+            <table id="mainTable" class="table table-sm table-hover">
+                <thead>
+                    <tr data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">
+                        <th htmlid="txt_demo_focus" scope="col">全选</th>
+                        <th htmlid="txt_demo_focus" scope="col"><a href="#Temp">科室名称</a></th>
+                        <th htmlid="txt_demo_focus" scope="col">科室拼音</th>
+                        <th htmlid="txt_demo_focus" scope="col">联系人</th>
+                        <th htmlid="txt_demo_focus" scope="col">联系电话</th>
+                        <th htmlid="txt_demo_focus" scope="col">人员数量</th>
+                        <th htmlid="txt_demo_focus" scope="col">次序</th>
+                        <th htmlid="txt_demo_focus" scope="col">包数量</th>
+                        <th htmlid="txt_demo_focus" scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><input type="checkbox" class="form-check-input"/></th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td><i class="bi bi-arrows-move"></i></td>
+                        <td>Otto</td>
+                        <td>
+                            <a href="#Temp" class="fs-9">编辑</a>&nbsp;
+                            <div class="btn-group">
+                                <span class="btn btn-link dropdown-toggle p-0 fs-9" data-bs-toggle="dropdown" aria-expanded="false">
+                                    更多
+                                </span>
+                                <ul class="dropdown-menu p-0 rounded-0">
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">新增科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">复制</a></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="复制到其它科室下">复制到</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">移动到</a></li>
+                                    <li><a class="dropdown-item" href="#">自定义检索拼音</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">禁用科室</a></li>
+                                    <li><a class="dropdown-item" href="#Temp">删除科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">查看科室详情</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox" class="form-check-input" /></th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td><i class="bi bi-arrows-move"></i></td>
+                        <td>Otto</td>
+                        <td>
+                            <a href="#Temp" class="fs-9">编辑</a>&nbsp;
+                            <div class="btn-group">
+                                <span class="btn btn-link dropdown-toggle p-0 fs-9" data-bs-toggle="dropdown" aria-expanded="false">
+                                    更多
+                                </span>
+                                <ul class="dropdown-menu p-0 rounded-0">
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">新增科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">复制</a></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="复制到其它科室下">复制到</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">移动到</a></li>
+                                    <li><a class="dropdown-item" href="#">自定义检索拼音</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">禁用科室</a></li>
+                                    <li><a class="dropdown-item" href="#Temp">删除科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">查看科室详情</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox" class="form-check-input" /></th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td><i class="bi bi-arrows-move"></i></td>
+                        <td>Otto</td>
+                        <td>
+                            <a href="#Temp" class="fs-9">编辑</a>&nbsp;
+                            <div class="btn-group">
+                                <span class="btn btn-link dropdown-toggle p-0 fs-9" data-bs-toggle="dropdown" aria-expanded="false">
+                                    更多
+                                </span>
+                                <ul class="dropdown-menu p-0 rounded-0">
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">新增科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">复制</a></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="复制到其它科室下">复制到</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">移动到</a></li>
+                                    <li><a class="dropdown-item" href="#">自定义检索拼音</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">禁用科室</a></li>
+                                    <li><a class="dropdown-item" href="#Temp">删除科室</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">查看科室详情</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <table id="mainTable" class="table table-sm table-hover">
+                <thead>
+                    <tr data-bs-toggle="offcanvas" data-bs-target="#recyle_offcanvasRight" aria-controls="recyle_offcanvasRight">
+                        <th htmlid="txt_demo_focus" scope="col">全选</th>
+                        <th htmlid="txt_demo_focus">登录帐号</th>
+                        <th htmlid="txt_demo_focus">姓名</th>
+                        <th htmlid="txt_demo_focus">科室</th>
+                        <th htmlid="txt_demo_focus">角色</th>
+                        <th htmlid="txt_demo_focus">工作组</th>
+                        <th htmlid="txt_demo_focus">是否管理员</th>
+                        <th htmlid="txt_demo_focus">状态</th>
+                        <th htmlid="txt_demo_focus">登录时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.User) {
+                    <tr>
+                        <td><input type="checkbox" class="form-check-input" /></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SectionId)
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm">
+                                <option>回收权限</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm">
+                                <option>回收一组</option>
+                                <option>清洗三组</option>
+                            </select>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsAdmin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastLoginOn)
+                        </td>
+                        <td>
+                            <a href="#Temp" class="fs-9">编辑</a>&nbsp;
+                            <div class="btn-group">
+                                <span class="btn btn-link dropdown-toggle p-0 fs-9" data-bs-toggle="dropdown" aria-expanded="false">
+                                    更多
+                                </span>
+                                <ul class="dropdown-menu p-0 rounded-0">
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">新增帐号</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">复制</a></li>
+                                    <li><a class="dropdown-item" href="#Temp">移动</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp">禁用帐号</a></li>
+                                    <li><a class="dropdown-item" href="#Temp">删除帐号</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#Temp" title="当前科室内复制">重置登录密码</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">查看详细信息</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

@@ -7,30 +7,34 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Koala.Models;
 
-namespace Koala.Pages.Administration.Hospitals {
-    public class CreateModel : PageModel {
-        private readonly koalaContext _context;
+namespace Koala.Pages.Administration.WorkGroups
+{
+    public class CreateModel : PageModel
+    {
+        private readonly Koala.Models.koalaContext _context;
 
-        public IList<Hospital> Hospitals { get; set; }
-        public CreateModel(Koala.Models.koalaContext context) {
+        public CreateModel(Koala.Models.koalaContext context)
+        {
             _context = context;
         }
 
-        public IActionResult OnGet() {
-            Hospitals = _context.Hospitals.ToList();
+        public IActionResult OnGet()
+        {
             return Page();
         }
 
         [BindProperty]
-        public Hospital Hospital { get; set; }
+        public Workgroup Workgroup { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync() {
-            if (!ModelState.IsValid) {
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
                 return Page();
             }
 
-            _context.Hospitals.Add(Hospital);
+            _context.Workgroups.Add(Workgroup);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

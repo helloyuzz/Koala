@@ -34,11 +34,13 @@ namespace Koala.Models_temp
         public virtual DbSet<RequestRecyle> RequestRecyles { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RoleDataRange> RoleDataRanges { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRelation> UserRelations { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
+        public virtual DbSet<Workgroup> Workgroups { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -211,7 +213,7 @@ namespace Koala.Models_temp
                 entity.HasComment("医院");
 
                 entity.Property(e => e.Id)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("id");
 
                 entity.Property(e => e.BackgroundUrl)
@@ -243,7 +245,7 @@ namespace Koala.Models_temp
                     .HasColumnName("logo_url");
 
                 entity.Property(e => e.ManagerId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("manager_id");
 
                 entity.Property(e => e.Name)
@@ -251,7 +253,7 @@ namespace Koala.Models_temp
                     .HasColumnName("name");
 
                 entity.Property(e => e.ParentId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("parent_id");
 
                 entity.Property(e => e.Pinyin)
@@ -259,7 +261,7 @@ namespace Koala.Models_temp
                     .HasColumnName("pinyin");
 
                 entity.Property(e => e.Position)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("position");
 
                 entity.Property(e => e.ShortName)
@@ -275,7 +277,7 @@ namespace Koala.Models_temp
                     .HasColumnName("update_on");
 
                 entity.Property(e => e.VersionId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("version_id");
             });
 
@@ -312,12 +314,16 @@ namespace Koala.Models_temp
                     .HasColumnType("int(6)")
                     .HasColumnName("id");
 
+                entity.Property(e => e.Actions)
+                    .HasMaxLength(60)
+                    .HasColumnName("actions");
+
                 entity.Property(e => e.Area)
                     .HasMaxLength(30)
                     .HasColumnName("area");
 
                 entity.Property(e => e.AspPage)
-                    .HasMaxLength(60)
+                    .HasMaxLength(600)
                     .HasColumnName("asp_page");
 
                 entity.Property(e => e.Class)
@@ -544,6 +550,10 @@ namespace Koala.Models_temp
                     .HasColumnName("recyle_on")
                     .HasComment("回收日期");
 
+                entity.Property(e => e.RequestNo)
+                    .HasMaxLength(60)
+                    .HasColumnName("request_no");
+
                 entity.Property(e => e.RequestOn)
                     .HasColumnType("datetime")
                     .HasColumnName("request_on")
@@ -678,6 +688,23 @@ namespace Koala.Models_temp
                     .HasColumnName("update_on");
             });
 
+            modelBuilder.Entity<RoleDataRange>(entity =>
+            {
+                entity.ToTable("role_data_ranges");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.HospitalId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("hospital_id");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id");
+            });
+
             modelBuilder.Entity<RoleRight>(entity =>
             {
                 entity.ToTable("role_rights");
@@ -724,7 +751,7 @@ namespace Koala.Models_temp
                 entity.ToTable("sections");
 
                 entity.Property(e => e.Id)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("id");
 
                 entity.Property(e => e.CreateOn)
@@ -732,18 +759,22 @@ namespace Koala.Models_temp
                     .HasColumnName("create_on");
 
                 entity.Property(e => e.HospitalId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("hospital_id");
 
                 entity.Property(e => e.IsDelete).HasColumnName("is_delete");
 
                 entity.Property(e => e.ManagerId)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(6)")
                     .HasColumnName("manager_id");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(60)
                     .HasColumnName("name");
+
+                entity.Property(e => e.ParentId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("parent_id");
 
                 entity.Property(e => e.Pinyin)
                     .HasMaxLength(60)
@@ -908,6 +939,39 @@ namespace Koala.Models_temp
                 entity.Property(e => e.VersionLog)
                     .HasColumnType("text")
                     .HasColumnName("version_log");
+            });
+
+            modelBuilder.Entity<Workgroup>(entity =>
+            {
+                entity.ToTable("workgroups");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("create_by");
+
+                entity.Property(e => e.CreateOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_on");
+
+                entity.Property(e => e.HospitalId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("hospital_id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(60)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.SectionId)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("section_id");
+
+                entity.Property(e => e.Status)
+                    .HasColumnType("int(6)")
+                    .HasColumnName("status");
             });
 
             OnModelCreatingPartial(modelBuilder);

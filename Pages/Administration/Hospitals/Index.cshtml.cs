@@ -27,7 +27,7 @@ namespace Koala.Pages.Administration.Hospitals {
 
             TreeView = new List<TreeNode>();
             foreach (var item in Hospital) {
-                TreeNode node = new TreeNode(item.Id,-1,item.Name);
+                TreeNode node = new TreeNode(item.Id,-1,item.Name,false);
                 node.SubNodes = BuildSubNodes(item.Id,-1);
                 TreeView.Add(node);
             }
@@ -43,7 +43,7 @@ namespace Koala.Pages.Administration.Hospitals {
             List<TreeNode> nodes = new List<TreeNode>();
             var subSecitons = Sections.Where(t=>t.HospitalId == hospital_id && t.ParentId == root_id).ToList();
             foreach (var item in subSecitons) {
-                TreeNode node = new TreeNode(item.Id,item.ParentId.Value,item.Name);
+                TreeNode node = new TreeNode(item.Id,item.ParentId.Value,item.Name,true);
                 if (root_id == -1) {
                     node.Parent_id = hospital_id;
                 }

@@ -8,6 +8,7 @@ namespace Koala.Models_temp
     public partial class RequestExternalRecyle
     {
         public int Id { get; set; }
+        public string RequestNo { get; set; }
         public int? ManufacturerId { get; set; }
         public int? DespatcherId { get; set; }
         public DateTime? RequestOn { get; set; }

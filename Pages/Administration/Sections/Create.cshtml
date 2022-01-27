@@ -2,75 +2,125 @@
 @model Koala.Pages.Administration.Sections.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "科室管理";
 }
+<div class="container-fluid p-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">科室档案</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="bi bi-file-text"></i>新增科室</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="wizard-tab" data-bs-toggle="tab" href="#wizard" role="tab" aria-controls="wizard" aria-selected="false"><i class="bi bi-question-circle"></i>&nbsp;操作向导</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade bg-white show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-<h1>Create</h1>
+        </div>
+        <div class="tab-pane fade bg-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-<h4>Section</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Section.Id" class="control-label"></label>
-                <input asp-for="Section.Id" class="form-control" />
-                <span asp-validation-for="Section.Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.Name" class="control-label"></label>
-                <input asp-for="Section.Name" class="form-control" />
-                <span asp-validation-for="Section.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.ShortName" class="control-label"></label>
-                <input asp-for="Section.ShortName" class="form-control" />
-                <span asp-validation-for="Section.ShortName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.HospitalId" class="control-label"></label>
-                <input asp-for="Section.HospitalId" class="form-control" />
-                <span asp-validation-for="Section.HospitalId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.Pinyin" class="control-label"></label>
-                <input asp-for="Section.Pinyin" class="form-control" />
-                <span asp-validation-for="Section.Pinyin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.Status" class="control-label"></label>
-                <input asp-for="Section.Status" class="form-control" />
-                <span asp-validation-for="Section.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.ManagerId" class="control-label"></label>
-                <input asp-for="Section.ManagerId" class="form-control" />
-                <span asp-validation-for="Section.ManagerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.CreateOn" class="control-label"></label>
-                <input asp-for="Section.CreateOn" class="form-control" />
-                <span asp-validation-for="Section.CreateOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.UpdateOn" class="control-label"></label>
-                <input asp-for="Section.UpdateOn" class="form-control" />
-                <span asp-validation-for="Section.UpdateOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Section.IsDelete" class="control-label"></label>
-                <input asp-for="Section.IsDelete" class="form-control" />
-                <span asp-validation-for="Section.IsDelete" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <form method="post">
+                <input type="hidden" asp-for="Section.Id" class="form-control" />
+                <div class="container-fluid p-3">
+                    <div class="bg-white p-3">
+                        <h1>Create</h1>
+
+                        <h4>Section</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>科室基本信息</legend>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.Name" class="control-label must-field">科室名称</label>
+                                        <input asp-for="Section.Name" class="form-control" />
+                                        <span asp-validation-for="Section.Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.ShortName" class="control-label not-must-field">科室简称</label>
+                                        <input asp-for="Section.ShortName" class="form-control" />
+                                        <span asp-validation-for="Section.ShortName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.Pinyin" class="control-label must-field">检索拼音</label>
+                                        <input asp-for="Section.Pinyin" class="form-control" />
+                                        <span asp-validation-for="Section.Pinyin" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Section.ManagerId" class="control-label not-must-field">科室管理员</label>
+                                        <input asp-for="Section.ManagerId" class="form-control" readonly placeholder="-" />
+                                        <span asp-validation-for="Section.ManagerId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Section.Status" class="control-label must-field">状态</label>
+                                        <input asp-for="Section.Status" class="form-control" />
+                                        <span asp-validation-for="Section.Status" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group mt-3">
+                                    <input type="submit" value="新增" class="btn btn-primary" />
+                                    <input type="submit" value="新增并继续" class="btn btn-warning" />
+                                    <a class="btn btn-secondary" asp-page="Index">Back to List</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>所属院区/科室</legend>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.HospitalId" class="control-label must-field">上级院区</label>
+                                        <input asp-for="Section.HospitalId" class="form-control" readonly placeholder="-" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Unit" aria-controls="offcanvasRight_Unit"/>
+                                        <span asp-validation-for="Section.HospitalId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.ParentId" class="control-label not-must-field">上级科室</label>
+                                        <input asp-for="Section.ParentId" class="form-control" readonly placeholder="-" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight_Employee" aria-controls="offcanvasRight_Employee"/>
+                                        <span asp-validation-for="Section.ParentId" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-4">
+                                <fieldset>
+                                    <legend>联系方式</legend>
+
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.CreateOn" class="control-label"></label>
+                                        <input asp-for="Section.CreateOn" class="form-control" />
+                                        <span asp-validation-for="Section.CreateOn" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.UpdateOn" class="control-label"></label>
+                                        <input asp-for="Section.UpdateOn" class="form-control" />
+                                        <span asp-validation-for="Section.UpdateOn" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Section.IsDelete" class="control-label"></label>
+                                        <input asp-for="Section.IsDelete" class="form-control" />
+                                        <span asp-validation-for="Section.IsDelete" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade bg-white" id="wizard" role="tabpanel" aria-labelledby="wizard-tab">
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
+    <script>
+        $(document).ready(function () {
+            $('#Section_Name').focus();
+        });
+    </script>

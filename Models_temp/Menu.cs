@@ -16,5 +16,6 @@ namespace Koala.Models_temp
         public int? Position { get; set; }
         public int? Unread { get; set; }
         public sbyte? Hidden { get; set; }
+        public string Actions { get; set; }
     }
 }
